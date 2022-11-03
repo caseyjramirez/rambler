@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
 
   return (
-    <div className="App">
-      <h1>Page Count: {count}</h1>
+    <div className="App container">
+      <h1>helo</h1>
+
+
+      {/* <Routes>
+        <Route path="/" element={<AroundMe />} />
+        <Route path="/activity" element={<Activity />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/history" element={<History />} />
+      </Routes> */}
     </div>
   );
 }
