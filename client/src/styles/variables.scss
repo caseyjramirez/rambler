@@ -2,10 +2,24 @@
 
 $font: Inter, -apple-system, sans-serif;
 
-$green: #0D6932;
 
 // shades
 $white: #FFFFFF;
 $grey-1: #F8FAFC;
 $grey-2: #DDE4EB;
-$black: #334155;
+$tan: #FAF4EB;
+$blue-light: #9FB1C9;
+
+$blue: #334155;
+$green: #0D6932;
+
+
+$border-radius: 11px;
+$letter-spacing: -.075rem;
+$transition: all .7s;
+
+$full-height: calc(100vh - 40px);
+
+// offset-x | offset-y | blur-radius | spread-radius | color 
+$box-shadow: 9px 10px 11px -12px #0000001A;
+$box-shadow-hover: 11px 12px 11px -12px #00000026;

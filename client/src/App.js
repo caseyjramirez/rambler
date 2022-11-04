@@ -1,13 +1,33 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import Rambler from "./pages/Rambler";
+import Walk from "./pages/Walk";
+import Login from "./pages/Login";
+import Signup from './pages/Signup';
 
 function App() {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    navigate('/walk')
+  }, [])
 
   return (
     <div className="App container">
-      <h1>helo</h1>
 
 
+      <Routes>
+        <Route path="/rambler" element={<Rambler />}></Route>
+
+        <Route path="/walk" element={<Walk />}>
+          <Route path="" element={<Login />} />
+          {/* <Route path="/signup/*" element={<Signup />} />  */}
+        </Route>
+      </Routes>
+      
+      
+      
+      
       {/* <Routes>
         <Route path="/" element={<AroundMe />} />
         <Route path="/activity" element={<Activity />} />

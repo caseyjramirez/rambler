@@ -1,15 +1,48 @@
 @import './variables.scss';
 @import './reset.scss';
+@import './spacing.scss';
+@import './misc.scss';
 
 html {
     font-family: $font;
-    color: $black;
+    color: $blue;
     background-color: $grey-1;
+    letter-spacing: $letter-spacing;
 }
 
 .container {
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.center-card {
+    width: 100%;
+    height: $full-height;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-feed {
+        width: 100%;
+        height: calc($full-height - 40px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.logo {
+    color: $green;
+    font-size: 2rem;
+    text-align: left;
+
+    &.large {
+        font-size: 3rem;
+    }
+}
+
+.text-center {
+    text-align: center;
 }

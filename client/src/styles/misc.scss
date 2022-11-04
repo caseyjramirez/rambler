@@ -1,0 +1,48 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.button {
+    background-color: $white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: $border-radius;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: $box-shadow;
+    transition: $transition;
+    margin-bottom: 20px;
+
+    &:hover {
+        box-shadow: $box-shadow-hover;
+    }
+
+    &.span {
+        min-width: calc(100% - 60px);
+    }
+}
+
+.sidebar-layout {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.sidebar {
+    width: 100%;
+    height: $full-height;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid $grey-2;
+}
+
+.feed {
+    width: calc(100% - 40px);
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: row;
+}
