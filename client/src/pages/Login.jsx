@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import TextInput from "../components/textInput";
+import { login } from '../services/services';
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+    const navigate = useNavigate();
 
     const [loginInfo, setLoginInfo] = useState({
         email: '',
@@ -13,9 +16,12 @@ function Login() {
         setLoginInfo({ ...loginInfo, [name]: value })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        console.log(loginInfo);
+        const data = await login(loginInfo);
+        if(data.status === 200) {
+            navigate('/')
+        }
     }
 
     const { email, password } = loginInfo

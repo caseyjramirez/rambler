@@ -3,5 +3,8 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :postings
 
+  def walks
+    object.walks
+  end
 
 end

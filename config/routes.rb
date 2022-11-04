@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  resources :walks, only: [:index]
-  resources :postings, only: [:index]
-  resources :users, only: [:index]
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    namespace :v1 do
+      resources :walks, only: [:index]
+      resources :postings, only: [:index]
+      resources :users, only: [:index]
+    
+      # custom routes
+      post '/login', to: 'users#login'
 
-  get '/hello', to: 'application#hello_world'
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+      delete '/logout', to: 'users#logout'
+      get '/authorize_user', to:'users#show'
+    end
+  end
 end

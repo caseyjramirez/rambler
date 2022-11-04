@@ -12,6 +12,16 @@ puts "Begin Seeding ⏳"
     )
 end
 
+casey = User.create(
+    first_name: 'Casey',
+    last_name: 'Ramirez',
+    city: "Dallas",
+    age: 23,
+    email: 'test',
+    description: 'microwave go mrrrrrrrrrrrr.....',
+    password: '1234'
+)
+
 10.times do
     Posting.create(
         user_id: User.all.sample.id,
