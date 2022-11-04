@@ -8,12 +8,12 @@ function Walk() {
             <div className="sidebar-layout">
                 <div className="sidebar">
 
-                    <button onClick={() => navigate('/walk')} className="button span text-center">
+                    <button onClick={() => navigate('/walk')} className="span">
                         <p className="mr-10">Login.</p>
                         <p>👋</p>
                     </button>
 
-                    <button onClick={() => navigate('/walk/signup')} className="button span text-center">
+                    <button onClick={() => navigate('/walk/signup')} className="span">
                         <p className="mr-10">Sign Up!</p>
                         <p>🏆</p>
                     </button>
