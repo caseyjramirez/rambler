@@ -1,5 +1,5 @@
 class PostingSerializer < ActiveModel::Serializer
-  attributes :id, :distance, :date
+  attributes :id, :distance, :date, :location
   
   has_one :user
 

@@ -5,4 +5,15 @@ class Api::V1::PostingsController < ApplicationController
         render json: postings, status: :ok
     end
 
+    def create
+        posting = Posting.create!(posting_params)
+        render json: posting, status: :created
+    end
+
+    private
+
+    def posting_params
+        params.permit(:distance, :date, :location, :user_id)
+    end 
+
 end

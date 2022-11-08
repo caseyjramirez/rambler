@@ -26,7 +26,8 @@ casey = User.create(
     Posting.create(
         user_id: User.all.sample.id,
         distance: rand(0..7),
-        date: DateTime.new(),
+        date: DateTime.current(),
+        location: "Dallas"
     )
 end
 
@@ -36,7 +37,7 @@ end
         user_two_id: User.all.sample.id,
         distance: rand(0..7),
         location: "Dallas",
-        date: DateTime.new()
+        date: DateTime.current()
     )
 end
 

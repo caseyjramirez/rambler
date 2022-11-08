@@ -113,4 +113,13 @@
         position:absolute;
         right:30px; 
     }
+
+    .walk-with-me-button {
+        position: relative;
+        bottom: -10px;
+    }
+}
+.distance-slider {
+    font-family: $font;
+    color: black;
 }

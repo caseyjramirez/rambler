@@ -42,7 +42,7 @@ function App() {
         
         <Route path="/" element={<Dashboard />}>
           <Route path="" element={<Activity user={user} />} />
-          <Route path="/go-walk" element={<GoWalk />} />
+          <Route path="/go-walk" element={<GoWalk user={user} />} />
           <Route path="/around-me" element={<AroundMe />} />
           <Route path="/history" element={<History />} />
         </Route>

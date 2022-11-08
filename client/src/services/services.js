@@ -1,7 +1,8 @@
 import axios from "axios";
 import { 
     loginAPI,
-    authorizeUserAPI
+    authorizeUserAPI,
+    postingAPI
 } from "./url";
 
 async function login(body) {
@@ -27,10 +28,35 @@ async function authorizeUser() {
     }
 }
 
+async function createPosting(body) {
+    try {
+        return await axios({
+            method: 'post',
+            url: postingAPI,
+            data: body
+        })
+    } catch (error) {
+        return error
+    }
+}
+
+async function getPostings() {
+    try {
+        return await axios({
+            method: 'get',
+            url: postingAPI,
+        })
+    } catch (error) {
+        return error
+    }
+}
+
 
 
 
 export {
     login,
-    authorizeUser
+    authorizeUser,
+    createPosting,
+    getPostings
 }
