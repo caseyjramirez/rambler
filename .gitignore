@@ -29,4 +29,4 @@
 /config/master.key
 
 # client-side env
-/client/.env
+client/.env
