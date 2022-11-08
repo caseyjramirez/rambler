@@ -2,7 +2,9 @@ import axios from "axios";
 import { 
     loginAPI,
     authorizeUserAPI,
-    postingAPI
+    postingAPI,
+    walkAPI,
+    unfilledPostingAPI
 } from "./url";
 
 async function login(body) {
@@ -40,11 +42,23 @@ async function createPosting(body) {
     }
 }
 
+async function createWalk(body) {
+    try {
+        return await axios({
+            method: 'post',
+            url: walkAPI,
+            data: body
+        })
+    } catch (error) {
+        return error
+    }
+}
+
 async function getPostings() {
     try {
         return await axios({
             method: 'get',
-            url: postingAPI,
+            url: unfilledPostingAPI,
         })
     } catch (error) {
         return error
@@ -58,5 +72,6 @@ export {
     login,
     authorizeUser,
     createPosting,
-    getPostings
+    getPostings,
+    createWalk
 }

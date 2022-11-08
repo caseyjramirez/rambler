@@ -1,17 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { getPostings } from '../../services/services'
 import PostingCard from '../../components/postingCard';
+import { createWalk } from '../../services/services'
 
-function AroundMe() {
+function AroundMe({ user, addWalk }) {
     const [postings, setPostings] = useState([])
     
     useEffect(() => {
         getPostings().then(d => setPostings(d.data));
     }, [])
 
-    function goOnWalk(postingId) {
-        // applyToPosting()
-        setPostings(postings => postings.filter(posting => posting.id !== postingId))
+    async function goOnWalk(clickedPosting) {
+        console.log(clickedPosting.id, user);
+
+        const { data } = await createWalk({
+            distance: clickedPosting.distance,
+            location: clickedPosting.location,
+            date: clickedPosting.date,
+            user_one_id: clickedPosting.user.id,
+            user_two_id: user.id,
+            posting_id: clickedPosting.id
+        })
+
+
+
+        addWalk({
+            id: data.id,
+            date: data.date,
+            distance: data.distance,
+            location: data.location,
+            user: data.user_one
+        });
+
+        setPostings(postings => postings.filter(posting => posting.id !== clickedPosting.id))
     }
 
     return (

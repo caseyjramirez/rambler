@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { authorizeUser } from "./services/services";
-
-
+import env from "react-dotenv";
 
 import Rambler from "./pages/Rambler";
 import Walk from "./pages/pageTemplates/Walk";
@@ -13,10 +12,11 @@ import Dashboard from "./pages/pageTemplates/Dashboard";
 import GoWalk from "./pages/authFeed/GoWalk";
 import AroundMe from "./pages/authFeed/AroundMe";
 import History from "./pages/authFeed/History";
+import Maps from "./pages/Maps";
 
+// dotenv.config();
 
 function App() {
-  const navigate = useNavigate()
 
   const [user, setUser] = useState(null)
 
@@ -28,10 +28,14 @@ function App() {
     })
   }, [])
 
+  console.log(user);
+
+  function addWalk(newWalk) {
+    setUser(user => ({...user, walks: [...user.walks, newWalk]}))
+  }
+
   return (
     <div className="App container">
-
-
       <Routes>
         <Route path="/rambler" element={<Rambler />}></Route>
 
@@ -43,8 +47,9 @@ function App() {
         <Route path="/" element={<Dashboard />}>
           <Route path="" element={<Activity user={user} />} />
           <Route path="/go-walk" element={<GoWalk user={user} />} />
-          <Route path="/around-me" element={<AroundMe />} />
+          <Route path="/around-me" element={<AroundMe user={user} addWalk={addWalk} />} />
           <Route path="/history" element={<History />} />
+          <Route path="/maps" element={<Maps />} />
         </Route>
       </Routes>
     </div>

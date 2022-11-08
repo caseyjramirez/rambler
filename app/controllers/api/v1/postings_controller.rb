@@ -5,6 +5,11 @@ class Api::V1::PostingsController < ApplicationController
         render json: postings, status: :ok
     end
 
+    def unfilled
+        postings = Posting.where(isFilled: false)
+        render json: postings, status: :ok
+    end
+
     def create
         posting = Posting.create!(posting_params)
         render json: posting, status: :created

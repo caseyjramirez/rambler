@@ -3,9 +3,9 @@ import WalkCard from "../../components/walkCard";
 
 // ACTIVITY PAGE FEED
 function Activity({ user }) {
-    console.log(user);
-
     const { walks } = user
+    console.log(walks);
+
     return (
         <div className="card">
             <h1 className="card-title">Activity</h1>

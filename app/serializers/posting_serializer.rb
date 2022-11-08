@@ -1,5 +1,5 @@
 class PostingSerializer < ActiveModel::Serializer
-  attributes :id, :distance, :date, :location
+  attributes :id, :distance, :date, :location, :isFilled
   
   has_one :user
 
@@ -10,7 +10,8 @@ class PostingSerializer < ActiveModel::Serializer
       last_name: user.last_name,
       age: user.age,
       city: user.city,
-      description: user.description
+      description: user.description,
+      id: user.id
     }
   end
 end

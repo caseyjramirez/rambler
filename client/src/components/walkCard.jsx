@@ -1,5 +1,4 @@
 function WalkCard({ data }) {
-    console.log(data);
     const { user, distance, location } = data;
 
     return (

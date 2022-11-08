@@ -27,7 +27,8 @@ casey = User.create(
         user_id: User.all.sample.id,
         distance: rand(0..7),
         date: DateTime.current(),
-        location: "Dallas"
+        location: "Dallas",
+        isFilled: false
     )
 end
 

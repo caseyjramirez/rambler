@@ -23,7 +23,7 @@ function PostingCard({ data, goOnWalk }) {
             
             <div className="my-10 breaker"></div>
             {/* <p className="ml-10">Testing</p> */}
-            <button onClick={() => goOnWalk(data.id)} className="walk-with-me-button">
+            <button onClick={() => goOnWalk(data)} className="walk-with-me-button">
                 <p className='mr-10'>Walk with Me!</p>
                 <p className=''>🌲</p>
             </button>
