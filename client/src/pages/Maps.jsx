@@ -7,7 +7,6 @@ function Maps() {
         <div className="google-maps">
             <h1>maps</h1>
             <h1>maps</h1>
-            <h1>maps</h1>
         </div>
     );
 }
