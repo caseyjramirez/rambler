@@ -1,5 +1,10 @@
 puts "Begin Seeding ⏳"
 
+City.create!(
+    name: "Dallas, TX, USA",
+    label: "Dallas"
+)
+
 15.times do
     User.create(
         first_name: Faker::Name.first_name,

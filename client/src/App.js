@@ -38,7 +38,7 @@ function App() {
 
         <Route path="/walk" element={<Walk />}>
           <Route path="" element={<Login />} />
-          {/* <Route path="/signup/*" element={<Signup />} />  */}
+          <Route path="signup/*" element={<Signup />} />
         </Route>
         
         <Route path="/" element={<Dashboard />}>

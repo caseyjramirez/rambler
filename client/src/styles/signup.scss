@@ -1,0 +1,18 @@
+.signup{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 90vh;
+
+    &-left{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-right: 2px solid $grey-2;
+    }
+
+    &-right{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
