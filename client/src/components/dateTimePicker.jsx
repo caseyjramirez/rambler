@@ -21,14 +21,16 @@ function PostingDateTimePicker({date, onChange}) {
     // });
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DateTimePicker
-                renderInput={(props) => <TextField {...props} />}
-                label="Date"
-                value={date}
-                onChange={onChange}
-            />
-        </LocalizationProvider>
+        <div className="date-picker-container">
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DateTimePicker
+                    renderInput={(props) => <TextField {...props} />}
+                    // label="Date"
+                    value={date}
+                    onChange={onChange}
+                />
+            </LocalizationProvider>
+        </div>
     );
 }
 

@@ -54,6 +54,11 @@
     padding: 20px 40px;
     position: relative;
 
+    &.go-walk-span{
+        padding: 20px 10px;
+        width: calc(100% - 20px);
+    }
+
     &-title {
         position: absolute;
         top: 20px;
@@ -73,6 +78,11 @@
         height: 100%;
         justify-content: center;
         align-items: center;
+
+        &-span {
+            width: 100%;
+            // display: flex;
+        }
     }
 }
 
@@ -125,5 +135,19 @@
 }
 
 .google-maps {
-    
+        width: 35vw;
+        height: 85vh;
+        background-color: $grey-1;
+}
+
+.full-span-input {
+    input {
+        width: 90%;
+    }
+}
+
+.date-picker-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

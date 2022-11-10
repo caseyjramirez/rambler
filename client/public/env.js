@@ -76,7 +76,7 @@ window.env = {
   "npm_config_cache": "/Users/caseyramirez/.npm",
   "LESS": "-R",
   "LOGNAME": "caseyramirez",
-  "npm_lifecycle_script": "PORT=4000 && react-dotenv && react-scripts start",
+  "npm_lifecycle_script": "set PORT=4000 && react-dotenv && react-scripts start",
   "rvm_alias_expanded": "",
   "VSCODE_GIT_IPC_HANDLE": "/var/folders/sq/1zmrgfsd3cx4ztqm0v1bc9r00000gn/T/vscode-git-7896025f5a.sock",
   "GEM_PATH": "/Users/caseyramirez/.rvm/gems/ruby-2.7.4:/Users/caseyramirez/.rvm/gems/ruby-2.7.4@global",
@@ -98,6 +98,5 @@ window.env = {
   "npm_config_prefix": "/opt/homebrew",
   "COLORTERM": "truecolor",
   "_": "/Users/caseyramirez/Development/lab-code/5-phase-capstone/rambler/client/node_modules/.bin/react-dotenv",
-  "GOOGLE_MAPS_API": "hello",
-  "TEST": "coffee"
+  "GOOGLE_MAPS_API": "AIzaSyCQa5yESFjuQNIkpygue6_f8aJ4wcbzUkU"
 };

@@ -14,7 +14,7 @@ function PostingCard({ data, goOnWalk }) {
             <div className="walk-card-info-header">
                 <h1 className="ml-10">{user.first_name} {user.last_name}</h1>
                 <div className="walk-card-info-header-details">
-                    <p className="mr-10">{location}, Tx</p>
+                    <p className="mr-10">{location}</p>
                     <p className="mr-10">{distance} {renderMileWord()}</p>
                     <p className="mr-10">10/22/22</p>
                 </div>

@@ -1,0 +1,42 @@
+
+
+.go-walk{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 90vh;
+
+    &-form{
+        // background-color: rgba(255, 0, 0, 0.206);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-right: 2px solid $grey-2;
+    }
+
+    &-map{
+        padding: 20px;
+    }
+}
+
+.location {
+
+    input {
+        width: 90%;
+    }
+
+
+    &-result {
+        margin-bottom: 15px;
+    }
+
+    &-results-list {
+        padding: 20px 5px;
+        letter-spacing: 0;
+
+        display: relative;
+        background-color: $white;
+        z-index: 1;
+
+        cursor: pointer;
+    }
+}

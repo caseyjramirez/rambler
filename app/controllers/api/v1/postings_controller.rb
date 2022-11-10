@@ -18,7 +18,7 @@ class Api::V1::PostingsController < ApplicationController
     private
 
     def posting_params
-        params.permit(:distance, :date, :location, :user_id)
+        params.permit(:distance, :date, :location, :user_id, :isFilled)
     end 
 
 end

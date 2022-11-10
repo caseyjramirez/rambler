@@ -12,9 +12,6 @@ import Dashboard from "./pages/pageTemplates/Dashboard";
 import GoWalk from "./pages/authFeed/GoWalk";
 import AroundMe from "./pages/authFeed/AroundMe";
 import History from "./pages/authFeed/History";
-import Maps from "./pages/Maps";
-
-// dotenv.config();
 
 function App() {
 
@@ -49,7 +46,6 @@ function App() {
           <Route path="/go-walk" element={<GoWalk user={user} />} />
           <Route path="/around-me" element={<AroundMe user={user} addWalk={addWalk} />} />
           <Route path="/history" element={<History />} />
-          <Route path="/maps" element={<Maps />} />
         </Route>
       </Routes>
     </div>
