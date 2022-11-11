@@ -1,15 +1,17 @@
+import React from 'react';
 import TextInput from "../../components/textInput";
 import { useNavigate } from "react-router-dom";
 
 
-function NameAndAgeSignupPage({ firstName, lastName, handleChange }) {
+function NameAndAgeSignupPage({ firstName, lastName, handleChange, businessCard }) {
     const navigate = useNavigate();
     
     async function handleSubmit(e) {
         e.preventDefault()
     
-        navigate('/walk/signup/email');
+        navigate('/walk/signup/job');
     }
+
 
     return (
         <div className='signup'>
@@ -29,14 +31,18 @@ function NameAndAgeSignupPage({ firstName, lastName, handleChange }) {
                         name="lastName"
                         value={lastName}
                 />
-
-                <button type="submit" className='blue full-span-go-walk'>
-                    <p className='mr-10'>Go Walk!</p>
-                    <p className=''>🥾</p>
-                </button>
+                <div className="btn-container">
+                    <button onClick={() => navigate('/walk/signup')} className='blue xl'>
+                        <p className=''>Back</p>
+                    </button>
+                    <button type="submit" className='blue xl'>
+                        <p className=''>Next</p>
+                    </button>
+                </div>
             </form>
         </div>
         <div className="signup-right">
+            {businessCard}
         </div>
     </div>
     );

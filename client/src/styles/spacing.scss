@@ -140,3 +140,11 @@ MARGIN TOP & BOTTOM
     margin-top: 50px;
     margin-bottom: 50px;
 }
+
+.flex {
+    display: flex;
+
+    &.flex-row {
+        flex-direction: row;
+    }
+}

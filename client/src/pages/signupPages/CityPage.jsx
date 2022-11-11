@@ -1,62 +1,52 @@
 import React, { useState, useEffect } from 'react';
-import env from "react-dotenv";
 import { useNavigate } from "react-router-dom";
 import RadioButton from "../../components/radioButton";
 import { getCities } from '../../services/services';
-import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
-
+import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api'
 
-function CitySignupPage({ setCity }) {
+function CitySignupPage({ setCity, cities }) {
     const navigate = useNavigate();
-    
-    useEffect(() => {
-        getCities().then(r => setCities(r.data))
-    }, []);
 
-    const [cities, setCities] = useState();
+
     const [cord, setCord] = useState({lat: 30.267153, lng: -97.7430608})
-    const [isDisabled, setIsDisabled] = useState(true);
 
     async function handleSubmit(e) {
         e.preventDefault()
     
-        if(!isDisabled) {
-          navigate('name');
-        }
+        navigate('name');
     }
 
     const {isLoaded} = useLoadScript({
-        googleMapsApiKey: env.GOOGLE_MAPS_API,
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API,
         libraries: ['places']
     })
 
-    async function changeCity(city) {
-        setIsDisabled(false);
-        const results = await getGeocode({ address: city });
+    async function changeCity(name, label, id) {
+        const results = await getGeocode({ address: name });
         const { lat, lng } = await getLatLng(results[0]);
         setCord({ lat, lng });
-        setCity(city)
+        setCity(label, id)
     }
-
-
-
 
     return (
         <div className='signup'>
             <div className="signup-left">
-                <h1 className='mb-30 fc-green'>Where are you from?</h1>
+                <h1 className='mb-30 fc-green'>Where are you located?</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="align-left mb-40">
                     {
-                        cities && cities.map(city => <RadioButton data={city} onClick={changeCity}/>)
+                        cities && cities.map(city => <RadioButton data={city} onClick={() => changeCity(city.name, city.label, city.id)}/>)
                     }
                     </div>
-                    
-                    <button disabled={isDisabled} type="submit" className='blue full-span-go-walk'>
-                        <p className='mr-10'>Go Walk!</p>
-                        <p className=''>🥾</p>
-                    </button>
+
+
+                    <div className="btn-container">
+                        <div></div>
+                        <button type="submit" className='blue xl'>
+                            <p className=''>Next</p>
+                        </button>
+                    </div>
 
                 </form>
             </div>

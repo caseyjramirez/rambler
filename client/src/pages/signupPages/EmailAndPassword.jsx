@@ -1,13 +1,13 @@
 import TextInput from "../../components/textInput";
 import { useNavigate } from "react-router-dom";
 
-function EmailAndPasswordSignupPage({handleChange, email, password}) {
+function EmailAndPasswordSignupPage({handleChange, email, password, confirmPassword}) {
     const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault()
     
-        navigate('/walk/signup/email');
+        navigate('/rambler');
     }
 
     return (
@@ -30,10 +30,23 @@ function EmailAndPasswordSignupPage({handleChange, email, password}) {
                         type={'password'}
                 />
 
-                <button type="submit" className='blue full-span-go-walk'>
-                    <p className='mr-10'>Go Walk!</p>
-                    <p className=''>🥾</p>
-                </button>
+                <TextInput
+                        label="Confirm Password"
+                        onChange={handleChange}
+                        name="confirmPassword"
+                        value={confirmPassword}
+                        type={'password'}
+                />
+
+                <div className="btn-container">
+                    <button onClick={() => navigate('/walk/signup/name')} className='blue xl'>
+                        <p className=''>Back</p>
+                    </button>
+                    <button type="submit" className='blue xl'>
+                        <p className='mr-10'>Go Walk!</p>
+                        <p className=''>🥾</p>
+                    </button>
+                </div>
             </form>
         </div>
         <div className="signup-right">

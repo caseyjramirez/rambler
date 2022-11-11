@@ -4,6 +4,7 @@ const postingAPI = '/postings'
 const unfilledPostingAPI = '/unfilledPostings'
 const walkAPI = '/walks'
 const cityAPI = '/cities'
+const industryAPI = '/industries'
 
 export { 
     loginAPI,
@@ -11,5 +12,6 @@ export {
     postingAPI,
     walkAPI,
     unfilledPostingAPI,
-    cityAPI
+    cityAPI,
+    industryAPI
 }

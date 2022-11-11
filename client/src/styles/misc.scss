@@ -147,14 +147,15 @@
 }
 
 .radio-container {
+    
     display: flex;
     justify-content: left;
     align-items: center;
-    input, h3 {
+    input, h2 {
         display: inline;
     }
-
-    input {
+    
+    .radio-button {
         width: 20px;
     }
 }

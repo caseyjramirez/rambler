@@ -51,5 +51,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "react-dotenv": {
+    "whitelist": ["GOOGLE_MAPS_API"]
   }
 }
+
+
