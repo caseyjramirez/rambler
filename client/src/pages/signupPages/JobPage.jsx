@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getIndustries } from '../../services/services';
 import DropDown from '../../components/dropDown';
 
-function JobPage({company, jobTitle, handleChange, onIndustryChange}) {
+function JobPage({company, jobTitle, handleChange, onIndustryChange, businessCard}) {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -58,6 +58,7 @@ function JobPage({company, jobTitle, handleChange, onIndustryChange}) {
             </form>
         </div>
         <div className="signup-right">
+            {businessCard}
         </div>
     </div>
     );

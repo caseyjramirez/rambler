@@ -1,7 +1,7 @@
 import TextInput from "../../components/textInput";
 import { useNavigate } from "react-router-dom";
 
-function EmailAndPasswordSignupPage({handleChange, email, password, confirmPassword}) {
+function EmailAndPasswordSignupPage({handleChange, email, password, confirmPassword, businessCard}) {
     const navigate = useNavigate();
 
     async function handleSubmit(e) {
@@ -50,6 +50,10 @@ function EmailAndPasswordSignupPage({handleChange, email, password, confirmPassw
             </form>
         </div>
         <div className="signup-right">
+            <p>test</p>
+            {
+                businessCard
+            }
         </div>
     </div>
     );
