@@ -4,7 +4,8 @@ import {
     authorizeUserAPI,
     postingAPI,
     walkAPI,
-    unfilledPostingAPI
+    unfilledPostingAPI,
+    cityAPI
 } from "./url";
 
 async function login(body) {
@@ -65,6 +66,17 @@ async function getPostings() {
     }
 }
 
+async function getCities() {
+    try {
+        return await axios({
+            method: 'get',
+            url: cityAPI,
+        })
+    } catch (error) {
+        return error
+    }
+}
+
 
 
 
@@ -73,5 +85,6 @@ export {
     authorizeUser,
     createPosting,
     getPostings,
-    createWalk
+    createWalk,
+    getCities
 }

@@ -40,12 +40,6 @@
     align-items: center;
 }
 
-// .opening-gradient {
-//     background: linear-gradient(180deg, #8d7070 0%, #ffffff00 100%);
-//     height: 80px;
-//     margin-top: 40px;
-// }
-
 .card {
     width: calc(100% - 80px);
     height: calc(100% - 40px);
@@ -150,4 +144,17 @@
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+.radio-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    input, h3 {
+        display: inline;
+    }
+
+    input {
+        width: 20px;
+    }
 }

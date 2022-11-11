@@ -1,4 +1,6 @@
 class Api::V1::CitiesController < ApplicationController
+    skip_before_action :authorized_user, only: [:index]
+
     def index
         cities = City.all
         render json: cities, status: :ok

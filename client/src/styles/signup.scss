@@ -5,14 +5,26 @@
 
     &-left{
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         border-right: 2px solid $grey-2;
+
+        input {
+            width: calc(30vw - 60px);
+        }
     }
 
     &-right{
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: $grey-1;
+        margin-left: 20px;
+        border-radius: 7px;
     }
+}
+
+.align-left{
+    width: 30vw;
 }
