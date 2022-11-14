@@ -44,6 +44,7 @@
     margin-top: calc(-7vw - 40px);
     border-radius: 11px;
     box-shadow: $box-shadow;
+    display: relative;
 
     .break {
         width: 100%;
@@ -54,6 +55,8 @@
     h3 {
         color: $blue-light;
         letter-spacing: -.025rem;
+        line-height: 1.25rem;
+        font-size: 1rem;
     }
 
     &-image {
@@ -62,11 +65,49 @@
         object-fit: cover;
         border-radius: 15vw;
 
+
+
         &-container {
             width: 100%;
             padding: 0px 20px;
             display: flex;
             justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            h3, input {
+                position: absolute;
+                color: $white;
+                opacity: 0%;
+                transition: $transition-s;
+                z-index: 1;
+                cursor: pointer;
+            }
+
+            &:hover {
+                h3 {
+                    opacity: 100%;
+                }
+
+                .business-card-image-container-overlay {
+                    background-color: rgba(0, 0, 0, 0.337);
+                }
+            }
         }
     }
+
+    .placeholder {
+        color: $blue-light;
+    }
+}
+
+
+.business-card-image-container-overlay {
+    width: 20vw;
+    height: 20vw;
+    object-fit: cover;
+    border-radius: 15vw;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    transition: $transition-s;
 }

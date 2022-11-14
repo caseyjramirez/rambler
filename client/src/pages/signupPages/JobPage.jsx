@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getIndustries } from '../../services/services';
 import DropDown from '../../components/dropDown';
 
-function JobPage({company, jobTitle, handleChange, onIndustryChange, businessCard}) {
+function JobPage({company, jobTitle, handleChange, onIndustryChange, businessCard, showJob, showEmail }) {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -16,6 +16,8 @@ function JobPage({company, jobTitle, handleChange, onIndustryChange, businessCar
     async function handleSubmit(e) {
         e.preventDefault()
     
+        showJob()
+        showEmail()
         navigate('/walk/signup/email');
     }
 

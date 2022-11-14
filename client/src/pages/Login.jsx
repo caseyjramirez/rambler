@@ -3,7 +3,7 @@ import TextInput from "../components/textInput";
 import { login } from '../services/services';
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({ setUser }) {
     const navigate = useNavigate();
 
     const [loginInfo, setLoginInfo] = useState({
@@ -20,6 +20,7 @@ function Login() {
         e.preventDefault();
         const data = await login(loginInfo);
         if(data.status === 200) {
+            setUser(data.data);
             navigate('/')
         }
     }

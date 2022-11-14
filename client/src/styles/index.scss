@@ -109,3 +109,25 @@ input, select {
     width: 220px;
     transition: $transition-l;
 }
+
+textarea {
+    font-family: $font;
+    border-radius: 7px;
+    padding: 10px;
+    border: 1px solid $grey-2;
+    min-height: 5rem;
+    width: calc(100% - 20px);
+    background-color: $grey-1;
+    color: $blue;
+    transition: $transition-s;
+    resize: none;
+
+    &:focus {
+        box-shadow: $box-shadow-input-focus;
+        border: 1px solid $blue-light;
+    }
+
+    &::placeholder {
+        color: $blue-light;
+    }
+}

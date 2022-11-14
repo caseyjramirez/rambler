@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { authorizeUser } from "./services/services";
-import env from "react-dotenv";
 
 import Rambler from "./pages/Rambler";
 import Walk from "./pages/pageTemplates/Walk";
@@ -14,6 +13,7 @@ import AroundMe from "./pages/authFeed/AroundMe";
 import History from "./pages/authFeed/History";
 
 function App() {
+  const navigate = useNavigate();
 
   const [user, setUser] = useState(null)
 
@@ -21,11 +21,13 @@ function App() {
     authorizeUser().then(r => {
       if(r.status === 200) {
         setUser(r.data)
+      } else {
+        navigate('/rambler');
       }
     })
   }, [])
 
-  console.log(user);
+  // console.log(user);
 
   function addWalk(newWalk) {
     setUser(user => ({...user, walks: [...user.walks, newWalk]}))
@@ -37,11 +39,11 @@ function App() {
         <Route path="/rambler" element={<Rambler />}></Route>
 
         <Route path="/walk" element={<Walk />}>
-          <Route path="" element={<Login />} />
+          <Route path="" element={<Login setUser={setUser}/>} />
           <Route path="signup/*" element={<Signup />} />
         </Route>
         
-        <Route path="/" element={<Dashboard />}>
+        <Route path="/" element={<Dashboard user={user} />}>
           <Route path="" element={<Activity user={user} />} />
           <Route path="/go-walk" element={<GoWalk user={user} />} />
           <Route path="/around-me" element={<AroundMe user={user} addWalk={addWalk} />} />

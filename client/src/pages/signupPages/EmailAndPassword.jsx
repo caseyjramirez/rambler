@@ -50,7 +50,6 @@ function EmailAndPasswordSignupPage({handleChange, email, password, confirmPassw
             </form>
         </div>
         <div className="signup-right">
-            <p>test</p>
             {
                 businessCard
             }

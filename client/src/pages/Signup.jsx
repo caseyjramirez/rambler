@@ -36,10 +36,16 @@ function Signup() {
         },
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        picFile: null,
+        imagePreviewUrl: "",
     })
 
     console.log(newProfile);
+
+    const [showJob, setShowJob] = useState(false)
+    const [showEmail, setShowEmail] = useState(false)
+    const [showExtra, setShowExtra] = useState(false)
     
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -55,7 +61,12 @@ function Signup() {
     }
 
     const returnBusinessCard = () => {
-        return <BusinessCard />
+        return <BusinessCard 
+            data={newProfile} 
+            setProfilePic={(picFile, imagePreviewUrl) => setNewProfile({...newProfile, picFile, imagePreviewUrl})}
+            showJob={showJob}
+            showEmail={showEmail}
+        />
     }
     
     const handleSubmit = async e => {
@@ -89,16 +100,20 @@ function Signup() {
                         handleChange={handleChange}
                         onIndustryChange={setNewIndustry}
                         businessCard={returnBusinessCard()}
+                        showJob={() => setShowJob(true)}
+                        showEmail={() => setShowEmail(true)}
                     />} 
                 />
 
 
-                <Route path='email' element={<EmailAndPasswordSignupPage 
-                    handleChange={handleChange}/>} 
-                    email={newProfile.email}
-                    password={newProfile.password}
-                    confirmPassword={newProfile.confirmPassword}
-                    businessCard={returnBusinessCard()}
+                <Route path='email' element={
+                    <EmailAndPasswordSignupPage 
+                        handleChange={handleChange}
+                        email={newProfile.email}
+                        password={newProfile.password}
+                        confirmPassword={newProfile.confirmPassword}
+                        businessCard={returnBusinessCard()}
+                    />}
                 />
 
             </Routes>
