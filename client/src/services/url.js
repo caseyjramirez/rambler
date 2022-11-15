@@ -1,5 +1,6 @@
 const loginAPI = '/login'
 const authorizeUserAPI = '/authorize_user'
+const userAPI = '/users'
 const postingAPI = '/postings'
 const unfilledPostingAPI = '/unfilledPostings'
 const walkAPI = '/walks'
@@ -13,5 +14,6 @@ export {
     walkAPI,
     unfilledPostingAPI,
     cityAPI,
-    industryAPI
+    industryAPI,
+    userAPI
 }

@@ -1,6 +1,8 @@
 class User < ApplicationRecord
     has_many :postings
     has_many :walks
+    belongs_to :city
+    belongs_to :industry
 
     has_secure_password
 
@@ -20,7 +22,7 @@ class User < ApplicationRecord
                 distance: walk[:distance],
                 location: walk[:location],
                 date: walk[:date],
-                user: User.select(:id, :first_name, :last_name, :city, :age, :description, :profile_photo).find_by_id(userId)
+                user: User.select(:id, :first_name, :last_name, :description, :profile_photo).find_by_id(userId)
             }
         end
     end

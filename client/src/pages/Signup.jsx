@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
-
-import { getCities, getIndustries } from '../services/services';
+import { getCities, getIndustries, createNewUser } from '../services/services';
 
 import CitySignupPage from "./signupPages/CityPage";
 import NameAndAgeSignupPage from "./signupPages/NameAndAge";
 import EmailAndPasswordSignupPage from "./signupPages/EmailAndPassword";
 import JobPage from './signupPages/JobPage';
 import BusinessCard from './signupPages/businessCard';
-import { Children } from 'react';
 
 function Signup() {
     const navigate = useNavigate();
@@ -26,18 +24,18 @@ function Signup() {
     }, []);
     
     const [newProfile, setNewProfile] = useState({
+        firstName: '',
+        lastName: '',
         city: {
             id: '',
             name: ''
         },
-        firstName: '',
-        lastName: '',
-        company: '',
-        jobTitle: '',
         industry: {
             name: '',
             id: ''
         },
+        company: '',
+        jobTitle: '',
         email: '',
         password: '',
         confirmPassword: '',
@@ -45,8 +43,6 @@ function Signup() {
         imagePreviewUrl: "",
         description: ""
     })
-
-    console.log(newProfile);
 
     
     const handleChange = (e) => {
@@ -78,16 +74,32 @@ function Signup() {
         if(!newProfile.description || !newProfile.picFile) {
             if(!newProfile.description) return setExtraContentError("We noticed you're missing a Description, would you like to fill this out?")
             if(!newProfile.picFile) return setExtraContentError("We noticed you're missing a Profile Picture, would you like to fill this out?")
-            else return setExtraContentError("We noticed you're missing a Description and Profile Picture, would you like to fill this out?")
-            
+            else return setExtraContentError("We noticed you're missing a Description and Profile Picture, would you like to fill this out?")   
         }
 
-        // createNewUser()
+        onCreateNewUser()
     }
 
-    async function skipCTA() {
-        // createNewUser()
-        console.log('here you go!');
+    function skipCTA() {
+        onCreateNewUser()
+    }
+
+    async function onCreateNewUser() {
+        const data = await createNewUser({
+            first_name: newProfile.firstName,
+            last_name: newProfile.lastName,
+            city_id: newProfile.city.id,
+            industry_id: newProfile.industry.id,
+            company: newProfile.company,
+            job_title: newProfile.jobTitle,
+            email: newProfile.email,
+            password: newProfile.password,
+            password_confirmation: newProfile.confirmPassword,
+            profile_photo: newProfile.picFile,
+            description: newProfile.description
+        })
+
+        console.log(data);
     }
 
     return (

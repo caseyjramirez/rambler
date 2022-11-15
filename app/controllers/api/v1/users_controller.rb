@@ -1,5 +1,10 @@
 class Api::V1::UsersController < ApplicationController
-    skip_before_action :authorized_user, only: [:login]
+    skip_before_action :authorized_user, only: [:login, :getUser]
+
+    def getUser
+        user = User.first
+        render json: user, status: :ok
+    end
 
     
     def index
@@ -26,5 +31,16 @@ class Api::V1::UsersController < ApplicationController
         session.delete(:user_id)
         head :no_content
     end
+
+    def create
+        user = User.create!(user_params)
+        render json: user, status: :created
+    end
+
+    private
+
+    def user_params
+        params.permit(:first_name, :last_name, :city_id, :industry_id, :company, :job_title, :email, :password, :password_confirmation, :profile_photo, :description)
+    end 
 
 end

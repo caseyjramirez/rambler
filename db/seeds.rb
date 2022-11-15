@@ -1,6 +1,6 @@
 puts "Begin Seeding ⏳"
 
-City.create!(
+dallas = City.create!(
     name: "Dallas, TX, USA",
     label: "Dallas"
 )
@@ -23,7 +23,7 @@ City.create!(
 
 puts "Cities Seeded ⏳"
 
-Industry.create!(
+tech = Industry.create!(
     name: "Tech"
 )
 
@@ -56,11 +56,14 @@ puts "Industries Seeded ⏳"
     User.create(
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
-        city: "Dallas",
-        age: rand(18..32),
+        city_id: City.all.sample.id,
+        industry_id: Industry.all.sample.id,
+        company: Faker::Company.name,
+        job_title: Faker::Job.title,
         email: Faker::Internet.email,
-        description: Faker::Hipster.sentences(number: 1),
-        password: '1234'
+        password: '1234',
+        password_confirmation: '1234',
+        description: Faker::Quote.yoda,
     )
 end
 
@@ -93,11 +96,14 @@ puts "Post + Walk Seeded ⏳"
 casey = User.create(
     first_name: 'Casey',
     last_name: 'Ramirez',
-    city: "Dallas",
-    age: 23,
-    email: 'test',
-    description: 'microwave go mrrrrrrrrrrrr.....',
-    password: '1234'
+    city_id: dallas.id,
+    industry_id: tech.id,
+    company: 'Google',
+    job_title: 'Software Engineer',
+    password: '1234',
+    password_confirmation: '1234',
+    email: 'test@test.com',
+    description: "Hi, I'm Casey I'm interested in all things tech!",
 )
 
 3.times do

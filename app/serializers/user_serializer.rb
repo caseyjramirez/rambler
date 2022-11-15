@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :city, :age, :email, :description, :profile_photo, :walks
+  attributes :id, :first_name, :last_name, :city, :industry, :company, :job_title, :email, :description, :profile_photo, :walks
 
   has_many :postings
 
