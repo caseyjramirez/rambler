@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import testImage from '../../assets/place-holder.jpeg'
 const desc = "The reset styles given here are intentionally very generic. There isn't any default color or background set for the body element, for example. I don't particularly recommend that you just use this in its unaltered state in your own projects."
 
-function BusinessCard({ data, setProfilePic, showJob, showEmail }) {
+function BusinessCard({ data, setProfilePic, showJob, showEmail, description, handleChange }) {
     
     function renderName() {
         if(data.firstName || data.lastName) {
@@ -83,7 +83,12 @@ function BusinessCard({ data, setProfilePic, showJob, showEmail }) {
 
                 <div className="mb-5">
                     <h3 className="mr-5 mb-5">Description:</h3>
-                    <textarea placeholder='Add your description here!'/>
+                    <textarea 
+                        placeholder='Add your description here!'
+                        name='description'
+                        onChange={handleChange}
+                        value={description}
+                    />
                 </div>
             </div>
         </div>

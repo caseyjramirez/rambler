@@ -3,6 +3,8 @@ import TextInput from "../../components/textInput";
 import { useNavigate } from "react-router-dom";
 import { getIndustries } from '../../services/services';
 import DropDown from '../../components/dropDown';
+import Error from '../../components/error';
+import { validateJob } from '../../services/validation';
 
 function JobPage({company, jobTitle, handleChange, onIndustryChange, businessCard, showJob, showEmail }) {
     const navigate = useNavigate();
@@ -12,13 +14,26 @@ function JobPage({company, jobTitle, handleChange, onIndustryChange, businessCar
     }, []);
 
     const [industries, setIndustries] = useState([]);
+    const [error, setError] = useState('');
+    const [industryIsSet, setIndustryIsSet] = useState(false)
     
     async function handleSubmit(e) {
         e.preventDefault()
+        setError('')
+
+        if(!industryIsSet) return setError('What industry do you work in?')
+
+        const {error} = validateJob({company, jobTitle})
+        if(error) return setError(error.details[0].message)
     
         showJob()
         showEmail()
         navigate('/walk/signup/email');
+    }
+
+    function handleIndustryChange(industryId) {
+        setIndustryIsSet(true)
+        onIndustryChange(industryId)
     }
 
     return (
@@ -31,7 +46,7 @@ function JobPage({company, jobTitle, handleChange, onIndustryChange, businessCar
                     label={'Industry'}
                     data={industries}
                     placeholder={'Choose your Industry'}
-                    onChange={onIndustryChange}
+                    onChange={industryId => handleIndustryChange(industryId)}
                 />
 
 
@@ -58,6 +73,8 @@ function JobPage({company, jobTitle, handleChange, onIndustryChange, businessCar
                     </button>
                 </div>
             </form>
+
+            {error && <Error error={error}/>}
         </div>
         <div className="signup-right">
             {businessCard}

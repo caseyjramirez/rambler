@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextInput from "../../components/textInput";
 import { useNavigate } from "react-router-dom";
+import { validateName } from '../../services/validation';
+import Error from '../../components/error';
 
 
 function NameAndAgeSignupPage({ firstName, lastName, handleChange, businessCard }) {
     const navigate = useNavigate();
+    const [error, setError] = useState('')
     
     async function handleSubmit(e) {
         e.preventDefault()
-    
+        setError('')
+
+        const {error} = validateName({firstName, lastName})
+
+        if(error) return setError(error.details[0].message)
+
+
         navigate('/walk/signup/job');
     }
 
@@ -40,6 +49,8 @@ function NameAndAgeSignupPage({ firstName, lastName, handleChange, businessCard 
                     </button>
                 </div>
             </form>
+
+            {error && <Error error={error}/>}
         </div>
         <div className="signup-right">
             {businessCard}

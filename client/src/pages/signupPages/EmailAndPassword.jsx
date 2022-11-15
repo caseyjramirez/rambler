@@ -1,13 +1,24 @@
+import React, { useState } from 'react';
 import TextInput from "../../components/textInput";
 import { useNavigate } from "react-router-dom";
+import { validateLoginInfo } from '../../services/validation';
+import Error from '../../components/error';
+import CTAError from '../../components/ctaError';
 
-function EmailAndPasswordSignupPage({handleChange, email, password, confirmPassword, businessCard}) {
+function EmailAndPasswordSignupPage({handleChange, email, password, confirmPassword, businessCard, onSubmit, extraContentError, skipCTA}) {
     const navigate = useNavigate();
+
+    const [error, setError] = useState('');
 
     async function handleSubmit(e) {
         e.preventDefault()
-    
-        navigate('/rambler');
+        setError('')
+
+        const {error} = validateLoginInfo({email, password})
+        if(error) return setError(error.details[0].message)
+        if(confirmPassword !== password) return setError('Passwords do not match!')
+
+        onSubmit()
     }
 
     return (
@@ -48,6 +59,9 @@ function EmailAndPasswordSignupPage({handleChange, email, password, confirmPassw
                     </button>
                 </div>
             </form>
+            
+            {error && <Error error={error}/>}
+            {extraContentError && <CTAError error={extraContentError} action={skipCTA}/>}
         </div>
         <div className="signup-right">
             {

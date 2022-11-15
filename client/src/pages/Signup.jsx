@@ -9,12 +9,16 @@ import NameAndAgeSignupPage from "./signupPages/NameAndAge";
 import EmailAndPasswordSignupPage from "./signupPages/EmailAndPassword";
 import JobPage from './signupPages/JobPage';
 import BusinessCard from './signupPages/businessCard';
+import { Children } from 'react';
 
 function Signup() {
     const navigate = useNavigate();
 
     const [cities, setCities] = useState([]);
     const [industries, setIndustries] = useState([]);
+    const [showJob, setShowJob] = useState(false)
+    const [showEmail, setShowEmail] = useState(false)
+    const [extraContentError, setExtraContentError] = useState('')
 
     useEffect(() => {
         getCities().then(r => setCities(r.data));
@@ -39,13 +43,11 @@ function Signup() {
         confirmPassword: '',
         picFile: null,
         imagePreviewUrl: "",
+        description: ""
     })
 
     console.log(newProfile);
 
-    const [showJob, setShowJob] = useState(false)
-    const [showEmail, setShowEmail] = useState(false)
-    const [showExtra, setShowExtra] = useState(false)
     
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -66,11 +68,26 @@ function Signup() {
             setProfilePic={(picFile, imagePreviewUrl) => setNewProfile({...newProfile, picFile, imagePreviewUrl})}
             showJob={showJob}
             showEmail={showEmail}
+            handleChange={handleChange}
+            description={newProfile.description}
         />
     }
     
     const handleSubmit = async e => {
-        e.preventDefault();
+
+        if(!newProfile.description || !newProfile.picFile) {
+            if(!newProfile.description) return setExtraContentError("We noticed you're missing a Description, would you like to fill this out?")
+            if(!newProfile.picFile) return setExtraContentError("We noticed you're missing a Profile Picture, would you like to fill this out?")
+            else return setExtraContentError("We noticed you're missing a Description and Profile Picture, would you like to fill this out?")
+            
+        }
+
+        // createNewUser()
+    }
+
+    async function skipCTA() {
+        // createNewUser()
+        console.log('here you go!');
     }
 
     return (
@@ -80,12 +97,13 @@ function Signup() {
                 <Route path='/' element={
                     <CitySignupPage 
                         cities={cities}
-                        setCity={setNewCity} 
+                        setCity={setNewCity}
+                        userCity={newProfile.city.id}
                     />} 
                 />
                 <Route path='name' element={
                     <NameAndAgeSignupPage 
-                        firstName={newProfile.firsName} 
+                        firstName={newProfile.firstName} 
                         lastName={newProfile.lastName} 
                         handleChange={handleChange}
                         businessCard={returnBusinessCard()}
@@ -112,7 +130,10 @@ function Signup() {
                         email={newProfile.email}
                         password={newProfile.password}
                         confirmPassword={newProfile.confirmPassword}
+                        onSubmit={handleSubmit}
                         businessCard={returnBusinessCard()}
+                        extraContentError={extraContentError}
+                        skipCTA={skipCTA}
                     />}
                 />
 

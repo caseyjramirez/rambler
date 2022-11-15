@@ -43,7 +43,12 @@
     padding: 7vw 20px 20px 20px;
     margin-top: calc(-7vw - 40px);
     border-radius: 11px;
-    box-shadow: $box-shadow;
+    transform: perspective(1000px) rotateX(2deg) rotateY(-10deg);
+
+    box-shadow: rgba(0, 0, 0, 0.024) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0.05) 0px 1px 0px 0px,
+    rgba(0, 0, 0, 0.03) 0px 0px 8px 0px,
+    rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
     display: relative;
 
     .break {
@@ -64,8 +69,8 @@
         height: 20vw;
         object-fit: cover;
         border-radius: 15vw;
-
-
+        z-index: 1;
+        transform: perspective(1000px) rotateX(2deg) rotateY(-10deg);
 
         &-container {
             width: 100%;
@@ -80,17 +85,26 @@
                 color: $white;
                 opacity: 0%;
                 transition: $transition-s;
-                z-index: 1;
+                z-index: 2;
                 cursor: pointer;
+                transform: perspective(1000px) rotateX(2deg) rotateY(-10deg);
+
+            }
+
+            input {
+                z-index: 4;
             }
 
             &:hover {
                 h3 {
                     opacity: 100%;
+                    z-index: 3;
+                    transform: perspective(1000px) rotateX(2deg) rotateY(-10deg);
                 }
 
                 .business-card-image-container-overlay {
                     background-color: rgba(0, 0, 0, 0.337);
+                    z-index: 2;
                 }
             }
         }
@@ -109,5 +123,33 @@
     border-radius: 15vw;
     position: absolute;
     background-color: rgba(0, 0, 0, 0);
+    z-index: 2;
+    transform: perspective(1000px) rotateX(2deg) rotateY(-10deg);
     transition: $transition-s;
+}
+
+// .tracker {
+//     width: 10px;
+//     height: 10px;
+//     left: 0;
+//     top: 0;
+//     background: red;
+//     border-radius: 1000px;
+//     transform: translate(calc(-50% + 200px * var(--x)), calc(-50% + 200px * var(--y)));
+// }
+
+.error {
+    background-color: $error-red-light;
+    color: $error-red-dark;
+    border:  1px solid $error-red-dark;
+    border-radius: 7px;
+    width: calc(100% - 60px);
+    text-align: center;
+    padding: 10px;
+    font-size: .75rem;
+    letter-spacing: -.025rem;
+
+    &.cta-error {
+        text-align: left;
+    }
 }

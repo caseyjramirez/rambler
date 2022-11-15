@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import RadioButton from "../../components/radioButton";
-import { getCities } from '../../services/services';
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api'
+import Error from '../../components/error';
 
-function CitySignupPage({ setCity, cities }) {
+function CitySignupPage({ setCity, cities, userCity }) {
     const navigate = useNavigate();
 
 
     const [cord, setCord] = useState({lat: 30.267153, lng: -97.7430608})
+    const [error, setError] = useState('')
 
     async function handleSubmit(e) {
         e.preventDefault()
     
+        if(!userCity) return setError('Select a city to continue!')
+        
+        setError('')
         navigate('name');
     }
 
@@ -49,6 +53,7 @@ function CitySignupPage({ setCity, cities }) {
                     </div>
 
                 </form>
+                {error && <Error error={error} />}
             </div>
             <div className="signup-right">
                 {isLoaded ? (

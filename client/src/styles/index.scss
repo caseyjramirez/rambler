@@ -91,6 +91,21 @@ button {
     &.xl {
         padding: 10px 40px;
     }
+
+    &.error-btn {
+        padding: 10px 40px;
+        margin-bottom: 0px;
+
+        background-color: $error-red-light;
+        color: $error-red-dark;
+        border:  1px solid $error-red-dark;
+        border-radius: 7px;
+        transition: $transition-s;
+
+        &:hover {
+            background-color: $error-red-light-hover;
+        }
+    }
 }
 
 textarea:focus, input:focus{
