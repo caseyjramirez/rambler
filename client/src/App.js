@@ -39,8 +39,8 @@ function App() {
         <Route path="/rambler" element={<Rambler />}></Route>
 
         <Route path="/walk" element={<Walk />}>
-          <Route path="" element={<Login setUser={setUser}/>} />
-          <Route path="signup/*" element={<Signup />} />
+          <Route path="" element={<Login setUser={setUser} />} />
+          <Route path="signup/*" element={<Signup setUser={setUser} />} />
         </Route>
         
         <Route path="/" element={<Dashboard user={user} />}>

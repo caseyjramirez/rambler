@@ -49,15 +49,17 @@ function EmailAndPasswordSignupPage({handleChange, email, password, confirmPassw
                         type={'password'}
                 />
 
-                <div className="btn-container">
-                    <button onClick={() => navigate('/walk/signup/name')} className='blue xl'>
-                        <p className=''>Back</p>
-                    </button>
-                    <button type="submit" className='blue xl'>
-                        <p className='mr-10'>Go Walk!</p>
-                        <p className=''>🥾</p>
-                    </button>
-                </div>
+                {extraContentError ? null :                 
+                    <div className="btn-container">
+                        <button onClick={() => navigate('/walk/signup/name')} className='blue xl'>
+                            <p className=''>Back</p>
+                        </button>
+                        <button type="submit" className='blue xl'>
+                            <p className='mr-10'>Go Walk!</p>
+                            <p className=''>🥾</p>
+                        </button>
+                    </div>
+                }
             </form>
             
             {error && <Error error={error}/>}

@@ -9,7 +9,7 @@ import EmailAndPasswordSignupPage from "./signupPages/EmailAndPassword";
 import JobPage from './signupPages/JobPage';
 import BusinessCard from './signupPages/businessCard';
 
-function Signup() {
+function Signup({ setUser }) {
     const navigate = useNavigate();
 
     const [cities, setCities] = useState([]);
@@ -66,15 +66,16 @@ function Signup() {
             showEmail={showEmail}
             handleChange={handleChange}
             description={newProfile.description}
+            highlightDescription={extraContentError}
         />
     }
     
     const handleSubmit = async e => {
 
         if(!newProfile.description || !newProfile.picFile) {
-            if(!newProfile.description) return setExtraContentError("We noticed you're missing a Description, would you like to fill this out?")
-            if(!newProfile.picFile) return setExtraContentError("We noticed you're missing a Profile Picture, would you like to fill this out?")
-            else return setExtraContentError("We noticed you're missing a Description and Profile Picture, would you like to fill this out?")   
+            if(!newProfile.description) return setExtraContentError("We noticed you're missing a Description, would you like to add one?")
+            if(!newProfile.picFile) return setExtraContentError("We noticed you're missing a Profile Picture, would you like to add one?")
+            else return setExtraContentError("We noticed you're missing a Description and Profile Picture, would you like to add one?")   
         }
 
         onCreateNewUser()
@@ -85,7 +86,8 @@ function Signup() {
     }
 
     async function onCreateNewUser() {
-        const data = await createNewUser({
+
+        createNewUser({
             first_name: newProfile.firstName,
             last_name: newProfile.lastName,
             city_id: newProfile.city.id,
@@ -95,11 +97,12 @@ function Signup() {
             email: newProfile.email,
             password: newProfile.password,
             password_confirmation: newProfile.confirmPassword,
-            profile_photo: newProfile.picFile,
+            profile_photo: newProfile.imagePreviewUrl,
             description: newProfile.description
+        }).then(r => {
+            setUser(r.data)
+            navigate('/')
         })
-
-        console.log(data);
     }
 
     return (
