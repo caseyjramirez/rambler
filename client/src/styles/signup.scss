@@ -99,7 +99,7 @@
 
             }
 
-            input {
+            .profile-photo-image {
                 z-index: 4;
             }
 
@@ -165,4 +165,10 @@
     &.cta-error {
         text-align: left;
     }
+
+    &-login-container {
+        padding-left: 40px;
+        width: 300px;
+    }
 }
+

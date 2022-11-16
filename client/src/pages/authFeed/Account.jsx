@@ -4,7 +4,8 @@ import placeholderProfilePhoto from '../../assets/place-holder.jpeg'
 import { Outlet, useNavigate, Routes, Route } from "react-router-dom";
 import EditProfile from '../../components/editProfile';
 import ConfirmPassword from '../../components/confirmPassword';
-import { updateUser } from '../../services/services'
+import { updateUser, getCities, getIndustries } from '../../services/services'
+
 
 function Account({ user, setUser }) {
     const navigate = useNavigate();
@@ -16,15 +17,32 @@ function Account({ user, setUser }) {
         } else {
             navigate('/rambler')
         }
+
+        getCities().then(r => setCities(r.data));
+        getIndustries().then(r => setIndustries(r.data))
     }, [])
     
     
-    const [isEditing, setIsEditing] = useState(false)
     const [updatedProfile, setUpdatedProfile] = useState(null)
+    const [isEditing, setIsEditing] = useState(false)
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
-    
-    // console.log(updatedProfile, user);
+    const [cities, setCities] = useState([]);
+    const [industries, setIndustries] = useState([]);
+
+    console.log(updatedProfile);
+
+    // const setNewCity = (name, id) => {
+    //     setUpdatedProfile({...updatedProfile, city: { name, id }})
+    // }
+
+    const setNewCity = (cityId) => {
+        setUpdatedProfile({...updatedProfile, city: cities.find(city => city.id === cityId)})
+    }
+
+    const setNewIndustry = (industryId) => {
+        setUpdatedProfile({...updatedProfile, industry: industries.find(industry => industry.id === industryId)})
+    }
 
     function renderCoverPhotoImage() {
         // return user.imagePreviewUrl ? data.imagePreviewUrl : testImage;
@@ -78,11 +96,17 @@ function Account({ user, setUser }) {
 
         })
         setPassword('')
+        
+        console.log(data);
+        
         if(data.status === 202) {
             setUser(data.data)
             navigate('/account')
             setIsEditing(false)
+            setError('')
             
+        } else if(data.response.status === 401) {
+            setError('Incorrect Password!')
         } else {
             setError('Something went wrong... come back and try again later!')
         }
@@ -116,6 +140,10 @@ function Account({ user, setUser }) {
                     handleChange={handleChange}
                     onSaveChanges={onSaveChanges}
                     onDiscardChanges={onDiscardChanges}
+                    cities={cities}
+                    industries={industries}
+                    setCity={setNewCity}
+                    setIndustry={setNewIndustry}
                 />} 
                 />
                 <Route path='/confirm' element={

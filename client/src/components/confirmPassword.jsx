@@ -9,7 +9,7 @@ function ConfirmPassword({password, setPassword, onConfirmChanges, error}) {
                         <div className="label-container mb-3">
                             <h4 className="fw-regular">Password</h4>
                         </div>
-                        <input onChange={e => setPassword(e.target.value)} value={password} type="text"/>
+                        <input type="password" onChange={e => setPassword(e.target.value)} value={password} />
                 </div>
 
                 <button onClick={onConfirmChanges} className='blue-light outline mb-5 ml-20'>

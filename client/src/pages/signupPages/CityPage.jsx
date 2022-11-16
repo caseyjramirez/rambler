@@ -40,7 +40,7 @@ function CitySignupPage({ setCity, cities, userCity }) {
                 <form onSubmit={handleSubmit}>
                     <div className="align-left mb-40">
                     {
-                        cities && cities.map(city => <RadioButton data={city} onClick={() => changeCity(city.name, city.label, city.id)}/>)
+                        cities && cities.map(city => <RadioButton key={city.id} data={city} onClick={() => changeCity(city.name, city.label, city.id)}/>)
                     }
                     </div>
 

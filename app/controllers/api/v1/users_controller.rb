@@ -46,8 +46,13 @@ class Api::V1::UsersController < ApplicationController
     def update 
         user = User.find_by_id(params[:id])
 
-        user.update!(user_params)
-        render json: user, status: :accepted
+
+        if user&.authenticate(params[:password])
+            user.update!(user_params)
+            render json: user, status: :accepted
+       else
+            render json: {errors: "Invalid pasword"}, status: :unauthorized
+       end
     end 
 
     private

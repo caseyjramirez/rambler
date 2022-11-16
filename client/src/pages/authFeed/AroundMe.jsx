@@ -48,8 +48,9 @@ function AroundMe({ user, addWalk }) {
     }
 
     function renderRight() {
-        console.log(hasBeenbooked);
-        return hasBeenbooked ? (<h1 className='around-me-confirmation'>Your Walk Has been booked!</h1>) : (<AroundMeBusinessCard data={userOfInterest} walkWithMe={goOnWalk} />)
+        return hasBeenbooked ? (<div className='around-me-confirmation'>
+            <h3>Your walk has been booked!</h3>
+            </div>) : (<AroundMeBusinessCard data={userOfInterest} walkWithMe={goOnWalk} />)
     }
 
     return (

@@ -40,6 +40,8 @@ function BusinessCard({ data, setProfilePic, showJob, showEmail, description, ha
 
     function addProfilePic(e) {
         e.preventDefault();
+
+        console.log(e);
         let reader = new FileReader();
         let infile = e.target.files[0];
 
@@ -62,7 +64,7 @@ function BusinessCard({ data, setProfilePic, showJob, showEmail, description, ha
         <div>
             <div className="business-card-image-container">
                 <h3>Upload a Profile Image</h3>
-                <input onChange={addProfilePic} type="file" accept="image/*" />
+                <input className='profile-photo-image' onChange={addProfilePic} type="file" accept="image/*" />
                 <div className="business-card-image-container-overlay"></div>
                 <img className="business-card-image" src={renderImage()} alt="" />
             </div>

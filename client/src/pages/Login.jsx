@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TextInput from "../components/textInput";
 import { login } from '../services/services';
 import { useNavigate } from "react-router-dom";
+import Error from '../components/error'
 
 function Login({ setUser }) {
     const navigate = useNavigate();
@@ -10,6 +11,7 @@ function Login({ setUser }) {
         email: '',
         password: ''
     })
+    const [error, setError] = useState('')
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -19,9 +21,12 @@ function Login({ setUser }) {
     const handleSubmit = async e => {
         e.preventDefault();
         const data = await login(loginInfo);
+
         if(data.status === 200) {
             setUser(data.data);
             navigate('/')
+        } else {
+            setError('Email or password incorrect!')
         }
     }
 
@@ -50,6 +55,9 @@ function Login({ setUser }) {
                     <p className='mr-10'>Login!</p>
                     <p className=''>🥾</p>
                 </button>
+                <div className="error-login-container">
+                    {error && <Error error={error} />}
+                </div>
 
             </form>
 

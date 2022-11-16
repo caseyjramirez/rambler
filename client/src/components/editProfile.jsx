@@ -1,4 +1,4 @@
-function EditProfile({ user, onSaveChanges, handleChange, onDiscardChanges }) {
+function EditProfile({ user, onSaveChanges, handleChange, onDiscardChanges, cities, industries, setCity, setIndustry }) {
     
     return (
         <div className="edit-profile-container">
@@ -55,11 +55,11 @@ function EditProfile({ user, onSaveChanges, handleChange, onDiscardChanges }) {
                             <h4 className="fw-regular">Industry</h4>
 
                         </div>
-                        <select onChange={e => console.log(e)} name="cars" id="cars">
+                        <select onChange={e => setIndustry(parseInt(e.target.value))} name="cars" id="cars">
                             <option value="" selected>{user.industry.name}</option>
-                            {/* {
-                                data.map(industry => <option value={industry.id}>{industry.name}</option>)
-                            } */}
+                            {
+                                industries && industries.map(industry => <option value={industry.id}>{industry.name}</option>)
+                            }
                         </select>
                     </div>
 
@@ -73,11 +73,11 @@ function EditProfile({ user, onSaveChanges, handleChange, onDiscardChanges }) {
                         <div className="label-container mb-3">
                             <h4 className="fw-regular">City</h4>
                         </div>
-                        <select onChange={e => console.log(e)} name="cars" id="cars">
+                        <select onChange={e => setCity(parseInt(e.target.value))} name="cars" id="cars">
                             <option value="" selected>{user.city.label}</option>
-                            {/* {
-                                data.map(industry => <option value={industry.id}>{industry.name}</option>)
-                            } */}
+                            {
+                                cities && cities.map(city => <option value={city.id}>{city.label}</option>)
+                            }
                         </select>
                     </div>
                     

@@ -27,7 +27,10 @@
     }
 
     &-confirmation {
-        text-align: center;
+        display: flex;
+        color: $blue-light;
+        justify-content: center;
+        align-items: center;
     }
 }
 
