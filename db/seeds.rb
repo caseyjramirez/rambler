@@ -116,7 +116,7 @@ casey = User.create(
     )
 end
 
-7.times do
+1.times do
     Walk.create(
         user_one_id: casey.id,
         user_two_id: User.all.sample.id,
@@ -128,16 +128,25 @@ end
 
 walk = Walk.create(
     user_one_id: casey.id,
-    user_two_id: User.all.sample.id,
+    user_two_id: User.all.first.id,
     distance: rand(0..7),
     location: "Denver, CO, USA",
     date: DateTime.current()
 )
 
-10.times do
+3.times do
     Message.create(
         sender_id: casey.id,
-        reciever_id: User.all.sample.id,
+        reciever_id: User.first.id,
+        walk_id: walk.id,
+        message: Faker::Quote.yoda
+    )
+end
+
+3.times do
+    Message.create(
+        sender_id: User.first.id,
+        reciever_id: casey.id,
         walk_id: walk.id,
         message: Faker::Quote.yoda
     )

@@ -6,7 +6,6 @@ class Api::V1::UsersController < ApplicationController
         render json: user, status: :ok
     end
 
-    
     def index
         users = User.all
         render json: users, status: :ok
@@ -44,10 +43,21 @@ class Api::V1::UsersController < ApplicationController
         render json: user, status: :created
     end
 
+    def update 
+        user = User.find_by_id(params[:id])
+
+        user.update!(user_params)
+        render json: user, status: :accepted
+    end 
+
     private
 
     def user_params
         params.permit(:first_name, :last_name, :city_id, :industry_id, :company, :job_title, :email, :password, :password_confirmation, :profile_photo, :description)
+    end 
+
+    def update_user_params
+        params.permit(:first_name, :last_name, :city_id, :industry_id, :company, :job_title, :email, :profile_photo, :description)
     end 
 
 end

@@ -28,9 +28,9 @@ function Dashboard({ user }) {
             />
 
             <SidebarButton
-                nav='/history'
+                nav='/account'
                 emoji='📖'
-                text='History'
+                text='Acount'
             />
 
         </div>

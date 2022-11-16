@@ -115,6 +115,18 @@ async function getUser(userId) {
     }
 }
 
+async function updateUser(userId, body) {
+    try {
+        return await axios({
+            method: 'patch',
+            url: getUserAPI(userId),
+            data: body
+        })
+    } catch (error) {
+        return error
+    }
+}
+
 async function createMessage(body) {
     try {
         return await axios({
@@ -140,5 +152,6 @@ export {
     getIndustries,
     createNewUser,
     getUser,
-    createMessage
+    createMessage,
+    updateUser
 }

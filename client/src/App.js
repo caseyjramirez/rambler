@@ -10,7 +10,7 @@ import Activity from "./pages/authFeed/Activity";
 import Dashboard from "./pages/pageTemplates/Dashboard";
 import GoWalk from "./pages/authFeed/GoWalk";
 import AroundMe from "./pages/authFeed/AroundMe";
-import History from "./pages/authFeed/History";
+import Account from "./pages/authFeed/Account";
 
 function App() {
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ function App() {
           <Route path="" element={<Activity user={user} addMessage={addMessage} />} />
           <Route path="/go-walk" element={<GoWalk user={user} />} />
           <Route path="/around-me" element={<AroundMe user={user} addWalk={addWalk} />} />
-          <Route path="/history" element={<History />} />
+          <Route path="/account/*" element={<Account user={user} setUser={setUser} />} />
         </Route>
       )
     }

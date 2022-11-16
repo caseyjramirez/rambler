@@ -8,6 +8,7 @@ class WalkSerializer < ActiveModel::Serializer
   def user_one
     user = User.find_by_id(object.user_one_id)
     {
+      id: user.id,
       first_name: user.first_name,
       last_name: user.last_name,
       city: user.city,
@@ -21,6 +22,7 @@ class WalkSerializer < ActiveModel::Serializer
   def user_two
     user = User.find_by_id(object.user_two_id)
     {
+      id: user.id,
       first_name: user.first_name,
       last_name: user.last_name,
       city: user.city,

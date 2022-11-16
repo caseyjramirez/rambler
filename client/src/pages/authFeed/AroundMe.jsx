@@ -33,7 +33,8 @@ function AroundMe({ user, addWalk }) {
             date: data.date,
             distance: data.distance,
             location: data.location,
-            user: data.user_one
+            user: data.user_one,
+            messages: []
         });
 
         setPostings(postings => postings.filter(postingObj => postingObj.id !== posting.id))

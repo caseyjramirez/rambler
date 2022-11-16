@@ -6,12 +6,12 @@ class Api::V1::MessagesController < ApplicationController
     end
 
     def create
-        message = Message.create!(posting_params)
-        render json: posting, status: :created
+        message = Message.create!(messages_params)
+        render json: message, status: :created
     end
 
     private
     def messages_params
-        params.permit(:sender_id, :reciever_id, :message)
+        params.permit(:sender_id, :reciever_id, :walk_id, :message)
     end 
 end

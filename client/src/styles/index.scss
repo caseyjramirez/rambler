@@ -6,6 +6,7 @@
 @import './signup.scss';
 @import './aroundMe.scss';
 @import './activity.scss';
+@import './account.scss';
 
 html {
     font-family: $font;
@@ -41,6 +42,14 @@ html {
     font-weight: normal;
 }
 
+.fw-bold {
+    font-weight: bold;
+}
+
+.text-white {
+    color: white;
+}
+
 button {
     background-color: $white;
     color: $blue;
@@ -73,6 +82,32 @@ button {
 
     &.blue {
         background-color: $grey-1;
+    }
+
+    &.blue-light {
+        background-color: $blue-light;
+        color: $white;
+
+        &.outline {
+            background-color: $white;
+            border: $border;
+            color: $blue-light;
+
+            &:hover {
+                background-color: $blue-light;
+                color: $white;
+            }
+        }
+    }
+
+    &.green  {
+        color: white;
+        background-color: $green-light;
+        
+        &:hover {
+            background-color: $green;
+        }
+        
     }
 
     &.dark-blue {

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :cities, only: [:index, :create]
       resources :walks, only: [:index, :create]
       resources :postings, only: [:index, :create]
-      resources :users, only: [:index, :show, :create]
+      resources :users, only: [:index, :show, :create, :update]
     
       # custom routes
       post '/login', to: 'users#login'
