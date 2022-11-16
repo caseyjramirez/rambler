@@ -8,7 +8,8 @@ import {
     cityAPI,
     industryAPI,
     userAPI,
-    getUserAPI
+    getUserAPI,
+    messageAPI
 } from "./url";
 
 async function login(body) {
@@ -114,6 +115,18 @@ async function getUser(userId) {
     }
 }
 
+async function createMessage(body) {
+    try {
+        return await axios({
+            method: 'post',
+            url: messageAPI,
+            data: body
+        })
+    } catch (error) {
+        return error
+    }
+}
+
 
 
 
@@ -126,5 +139,6 @@ export {
     getCities,
     getIndustries,
     createNewUser,
-    getUser
+    getUser,
+    createMessage
 }

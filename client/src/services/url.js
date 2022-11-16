@@ -7,6 +7,7 @@ const unfilledPostingAPI = '/unfilledPostings'
 const walkAPI = '/walks'
 const cityAPI = '/cities'
 const industryAPI = '/industries'
+const messageAPI = '/messages'
 
 export { 
     loginAPI,
@@ -17,5 +18,6 @@ export {
     cityAPI,
     industryAPI,
     userAPI,
-    getUserAPI
+    getUserAPI,
+    messageAPI
 }

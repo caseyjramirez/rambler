@@ -33,6 +33,29 @@ function App() {
     setUser(user => ({...user, walks: [...user.walks, newWalk]}))
   }
 
+  function addMessage(newMessage) {
+    setUser(user => ({...user, walks: user.walks.map(walk => {
+      if(walk.id === newMessage.walk_id) {
+        return {...walk, messages: [...walk.messages, newMessage]}
+      } else {
+        return walk;
+      }  
+    })}))
+  }
+
+  function renderRoutes() {
+    if(user) {
+      return (
+        <Route path="/" element={<Dashboard user={user} />}>
+          <Route path="" element={<Activity user={user} addMessage={addMessage} />} />
+          <Route path="/go-walk" element={<GoWalk user={user} />} />
+          <Route path="/around-me" element={<AroundMe user={user} addWalk={addWalk} />} />
+          <Route path="/history" element={<History />} />
+        </Route>
+      )
+    }
+  }
+
   return (
     <div className="App container">
       <Routes>
@@ -42,14 +65,10 @@ function App() {
           <Route path="" element={<Login setUser={setUser} />} />
           <Route path="signup/*" element={<Signup setUser={setUser} />} />
         </Route>
-        
-        <Route path="/" element={<Dashboard user={user} />}>
-          <Route path="" element={<Activity user={user} />} />
-          <Route path="/go-walk" element={<GoWalk user={user} />} />
-          <Route path="/around-me" element={<AroundMe user={user} addWalk={addWalk} />} />
-          <Route path="/history" element={<History />} />
-        </Route>
+
+        {renderRoutes()}
       </Routes>
+        
     </div>
   );
 }

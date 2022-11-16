@@ -5,9 +5,11 @@ import { getGeocode, getLatLng } from "use-places-autocomplete";
 const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const weekday = ["Sun","Mon","Tues","Wed","Thur","Fri","Sat"];
 
-function WalkCard({ data, setMessages }) {
+function WalkCard({ data, setConvo }) {
     const { user, distance, location, date } = data;
     const [cord, setCord] = useState(null)
+
+    // console.log(data);
     
     useEffect(() => {
         const getCords = async () => {
@@ -52,7 +54,7 @@ function WalkCard({ data, setMessages }) {
         <div className="posting-card mb-20">
             <div className="posting-card-header mb-10">
                 <h1 className="ml-10">{user.first_name} {user.last_name}</h1>
-                <button onClick={() => {setMessages(data.messages)}} className="">
+                <button onClick={() => {setConvo(data)}} className="">
                     <p>Mesage</p>
                 </button>
             </div>
