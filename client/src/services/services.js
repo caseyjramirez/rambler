@@ -7,7 +7,8 @@ import {
     unfilledPostingAPI,
     cityAPI,
     industryAPI,
-    userAPI
+    userAPI,
+    getUserAPI
 } from "./url";
 
 async function login(body) {
@@ -102,6 +103,17 @@ async function createNewUser(body) {
     }
 }
 
+async function getUser(userId) {
+    try {
+        return await axios({
+            method: 'get',
+            url: getUserAPI(userId),
+        })
+    } catch (error) {
+        return error
+    }
+}
+
 
 
 
@@ -113,5 +125,6 @@ export {
     createWalk,
     getCities,
     getIndustries,
-    createNewUser
+    createNewUser,
+    getUser
 }

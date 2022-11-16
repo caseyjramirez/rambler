@@ -8,8 +8,7 @@ class PostingSerializer < ActiveModel::Serializer
     {
       first_name: user.first_name,
       last_name: user.last_name,
-      age: user.age,
-      city: user.city,
+      profile_photo: user.profile_photo,
       description: user.description,
       id: user.id
     }

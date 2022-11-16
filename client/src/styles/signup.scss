@@ -121,6 +121,11 @@
     .placeholder {
         color: $blue-light;
     }
+
+    &.without-profile-pic {
+        margin-top: 5vh;
+        padding: 20px;
+    }
 }
 
 

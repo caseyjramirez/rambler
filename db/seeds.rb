@@ -73,9 +73,9 @@ puts "Users Seeded ⏳"
 10.times do
     Posting.create(
         user_id: User.all.sample.id,
-        distance: rand(0..4),
+        distance: rand(1..4),
         date: DateTime.current(),
-        location: "Dallas",
+        location: "Austin, TX, USA",
         isFilled: false
     )
 end
@@ -85,7 +85,7 @@ end
         user_one_id: User.all.sample.id,
         user_two_id: User.all.sample.id,
         distance: rand(0..7),
-        location: "Dallas",
+        location: "Austin, TX, USA",
         date: DateTime.current()
     )
 end
@@ -109,9 +109,9 @@ casey = User.create(
 3.times do
     Posting.create(
         user_id: casey.id,
-        distance: rand(0..4),
+        distance: rand(1..4),
         date: DateTime.current(),
-        location: "Dallas",
+        location: "Denver, CO, USA",
         isFilled: false
     )
 end
@@ -121,8 +121,25 @@ end
         user_one_id: casey.id,
         user_two_id: User.all.sample.id,
         distance: rand(0..7),
-        location: "Dallas",
+        location: "Denver, CO, USA",
         date: DateTime.current()
+    )
+end
+
+walk = Walk.create(
+    user_one_id: casey.id,
+    user_two_id: User.all.sample.id,
+    distance: rand(0..7),
+    location: "Denver, CO, USA",
+    date: DateTime.current()
+)
+
+10.times do
+    Message.create(
+        sender_id: casey.id,
+        reciever_id: User.all.sample.id,
+        walk_id: walk.id,
+        message: Faker::Quote.yoda
     )
 end
 

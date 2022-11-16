@@ -17,6 +17,7 @@ function Signup({ setUser }) {
     const [showJob, setShowJob] = useState(false)
     const [showEmail, setShowEmail] = useState(false)
     const [extraContentError, setExtraContentError] = useState('')
+    const [signupError, setSignupError] = useState('')
 
     useEffect(() => {
         getCities().then(r => setCities(r.data));
@@ -86,6 +87,7 @@ function Signup({ setUser }) {
     }
 
     async function onCreateNewUser() {
+        setExtraContentError('')
 
         createNewUser({
             first_name: newProfile.firstName,
@@ -100,8 +102,17 @@ function Signup({ setUser }) {
             profile_photo: newProfile.imagePreviewUrl,
             description: newProfile.description
         }).then(r => {
-            setUser(r.data)
-            navigate('/')
+            console.log(r);
+            if(r.status === 201) {
+                setUser(r.data)
+                navigate('/')
+            } else {
+                if(r.response.status === 422) {
+                    setSignupError('That email has already been taken!')
+                } else {
+                    setSignupError('Something broke.. Go for a walk and come back later!')
+                }
+            }
         })
     }
 
@@ -149,6 +160,8 @@ function Signup({ setUser }) {
                         businessCard={returnBusinessCard()}
                         extraContentError={extraContentError}
                         skipCTA={skipCTA}
+                        error={signupError}
+                        setError={setSignupError}
                     />}
                 />
 

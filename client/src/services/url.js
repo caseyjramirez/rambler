@@ -1,6 +1,7 @@
 const loginAPI = '/login'
 const authorizeUserAPI = '/authorize_user'
 const userAPI = '/users'
+const getUserAPI = userId => `/users/${userId}`
 const postingAPI = '/postings'
 const unfilledPostingAPI = '/unfilledPostings'
 const walkAPI = '/walks'
@@ -15,5 +16,6 @@ export {
     unfilledPostingAPI,
     cityAPI,
     industryAPI,
-    userAPI
+    userAPI,
+    getUserAPI
 }

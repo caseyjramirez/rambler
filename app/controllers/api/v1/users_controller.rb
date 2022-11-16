@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-    skip_before_action :authorized_user, only: [:login, :getUser, :create]
+    skip_before_action :authorized_user, only: [:login, :create]
 
     def getUser
         user = User.first
@@ -12,8 +12,14 @@ class Api::V1::UsersController < ApplicationController
         render json: users, status: :ok
     end
     
-    def show
+    def auth_user
         render json: current_user, status: :ok
+    end
+
+
+    def show
+        user = User.find_by_id(params[:id])
+        render json: user, status: :ok
     end
     
     def login

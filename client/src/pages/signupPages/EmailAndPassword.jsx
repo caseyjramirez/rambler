@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TextInput from "../../components/textInput";
 import { useNavigate } from "react-router-dom";
 import { validateLoginInfo } from '../../services/validation';
 import Error from '../../components/error';
 import CTAError from '../../components/ctaError';
 
-function EmailAndPasswordSignupPage({handleChange, email, password, confirmPassword, businessCard, onSubmit, extraContentError, skipCTA}) {
+function EmailAndPasswordSignupPage({handleChange, email, password, confirmPassword, businessCard, onSubmit, extraContentError, skipCTA, error, setError}) {
     const navigate = useNavigate();
-
-    const [error, setError] = useState('');
 
     async function handleSubmit(e) {
         e.preventDefault()
