@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import testImage from '../../assets/test-header.jpg'
+import defaultHeader from '../../assets/default-header.jpg'
 import placeholderProfilePhoto from '../../assets/place-holder.jpeg'
 import { Outlet, useNavigate, Routes, Route } from "react-router-dom";
 import EditProfile from '../../components/editProfile';
@@ -13,7 +13,7 @@ function Account({ user, setUser }) {
     
     useEffect(() => {
         if(user) {
-            setUpdatedProfile(user)
+            setUpdatedProfile({...user, picFile: null})
         } else {
             navigate('/rambler')
         }
@@ -32,9 +32,6 @@ function Account({ user, setUser }) {
 
     console.log(updatedProfile);
 
-    // const setNewCity = (name, id) => {
-    //     setUpdatedProfile({...updatedProfile, city: { name, id }})
-    // }
 
     const setNewCity = (cityId) => {
         setUpdatedProfile({...updatedProfile, city: cities.find(city => city.id === cityId)})
@@ -46,11 +43,11 @@ function Account({ user, setUser }) {
 
     function renderCoverPhotoImage() {
         // return user.imagePreviewUrl ? data.imagePreviewUrl : testImage;
-        return testImage;
+        return defaultHeader;
     }
 
     function renderProfilePhotoImage() {
-        return user.profile_photo ? user.profile_photo : placeholderProfilePhoto;
+        return updatedProfile && updatedProfile.profile_photo ? updatedProfile.profile_photo : placeholderProfilePhoto;
     }
 
     function renderButton() {
@@ -93,7 +90,6 @@ function Account({ user, setUser }) {
             description: updatedProfile.description,
             password: password,
             password_confirmation: password
-
         })
         setPassword('')
         
@@ -113,14 +109,33 @@ function Account({ user, setUser }) {
 
     }
 
+    function addProfilePic(e) {
+        e.preventDefault();
+
+        let reader = new FileReader();
+        let infile = e.target.files[0];
+
+        reader.onloadend = () => {
+          setUpdatedProfile({...updatedProfile, picFile: infile, profile_photo: reader.result});
+        };
+        
+        reader.readAsDataURL(infile);
+    }
+
 
     return (
         <div className="card history">
             <img src={renderCoverPhotoImage()} alt="profile-header" className="profile-header" />
             
             <div className='header'>
+                <div className="header-image-container">
+                    <h3>Update Profile Image</h3>
+                    <input className='profile-photo-image' onChange={addProfilePic} type="file" accept="image/*" />
+                    <div className="header-image-container-overlay"></div>
+                    {/* <img className="business-card-image" src={renderImage()} alt="" /> */}
+                    <img src={renderProfilePhotoImage()} alt="profile" className="profile-picture" />
+                </div>
 
-                <img src={renderProfilePhotoImage()} alt="profile" className="profile-picture" />
                 <div className="header-content">
                     {renderButton()}
                     <h1 className='mb-10'>{user.first_name} {user.last_name}</h1>

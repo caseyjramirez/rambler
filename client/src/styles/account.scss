@@ -36,6 +36,59 @@
             position: absolute;
             right: 40px;
         }
+
+        &-image-container {
+            padding: 0px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            &:hover {
+                .header-image-container-overlay {
+                    background-color: rgba(0, 0, 0, 0.337);
+                    z-index: 2;
+                }
+            }
+
+            &-overlay {
+                width: 18vw;
+                height: 18vw;
+                object-fit: cover;
+                border-radius: 15vw;
+                position: absolute;
+                background-color: rgba(0, 0, 0, 0);
+                // background-color: red;
+                z-index: 2;
+                transition: $transition-s;
+            }
+
+            h3, input {
+                position: absolute;
+                color: $white;
+                opacity: 0%;
+                transition: $transition-s;
+                z-index: 2;
+                cursor: pointer;
+
+            }
+
+            .profile-photo-image {
+                z-index: 4;
+            }
+
+            &:hover {
+                h3 {
+                    opacity: 100%;
+                    z-index: 3;
+                }
+
+                .business-card-image-container-overlay {
+                    background-color: rgba(0, 0, 0, 0.337);
+                    z-index: 2;
+                }
+            }
+        }
     }
 
     .profile-picture {
