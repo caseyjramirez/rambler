@@ -13,7 +13,7 @@ function Account({ user, setUser }) {
     
     useEffect(() => {
         if(user) {
-            setUpdatedProfile({...user, picFile: null})
+            setUpdatedProfile({...user, picFile: null, picFileCover: null})
         } else {
             navigate('/rambler')
         }
@@ -43,7 +43,7 @@ function Account({ user, setUser }) {
 
     function renderCoverPhotoImage() {
         // return user.imagePreviewUrl ? data.imagePreviewUrl : testImage;
-        return defaultHeader;
+        return updatedProfile && updatedProfile.cover_photo ? updatedProfile.cover_photo : defaultHeader;
     }
 
     function renderProfilePhotoImage() {
@@ -87,6 +87,7 @@ function Account({ user, setUser }) {
             job_title: updatedProfile.job_title,
             email: updatedProfile.email,
             profile_photo: updatedProfile.profile_photo,
+            cover_photo: updatedProfile.cover_photo,
             description: updatedProfile.description,
             password: password,
             password_confirmation: password
@@ -109,7 +110,7 @@ function Account({ user, setUser }) {
 
     }
 
-    function addProfilePic(e) {
+    function changeProfilePic(e) {
         e.preventDefault();
 
         let reader = new FileReader();
@@ -122,19 +123,59 @@ function Account({ user, setUser }) {
         reader.readAsDataURL(infile);
     }
 
+    function changeCoverPic(e) {
+        e.preventDefault();
+
+        let reader = new FileReader();
+        let infile = e.target.files[0];
+
+        reader.onloadend = () => {
+          setUpdatedProfile({...updatedProfile, picFileCover: infile, cover_photo: reader.result});
+        };
+        
+        reader.readAsDataURL(infile);
+    }
+
+    function renderProfilePhoto() {
+        return isEditing ? (
+            <div className="header-image-container">
+                <h3>Update Profile Image</h3>
+                <input className='profile-photo-image' onChange={changeProfilePic} type="file" accept="image/*" />
+                {/* <div className="header-image-container-overlay"></div> */}
+                <img src={renderProfilePhotoImage()} alt="profile" className="profile-picture" />
+            </div>
+        ) : (
+            <div className="header-image-container">
+                <img src={renderProfilePhotoImage()} alt="profile" className="profile-picture" />
+            </div>
+        )
+    }
+
+    function renderCoverPhoto() {
+        return isEditing ? (
+            <div className="banner">
+                <div className="banner-container">
+                    <h3>Update Cover Image</h3>
+                    <input className='profile-photo-image' onChange={changeCoverPic} type="file" accept="image/*" />
+                    <div className="banner-container-overlay"></div>
+
+                </div>
+                <img src={renderCoverPhotoImage()} alt="profile-header" className="profile-header" />
+            </div>
+        ) : (
+            <div className="banner">
+                <img src={renderCoverPhotoImage()} alt="profile-header" className="profile-header" />
+            </div>
+        )
+    }
+
 
     return (
         <div className="card history">
-            <img src={renderCoverPhotoImage()} alt="profile-header" className="profile-header" />
+            {renderCoverPhoto()}
             
             <div className='header'>
-                <div className="header-image-container">
-                    <h3>Update Profile Image</h3>
-                    <input className='profile-photo-image' onChange={addProfilePic} type="file" accept="image/*" />
-                    <div className="header-image-container-overlay"></div>
-                    {/* <img className="business-card-image" src={renderImage()} alt="" /> */}
-                    <img src={renderProfilePhotoImage()} alt="profile" className="profile-picture" />
-                </div>
+                {renderProfilePhoto()}
 
                 <div className="header-content">
                     {renderButton()}
