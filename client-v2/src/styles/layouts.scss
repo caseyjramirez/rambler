@@ -1,32 +1,62 @@
-.sidebar-layout {
-    display: grid;
-    
-    /* Extra small devices (phones, 600px and down) */
-    @media only screen and (max-width: 600px) {
-        grid-template-columns: 1fr 3fr;
-    }
-    
-    /* Small devices (portrait tablets and large phones, 600px and up) */
-    @media only screen and (min-width: 600px) {
-        grid-template-columns: 1fr 3fr;
-    }
-
-    /* Medium devices (landscape tablets, 768px and up) */
-    @media only screen and (min-width: 768px) {
-        // this needs to and up needs to be rewritten to introduce hamburger
-        grid-template-columns: 1fr 3fr;   
-    }
-
+// establishing column layout
+.layout {
     /* Large devices (laptops/desktops, 992px and up) */
     @media only screen and (min-width: 992px) {
+        display: grid;
         grid-template-columns: 1fr 4fr;
+        
     }
 
     /* Extra large devices (large laptops and desktops, 1200px and up) */
     @media only screen and (min-width: 1200px) {
+        display: grid;
+        grid-template-columns: 1fr 6fr;
+    }
+
+    @media only screen and (min-width: 1400px) {
+        display: grid;
         grid-template-columns: 1fr 7fr;
     }
 }
+
+
+// establishing the hanburger menu
+:root {
+    @media only screen and (max-width: 991px) {        
+        .sidebar {
+            display: none;
+        }
+
+        .feed {
+            width: 100%;
+            padding-left: 0px;
+        }
+    }
+
+    @media only screen and (min-width: 992px) {        
+        .sidebar {
+            display: flex;
+        }
+
+        .hamburger-container {
+            display: none;
+        }
+    }
+}
+
+// establishing container padding
+.container {
+    @media only screen and (max-width: 991px) {        
+        padding: 5px;
+
+    }
+
+    @media only screen and (min-width: 992px) {        
+        padding: 20px;
+    }
+}
+
+
 
 .sidebar {
     width: 100%;
@@ -49,4 +79,67 @@
     flex-direction: row;
 
     overflow: hidden;
+}
+
+.hamburger {
+
+    &-icon {
+        width: .75rem;
+        height: .75rem;
+        border-radius: 1rem;
+        background-color: $black;
+    }
+    
+    &-container {
+        position: fixed;
+        left: 20px;
+        top: 20px;
+        z-index: 1;
+
+        h3 {
+            opacity: 0%;
+            transform: translateX(-.5rem);
+            transition: $transition-fast;
+        }
+
+        &:hover {
+            h3 {
+                opacity: 100%;
+                transform: translateX(0);
+            }
+        }
+
+    }
+
+    &-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        transition: $transition-fast;
+        width: 100%;
+        height: 100%;
+        background-color: $background-color;
+        
+        transition: $transition-fast;
+        opacity: 0%;
+        display: none;
+
+        &-closer {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+        }
+        
+
+        &.active {
+            opacity: 100%;
+            display: block;
+        }
+
+        &-items {
+            height: 100%;
+            padding: 20px 20px;
+        }
+    }
 }

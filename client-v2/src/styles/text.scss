@@ -26,6 +26,13 @@ h3 {
         font-size: 1rem;
         letter-spacing: -.04rem;
     }
+
+    &.small {
+        // only used in day selector
+        font-size: .75rem;
+        letter-spacing: -.03rem;
+        color: inherit;
+    }
 }
 
 p {
@@ -37,5 +44,10 @@ p {
     &.small {
         font-size: .875rem;
         letter-spacing: -.035rem;
+    }
+
+    &.xsmall {
+        font-size: .625rem;
+        letter-spacing: -.025rem;
     }
 }

@@ -6,6 +6,7 @@
 @import './spacing.scss';
 @import './position.scss';
 @import './go.scss';
+@import './misc.scss';
 
 // /* Extra small devices (phones, 600px and down) */
 // @media only screen and (max-width: 600px) {...}
@@ -27,9 +28,13 @@ html {
     background-color: $background-color;
 }
 
-.container {
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+:root {
+    @media only screen and (max-width: 991px) {        
+        --full-height: calc(100vh - 10px);
+    }
+
+    @media only screen and (min-width: 992px) {        
+        --full-height: calc(100vh - 40px);
+    }
 }
+

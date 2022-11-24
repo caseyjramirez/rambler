@@ -1,9 +1,10 @@
+import Hamburger from "../../components/hamburger";
 import { Outlet } from "react-router-dom";
 import SidebarButton from "../../components/sidebarButton";
 
 function Authorized() {
     return (
-        <div className="sidebar-layout">
+        <div className="layout">
             <div className="sidebar">
                 <SidebarButton
                     nav='/go'

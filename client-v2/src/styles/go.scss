@@ -5,7 +5,100 @@
 
     &-map {
         width: 100%;   
-        height: $full-height;
-        background-color: aqua;
+        height: var(--full-height);
+        background-color: $test;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: end;
+    }
+
+    &-activity {
+        
+        &-container {
+            width: 40%;
+            height: 200px;
+            background-color: $white;
+            border-radius: $component-border-radius;
+            padding: 40px;
+        }
+    }
+
+    
+    // setting it to be responsive
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        .go-activity-container {
+            width: 80%;
+        }
+    }
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) {
+        .go-activity-container {
+            width: 80%;
+            max-width: 450px;
+            min-width: 450px;
+        }
+    }
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+        .go-activity-container {
+            width: 60%;
+            max-width: 450px;
+            min-width: 450px;
+        }
+    }
+
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 992px) {
+        .go-activity-container {
+            width: 60%;
+            max-width: 450px;
+            min-width: 450px;
+        }
+    }
+
+    /* Extra large devices (large laptops and desktops, 1200px and up) */
+    @media only screen and (min-width: 1200px) {
+        .go-activity-container {
+            width: 40%;
+            max-width: 450px;
+            min-width: 450px;
+        }
+    }
+}
+
+.day-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    &.selected {
+        p {
+            opacity: 100%;
+        }
+    }
+
+    button.day {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 2rem;
+    }
+    
+    p {
+        opacity: 0%;
+        transition: $transition-fast;
+        text-align: center;
+        position: absolute;
+        bottom: -.75rem;
+    }
+
+    &:hover {
+        p {
+            opacity: 100%;
+        }
     }
 }

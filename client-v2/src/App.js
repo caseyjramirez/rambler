@@ -5,6 +5,7 @@ import Activity from './pages/authorized/Activity';
 import Go from './pages/authorized/Go';
 import AroundMe from './pages/authorized/AroundMe';
 import Account from './pages/authorized/Account';
+import Hamburger from './components/hamburger';
 
 function App() {
   const [user, setUser] = useState(true)
@@ -24,10 +25,13 @@ function App() {
 
 
   return (
-    <div className="App container">
-      <Routes>
-        {renderAuthorizedRoutes()}
-      </Routes>
+    <div className="App">
+      <Hamburger />
+      <div className="container">
+        <Routes>
+          {renderAuthorizedRoutes()}
+        </Routes>
+      </div>
     </div>
   );
 }

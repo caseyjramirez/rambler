@@ -5,7 +5,28 @@
         align-items: center;
     }
 
+    &.jc-space-between {
+        justify-content: space-between;
+    }
+    
     &.flex-row {
         flex-direction: row;
     }
+
+    &.flex-column {
+        flex-direction: column;
+    }
+    
+    &.center-center {
+        align-items: center;
+        justify-content: center;
+    }
+
+    &.jc-center {
+        justify-content: center;
+    }
+}
+
+.span100 {
+    width: 100%;
 }

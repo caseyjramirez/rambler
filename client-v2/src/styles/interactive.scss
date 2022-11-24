@@ -3,6 +3,18 @@ button {
     background-color: $white;
     border: none;
     cursor: pointer;
+    transition: $transition-fast;
+
+    &.grey {
+        background-color: $grey-light;
+        color: $grey-dark;
+    }
+
+    &.selected {
+        background-color: $black;
+        color: $white;
+    }
+
 
     &.large {
         padding: 10px 30px;
@@ -10,6 +22,42 @@ button {
 
     &.sidebar-button {
         text-align: left;
-    }
 
+
+        .sidebar-button-selected {
+            width: .5rem;
+            height: .5rem;
+            border-radius: .5rem;
+            background-color: $black;
+
+            margin-right: 0;
+            margin-left: auto;
+        }
+    }
+}
+
+
+input {
+    border-radius: $interactive-border-radius;
+    border: none;
+    background-color: $grey-light;
+    color: $grey-dark;
+    padding: .5rem .875rem;
+    width: 100%;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+input, textarea {
+    &:focus {
+        outline: none;
+    }
+}
+
+.interactive {
+    .label-container {
+        width: 5rem;
+    }
 }
