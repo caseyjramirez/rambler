@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_16_035802) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_17_051439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,6 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_16_035802) do
     t.string "company"
     t.string "job_title"
     t.string "password_confirmation"
+    t.string "cover_photo"
     t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["industry_id"], name: "index_users_on_industry_id"
   end

@@ -1,0 +1,41 @@
+h1, h2, h3 {
+    color: $black;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2rem;
+    letter-spacing: -.08rem;
+
+    &.large {
+        font-size: 3rem;
+        letter-spacing: -.12rem;
+    }
+}
+
+h2 {
+    font-size: 1.5rem;
+    letter-spacing: -.06rem;
+}
+
+h3 {
+    font-size: .875rem;
+    letter-spacing: -.035rem;
+
+    &.large {
+        font-size: 1rem;
+        letter-spacing: -.04rem;
+    }
+}
+
+p {
+    font-size: 1rem;
+    letter-spacing: -.04rem;
+    font-weight: 500;
+    color: $grey-dark;
+
+    &.small {
+        font-size: .875rem;
+        letter-spacing: -.035rem;
+    }
+}

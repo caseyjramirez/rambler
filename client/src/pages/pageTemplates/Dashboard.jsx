@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
 import { Outlet } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import SidebarButton from "../../components/sidebarButton";
 
 
-function Dashboard({ user }) {
+function Dashboard() {
     
     return (
         <div className="sidebar-layout">

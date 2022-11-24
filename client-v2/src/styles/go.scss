@@ -1,0 +1,11 @@
+.go {
+    width: 100%;
+    border-radius: $component-border-radius;
+    overflow: hidden;
+
+    &-map {
+        width: 100%;   
+        height: $full-height;
+        background-color: aqua;
+    }
+}

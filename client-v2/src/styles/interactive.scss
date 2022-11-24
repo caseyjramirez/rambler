@@ -1,0 +1,15 @@
+button {
+    border-radius: 5px;
+    background-color: $white;
+    border: none;
+    cursor: pointer;
+
+    &.large {
+        padding: 10px 30px;
+    }
+
+    &.sidebar-button {
+        text-align: left;
+    }
+
+}

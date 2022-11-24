@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+$font: Inter, -apple-system, sans-serif;
+
+
+// Border Radius
+$component-border-radius: 11px;
+$part-border-radius: 7px;
+$interactive-border-radius: 5px;
+
+// COLOR
+$black: #121212;
+$blue: #9FB1C9;
+$grey-dark: #94969A;
+$grey-mid-blue: #DDE4EB;
+$grey-light: #F5F6F7;
+$background-color: #F7F7F9;
+$white: #FFFFFF;
+
+// MATH
+$full-height: calc(100vh - 40px);
+
+// Box Shadow
+// offset-x | offset-y | blur-radius | spread-radius | color 
+$box-shadow: 9px 10px 11px -12px #0000001A;
+$box-shadow-input-focus: 9px 10px 13px -14px #0000001A;
+$box-shadow-hover: 11px 12px 11px -12px #00000026;
+
+// MISC
+$transition-s: all .3s;
+$transition: all .6s;
+$transition-l: all 1s;

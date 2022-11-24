@@ -20,13 +20,15 @@
 
     &-text-box {
         padding: 0 10px;
-        display: flex;
+        // display: flex;
+        display: grid;
+        grid-template-columns: 7fr 1fr;
         flex-direction: row;
         justify-content: end;
         align-items: end;
         position: absolute;
         bottom: 10px;
-        right: 5px;
+        // right: 70px;
 
         background-color: $grey-1;
         
@@ -39,6 +41,12 @@
         textarea {
             max-height: 20px;
             min-width: 100%;
+        }
+
+        .activitty-text-area {
+            // background-color: red;
+            // width: 15vw;
+            margin-left: -20px;
         }
     }
 

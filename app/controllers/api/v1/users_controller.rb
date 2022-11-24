@@ -58,11 +58,7 @@ class Api::V1::UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:first_name, :last_name, :city_id, :industry_id, :company, :job_title, :email, :password, :password_confirmation, :profile_photo, :description)
-    end 
-
-    def update_user_params
-        params.permit(:first_name, :last_name, :city_id, :industry_id, :company, :job_title, :email, :profile_photo, :description)
+        params.permit(:first_name, :last_name, :city_id, :industry_id, :company, :job_title, :email, :password, :password_confirmation, :profile_photo, :cover_photo, :description)
     end 
 
 end

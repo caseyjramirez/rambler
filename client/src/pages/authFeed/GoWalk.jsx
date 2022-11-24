@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-import env from "react-dotenv";
 import React, { useState } from 'react';
 import DistanceSlider from '../../components/distanceSlider';
 import PostingDateTimePicker from '../../components/dateTimePicker';
@@ -19,7 +18,7 @@ function GoWalk({ user }) {
   const [date, setDate] = useState(new Date());
 
   const {isLoaded} = useLoadScript({
-    googleMapsApiKey: env.GOOGLE_MAPS_API,
+    // googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API,
     libraries: ['places']
   })
 

@@ -46,7 +46,7 @@ function App() {
   function renderRoutes() {
     if(user) {
       return (
-        <Route path="/" element={<Dashboard user={user} />}>
+        <Route path="/" element={<Dashboard />}>
           <Route path="" element={<Activity user={user} addMessage={addMessage} />} />
           <Route path="/go-walk" element={<GoWalk user={user} />} />
           <Route path="/around-me" element={<AroundMe user={user} addWalk={addWalk} />} />

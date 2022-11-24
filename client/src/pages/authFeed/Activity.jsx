@@ -90,10 +90,15 @@ function Activity({ user, addMessage }) {
                         }
                     </div>
                 <div className="messages-text-box">
-                        <textarea value={newMessage} onChange={e => setNewMessage(e.target.value)} className='mr-10' />
-                        <button onClick={sendMessage} type='submit'>
-                            <p>Send</p>
-                        </button>
+                        <div className='mr-10'>
+                            <textarea value={newMessage} onChange={e => setNewMessage(e.target.value)} className='mr-10 activitty-text-area' />
+
+                        </div>
+                        <div>
+                            <button onClick={sendMessage} type='submit'>
+                                <p>Send</p>
+                            </button>
+                        </div>
                 </div>
             </>
         ) : (
