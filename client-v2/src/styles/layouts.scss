@@ -1,13 +1,18 @@
-// establishing column layout
+
+.container {
+    padding: var(--padding);
+}
+
 .layout {
-    /* Large devices (laptops/desktops, 992px and up) */
+    width: calc(100vw - var(--padding-2));
+    height: calc(100vh - var(--padding-2));
+
     @media only screen and (min-width: 992px) {
         display: grid;
         grid-template-columns: 1fr 4fr;
         
     }
 
-    /* Extra large devices (large laptops and desktops, 1200px and up) */
     @media only screen and (min-width: 1200px) {
         display: grid;
         grid-template-columns: 1fr 6fr;
@@ -20,7 +25,7 @@
 }
 
 
-// establishing the hanburger menu (This is where the break happens)
+// establishing either sidebar or hamburger layout
 :root {
     @media only screen and (max-width: 991px) {        
         .sidebar {
@@ -44,18 +49,6 @@
     }
 }
 
-// establishing container padding
-.container {
-    @media only screen and (max-width: 991px) {        
-        padding: 5px;
-
-    }
-
-    @media only screen and (min-width: 992px) {        
-        padding: 20px;
-    }
-}
-
 
 
 .sidebar {
@@ -72,13 +65,12 @@
 }
 
 .feed {
-    width: calc(100% - 40px);
+    width: calc(100% - var(--padding-2));
+    height: 100%;
     padding-left: 40px;
     padding-right: 20px;
     display: flex;
     flex-direction: row;
-
-    overflow: hidden;
 }
 
 .hamburger {

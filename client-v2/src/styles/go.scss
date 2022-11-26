@@ -1,16 +1,18 @@
 .go {
     width: 100%;
-    border-radius: $component-border-radius;
-    overflow: hidden;
-
+    height: 100%;
+    
     &-map {
+        overflow: hidden;
+        border-radius: $component-border-radius;
         width: 100%;   
-        height: var(--full-height);
+        height: 100%;
         background-color:antiquewhite;
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: end;
+        box-shadow: $box-shadow-component;
     }
 
     &-activity {
@@ -20,6 +22,8 @@
             background-color: $white;
             border-radius: $component-border-radius;
             padding: 20px 40px;
+            max-width: 450px;
+            min-width: 450px;
         }
     }
 
@@ -36,8 +40,6 @@
     @media only screen and (min-width: 600px) {
         .go-activity-container {
             width: 80%;
-            max-width: 450px;
-            min-width: 450px;
         }
     }
 
@@ -45,8 +47,6 @@
     @media only screen and (min-width: 768px) {
         .go-activity-container {
             width: 60%;
-            max-width: 450px;
-            min-width: 450px;
         }
     }
 
@@ -54,8 +54,6 @@
     @media only screen and (min-width: 992px) {
         .go-activity-container {
             width: 60%;
-            max-width: 450px;
-            min-width: 450px;
         }
     }
 
@@ -63,8 +61,6 @@
     @media only screen and (min-width: 1200px) {
         .go-activity-container {
             width: 40%;
-            max-width: 450px;
-            min-width: 450px;
         }
     }
 }

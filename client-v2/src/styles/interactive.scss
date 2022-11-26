@@ -5,6 +5,7 @@ button {
     cursor: pointer;
     transition: $transition-fast;
     padding: 5px 20px;
+    box-shadow: $box-shadow-interactive;
 
     &.grey {
         background-color: $grey-light;
@@ -60,6 +61,15 @@ input {
 
     &:focus {
         outline: none;
+        box-shadow: $box-shadow-input-focus;
+    }
+}
+
+button, input, textarea, select {
+    box-shadow: $box-shadow-interactive;
+
+    &:hover {
+        box-shadow: $box-shadow-hover;
     }
 }
 

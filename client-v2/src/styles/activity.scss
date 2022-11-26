@@ -19,8 +19,10 @@
             background-color: $white;
             padding: 30px 20px;
             width: calc(100% - 40px);
-            height: calc(100% - 130px);
+            height: calc(100% - 150px);
             border-radius: $component-border-radius;
+            overflow: hidden;
+            box-shadow: $box-shadow-component;
 
             &-hours {
                 padding-top: 20px;
@@ -41,7 +43,7 @@
 
         &-map {
             width: 100%;
-            height: calc(100% - 280px - 40px);
+            height: calc(100% - 300px - 40px);
             background-color: antiquewhite;
             border-radius: $component-border-radius;
         }
@@ -98,7 +100,7 @@
             }
 
             &-calendar {
-                height: calc(100% - 120px);
+                height: calc(100% - 170px);
             }
 
         }
