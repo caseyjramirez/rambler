@@ -12,7 +12,7 @@ function DaySelector({day, setDay}) {
     }
 
     return (
-        <div className="interactive flex ai-center">
+        <div className="interactive flex ai-center mb-20">
             <div className="label-container">
                 <h3 className="large">Day</h3>
             </div>

@@ -14,9 +14,8 @@ function SidebarButton({nav, text, raiseClick }) {
     }
 
     return (
-        <button className="large sidebar-button mb-20 flex flex-row ai-center" onClick={onClick} >
+        <button className="large white sidebar-button mb-20 flex flex-row ai-center" onClick={onClick} >
             <h3 className="large">{text}</h3>
-
 
             {renderSelectedIndicator()}
         </button>

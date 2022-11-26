@@ -20,7 +20,7 @@
 }
 
 
-// establishing the hanburger menu
+// establishing the hanburger menu (This is where the break happens)
 :root {
     @media only screen and (max-width: 991px) {        
         .sidebar {
@@ -94,7 +94,7 @@
         position: fixed;
         left: 20px;
         top: 20px;
-        z-index: 1;
+        z-index: 98;
 
         h3 {
             opacity: 0%;
@@ -115,7 +115,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 2;
+        z-index: 99;
         transition: $transition-fast;
         width: 100%;
         height: 100%;
@@ -141,5 +141,14 @@
             height: 100%;
             padding: 20px 20px;
         }
+    }
+}
+
+.two-column-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    &:last-child {
+        margin-right: .75rem;
     }
 }

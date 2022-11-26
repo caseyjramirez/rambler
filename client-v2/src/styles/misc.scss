@@ -1,3 +1,30 @@
 .pointer {
     cursor: pointer;
 }
+
+.breaker-hor {
+    width: 100%;
+    height: 1px;
+    background-color: $grey-light;
+    
+    &-2 {
+        width: 100%;
+        height: 2px;
+        background-color: $grey-light;
+    }
+
+    &.blue {
+        background-color: $grey-mid-blue;
+    }
+
+    &.thick {
+        height: 2px;
+    }
+}
+
+img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+
+}

@@ -6,7 +6,7 @@
     &-map {
         width: 100%;   
         height: var(--full-height);
-        background-color: $test;
+        background-color:antiquewhite;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -17,10 +17,9 @@
         
         &-container {
             width: 40%;
-            height: 200px;
             background-color: $white;
             border-radius: $component-border-radius;
-            padding: 40px;
+            padding: 20px 40px;
         }
     }
 
@@ -101,4 +100,8 @@
             opacity: 100%;
         }
     }
+}
+
+.activity-selector-wrapper {
+    width: 200px;
 }

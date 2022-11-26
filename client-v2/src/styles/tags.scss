@@ -1,0 +1,29 @@
+.tag {
+    border-radius: $part-border-radius;
+    width: 50px;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: -.04rem;
+    padding: 5px 10px;
+
+    &.small {
+        padding: 3px 10px;
+        font-size: .875rem;
+        letter-spacing: -.035rem;
+    }
+
+    &.grey {
+        background-color: $grey-light;
+        color: $grey-dark;
+    }
+
+    &.blue {
+        background-color: $blue;
+        color: $white;
+    }
+
+    &.circle {
+        padding: 10px;
+        border-radius: 50px;
+    }
+}

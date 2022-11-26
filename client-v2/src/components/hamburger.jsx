@@ -4,10 +4,6 @@ import SidebarButton from './sidebarButton';
 function Hamburger() {
     const [isOpen, setIsOpen] = useState(false)
 
-    function renderCommand() {
-        return isOpen ? 'close' : 'open';
-    }
-
     function renderMenuClass() {
         return isOpen ? ('hamburger-menu active') : ('hamburger-menu');
     }

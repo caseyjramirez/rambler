@@ -12,14 +12,15 @@ function Authorized() {
                 />
 
                 <SidebarButton
+                    nav='/around-me'
+                    text='Around Me.'
+                />
+                
+                <SidebarButton
                     nav='/'
                     text='Activity.'
                 />
 
-                <SidebarButton
-                    nav='/around-me'
-                    text='Around Me.'
-                />
 
                 <SidebarButton
                     nav='/account'

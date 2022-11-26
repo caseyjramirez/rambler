@@ -1,0 +1,51 @@
+.business-card {
+    width: calc(100% - 40px);
+    height: 260px;
+    border-radius: $part-border-radius;
+    background-color: $white;
+    padding: 20px;
+
+    &-profile-photo {
+        height: 100%;
+        width: 50%;
+        background-color: $grey-light;
+        border-radius: $part-border-radius;
+        overflow: hidden;
+    }
+
+    &-content {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        &-day {
+            position: absolute;
+            // this is dependent on the padding of a normal size tag
+            top: 5px;
+            right: 0;
+        }
+
+        &-details {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+    }
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    // @media only screen and (min-width: 768px) {
+    //     width: 400px;
+    // }
+
+    // /* Large devices (laptops/desktops, 992px and up) */
+    // @media only screen and (min-width: 992px) {
+    //     width: 460px;
+    // }
+
+    // /* Extra large devices (large laptops and desktops, 1200px and up) */
+    // @media only screen and (min-width: 1200px) {
+    //     width: calc(100% - 20px);
+    // }
+
+}

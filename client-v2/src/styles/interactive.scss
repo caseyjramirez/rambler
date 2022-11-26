@@ -4,10 +4,20 @@ button {
     border: none;
     cursor: pointer;
     transition: $transition-fast;
+    padding: 5px 20px;
 
     &.grey {
         background-color: $grey-light;
         color: $grey-dark;
+    }
+
+    &.black {
+        background-color: $black;
+        color: $white;
+    }
+
+    &.white {
+        color: $black;
     }
 
     &.selected {
@@ -15,9 +25,12 @@ button {
         color: $white;
     }
 
-
     &.large {
         padding: 10px 30px;
+    }
+
+    &.day {
+        padding: 0;
     }
 
     &.sidebar-button {
@@ -50,7 +63,7 @@ input {
     }
 }
 
-input, textarea {
+input, textarea, select {
     &:focus {
         outline: none;
     }
@@ -60,4 +73,14 @@ input, textarea {
     .label-container {
         width: 5rem;
     }
+}
+
+select {
+    background-color: $white;
+    border: none;
+    border-radius: $part-border-radius;
+    padding: 5px 20px;
+    font-size: 1rem;
+    letter-spacing: -.04rem;
+    font-weight: 700;
 }
