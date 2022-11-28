@@ -25,7 +25,7 @@ function ActivitySelector({ activity, setActivity}) {
     }
 
     return (
-        <div className="interactive flex ai-center mb-20">
+        <div className="interactive flex ai-center mb-30">
             <div className="label-container">
                 <h3 className="large">Day</h3>
             </div>

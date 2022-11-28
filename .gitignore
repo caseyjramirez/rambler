@@ -30,3 +30,4 @@
 
 # client-side env
 client/.env
+client-v2/.env
