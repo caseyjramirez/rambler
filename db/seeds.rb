@@ -53,7 +53,23 @@ Industry.create!(
 
 puts "Industries Seeded ⏳"
 
+walking = Activity.create!(
+    name: 'Walk'
+)
 
+hiking = Activity.create!(
+    name: 'Hike'
+)
+
+biking = Activity.create!(
+    name: 'Bike'
+)
+
+running = Activity.create!(
+    name: 'Run'
+)
+
+puts "Activities Seeded ⏳"
 
 
 # 15.times do
@@ -71,18 +87,31 @@ puts "Industries Seeded ⏳"
 #     )
 # end
 
-# casey = User.create(
-#     first_name: 'Casey',
-#     last_name: 'Ramirez',
-#     city_id: dallas.id,
-#     industry_id: tech.id,
-#     company: 'Google',
-#     job_title: 'Software Engineer',
-#     password: '1234',
-#     password_confirmation: '1234',
-#     email: 'test@test.com',
-#     description: "Hi, I'm Casey I'm based in Dallas, Texas and interested in all things tech!",
-# )
+casey = User.create(
+    first_name: 'Casey',
+    last_name: 'Ramirez',
+    city_id: dallas.id,
+    industry_id: tech.id,
+    company: 'Google',
+    job_title: 'Software Engineer',
+    password: '1234',
+    password_confirmation: '1234',
+    email: 'test@test.com',
+    description: "Hi, I'm Casey I'm based in Dallas, Texas and interested in all things tech!",
+)
+
+roy = User.create(
+    first_name: 'Roy',
+    last_name: 'Lee',
+    city_id: dallas.id,
+    industry_id: tech.id,
+    company: 'Apple',
+    job_title: 'Software Engineer',
+    password: '1234',
+    password_confirmation: '1234',
+    email: 'test1@test.com',
+    description: "Hi, I'm Roy!",
+)
 
 
 # puts "Users Seeded ⏳"
@@ -110,25 +139,27 @@ puts "Industries Seeded ⏳"
 # puts "Post + Walk Seeded ⏳"
 
 
-# 3.times do
-#     Posting.create(
-#         user_id: casey.id,
-#         distance: rand(1..4),
-#         date: DateTime.current(),
-#         location: "Denver, CO, USA",
-#         isFilled: false
-#     )
-# end
+3.times do
+    Posting.create(
+        user_id: casey.id,
+        activity_id: walking.id,
+        distance: rand(1..4),
+        date: DateTime.current(),
+        location: "Denver, CO, USA",
+        isFilled: false
+    )
+end
 
-# 1.times do
-#     Walk.create(
-#         user_one_id: casey.id,
-#         user_two_id: User.all.sample.id,
-#         distance: rand(0..7),
-#         location: "Denver, CO, USA",
-#         date: DateTime.current()
-#     )
-# end
+2.times do
+    Walk.create(
+        user_one_id: casey.id,
+        user_two_id: User.all.sample.id,
+        activity_id: walking.id,
+        distance: rand(0..7),
+        location: "Denver, CO, USA",
+        date: DateTime.current()
+    )
+end
 
 # walk = Walk.create(
 #     user_one_id: casey.id,

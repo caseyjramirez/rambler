@@ -1,6 +1,7 @@
 .go {
     width: 100%;
     height: 100%;
+    position: relative;
     
     &-map {
         overflow: hidden;
@@ -18,6 +19,7 @@
     &-activity {
         
         &-container {
+            position: absolute;
             width: 40%;
             background-color: $white;
             border-radius: $component-border-radius;
@@ -100,4 +102,23 @@
 
 .activity-selector-wrapper {
     width: 200px;
+}
+
+.location-result {
+    background-color: $white;
+    color: $grey-dark;
+    
+    font-size: 1rem;
+    letter-spacing: -.04rem;
+    font: $font;
+    
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: $box-shadow-component;
+    
+    
+    &-container {
+        border-radius: $interactive-border-radius;
+        padding-bottom: 20px;
+    }
 }

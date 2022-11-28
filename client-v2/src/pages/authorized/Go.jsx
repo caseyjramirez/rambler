@@ -2,24 +2,20 @@ import React, { useState } from 'react';
 import Input from "../../components/input";
 import DaySelector from "../../components/daySelector";
 import ActivitySelector from '../../components/activitySelector';
-
-import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api'
-import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
-
-
+import LocationInput from '../../components/locationInput';
 import {getDate} from '../../data/daySelector';
 
+import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api'
 
 
 function Go() {
-    
-    const { ready, value, setValue, suggestions: { status, data }, clearSuggestions } = usePlacesAutocomplete();
     
     const [day, setDay] = useState('')
     const [activity, setActivity] = useState('')
     const [location, setLocation] = useState('')
     const [time, setTime] = useState('')
     const [distance, setDistance] = useState(0)
+    const [cord, setCord] = useState({ lat: 30.282569, lng: -97.735369 })
 
     function renderVerb() {
         if(activity) return `Go ${activity}!`
@@ -27,25 +23,39 @@ function Go() {
     }
 
     const {isLoaded} = useLoadScript({
-        // googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API,
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API,
         libraries: ['places']
     })
+
+    console.log(location);
 
 
     return (
         <div className="go">
             <div className="go-map">
 
+                {isLoaded ? (
+                  <GoogleMap 
+                    center={cord} 
+                    zoom={15} 
+                    mapContainerStyle={{ width: '100%', height: '100%' }} 
+                    options={{
+                        streetViewControl: false
+                    }}
+                  >
+                    {cord && <MarkerF position={cord} />}
+                  </GoogleMap>
+                ) : (null)}
                 
-                
-                
-                
+
                 <div className="go-activity-container mb-20">
-                    <Input 
-                        label='Location'
-                        value={location}
-                        onChange={setLocation}
+                    
+                    <LocationInput 
+                        setCord={setCord}
+                        setLocation={setLocation}
                     />
+                    
+
                     <DaySelector day={day} setDay={setDay} />
 
                     <div className="two-column-row">

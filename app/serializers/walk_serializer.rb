@@ -4,6 +4,7 @@ class WalkSerializer < ActiveModel::Serializer
   has_one :user_one
   has_one :user_two
   has_many :messages
+  belongs_to :activity
 
   def user_one
     user = User.find_by_id(object.user_one_id)

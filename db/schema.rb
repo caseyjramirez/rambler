@@ -10,9 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_17_051439) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_28_224524) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
@@ -47,6 +53,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_051439) do
     t.datetime "updated_at", null: false
     t.string "location"
     t.boolean "isFilled"
+    t.bigint "activity_id"
+    t.index ["activity_id"], name: "index_postings_on_activity_id"
     t.index ["user_id"], name: "index_postings_on_user_id"
   end
 
@@ -77,6 +85,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_051439) do
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "activity_id"
+    t.index ["activity_id"], name: "index_walks_on_activity_id"
     t.index ["user_one_id"], name: "index_walks_on_user_one_id"
     t.index ["user_two_id"], name: "index_walks_on_user_two_id"
   end
@@ -84,9 +94,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_051439) do
   add_foreign_key "messages", "users", column: "reciever_id"
   add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "messages", "walks"
+  add_foreign_key "postings", "activities"
   add_foreign_key "postings", "users"
   add_foreign_key "users", "cities"
   add_foreign_key "users", "industries"
+  add_foreign_key "walks", "activities"
   add_foreign_key "walks", "users", column: "user_one_id"
   add_foreign_key "walks", "users", column: "user_two_id"
 end

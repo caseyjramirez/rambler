@@ -1,7 +1,8 @@
 class PostingSerializer < ActiveModel::Serializer
-  attributes :id, :distance, :date, :location, :isFilled
+  attributes :id, :distance, :date, :location, :isFilled, :activity
   
   has_one :user
+  has_one :activity
 
   def user
     user = User.find_by_id(object.user_id)
@@ -11,6 +12,15 @@ class PostingSerializer < ActiveModel::Serializer
       profile_photo: user.profile_photo,
       description: user.description,
       id: user.id
+    }
+  end
+
+  def activity
+    activity = Activity.find_by_id(object.activity_id)
+
+    {
+      name: activity.name,
+      id: activity.id
     }
   end
 end

@@ -1,10 +1,9 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :city, :industry, :company, :job_title, :email, :description, :profile_photo, :cover_photo, :walks
+  attributes :id, :first_name, :last_name, :city, :industry, :company, :job_title, :email, :description, :profile_photo, :cover_photo, :activities
 
   has_many :postings
 
-  def walks
+  def activities
     object.walks
   end
-
 end

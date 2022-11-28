@@ -72,8 +72,8 @@ function GoWalk({ user }) {
                             value={value}
                             onChange={e => setValue(e.target.value)}
                             disabled={!ready}
-                            className="combobox-input"
                             placeholder="Search an address"
+                            className="combobox-input"
                           />
                           <ComboboxPopover>
                             <ComboboxList className="location-results-list" >

@@ -36,7 +36,8 @@ class User < ApplicationRecord
                 location: walk[:location],
                 date: walk[:date],
                 user: User.select(:id, :first_name, :last_name, :description, :profile_photo).find_by_id(userId),
-                messages: Message.where("walk_id = :query", query: walk[:id])
+                messages: Message.where("walk_id = :query", query: walk[:id]),
+                activity: Activity.select(:name, :id).find_by_id(walk[:activity_id])
             }
         end
     end

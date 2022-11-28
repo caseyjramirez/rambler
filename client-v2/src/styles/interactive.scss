@@ -83,6 +83,10 @@ input {
         outline: none;
         box-shadow: $box-shadow-input-focus;
     }
+
+    &.location-input {
+        width: 340px;
+    }
 }
 
 button, input, textarea, select {
