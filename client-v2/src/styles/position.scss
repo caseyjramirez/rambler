@@ -28,9 +28,18 @@
 
     &.jc-center {
         justify-content: center;
+    } 
+    
+    &.center-center {
+        justify-content: center;
+        align-items: center;
     }
 }
 
 .span100 {
     width: 100%;
+}
+
+.span100h {
+    height: 100%;
 }

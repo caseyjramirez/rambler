@@ -109,6 +109,29 @@ input, textarea, select {
     .label-container {
         width: 5rem;
     }
+
+    &.grey {
+        h3 {
+            color: $white;
+        }
+
+        input {
+            background-color: $grey-light;
+            color: $grey-dark;
+        }
+    }
+
+    &.black {
+        input {
+            color: $black;
+        }
+    }
+
+    &.welcome-input {
+        input {
+            margin-left: 2rem;
+        }
+    }
 }
 
 select {
