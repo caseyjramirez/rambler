@@ -64,12 +64,12 @@ button {
 
 input {
     border-radius: $interactive-border-radius;
+    padding: .5rem .875rem;
     border: none;
     background-color: $grey-light;
     color: $grey-dark;
     font-size: .875rem;
     letter-spacing: -.035rem;
-    padding: .5rem .875rem;
     width: 100%;
 
     &[type=time] {
@@ -132,6 +132,12 @@ input, textarea, select {
             margin-left: 2rem;
         }
     }
+
+    &.welcome-name {
+        h3 {
+            width: 200px;
+        }
+    }
 }
 
 select {
@@ -142,4 +148,39 @@ select {
     font-size: 1rem;
     letter-spacing: -.04rem;
     font-weight: 700;
+}
+
+
+
+
+.city-search {
+
+    position: relative;
+
+    &-dropdown {
+        z-index: 1;
+        position: absolute;
+        background-color: $white;
+        margin-left: 1rem;
+        padding-top: .25rem;
+        border-radius: $interactive-border-radius;
+        box-shadow: $box-shadow-component;
+
+        &-row {
+            padding: 20px;
+        }
+    }
+}
+
+.black-text {
+    color: black;
+}
+
+.welcome-dropdown {
+    select {
+        background-color: $grey-light;
+        border-radius: $interactive-border-radius;
+        padding: .5rem .875rem;
+        width: 100%;
+    }
 }

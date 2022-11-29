@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Input from '../../components/input';
+import Error from '../../components/error';
 import { useNavigate } from 'react-router-dom';
 import { productPage, signupCityPage } from '../../data/welcomeNav';
 import { login } from '../../services/services'
@@ -22,7 +23,7 @@ function Login({setUser}) {
             setUser(data.data);
             navigate('/')
         } else {
-            setError('Email or password incorrect!')
+            setError('Email or Password incorrect!')
         }
     }
 
@@ -72,11 +73,14 @@ function Login({setUser}) {
 
                 </div>
 
+                
+                {error && <Error error={error}/>}
             </form>
 
             <div className='welcome-redirect flex jc-center'>
                 <h3>Don't have an account? <span onClick={() => navigate(signupCityPage)} className='pointer'>Sign up!</span></h3>
             </div>
+
 
         </div>
     );
