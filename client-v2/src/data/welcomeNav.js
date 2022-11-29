@@ -5,6 +5,7 @@ const jobFromName = '/welcome/signup/job'
 const cityFromName = '/welcome/signup/city'
 const emailFromJob = '/welcome/signup/email'
 const nameFromJob = '/welcome/signup/name'
+const aroundMe = '/around-me'
 
 export {
     loginPage,
@@ -13,5 +14,6 @@ export {
     jobFromName,
     cityFromName,
     emailFromJob,
-    nameFromJob
+    nameFromJob,
+    aroundMe
 }

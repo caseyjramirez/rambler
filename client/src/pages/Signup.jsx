@@ -156,12 +156,12 @@ function Signup({ setUser }) {
                         email={newProfile.email}
                         password={newProfile.password}
                         confirmPassword={newProfile.confirmPassword}
-                        onSubmit={handleSubmit}
                         businessCard={returnBusinessCard()}
                         extraContentError={extraContentError}
                         skipCTA={skipCTA}
                         error={signupError}
                         setError={setSignupError}
+                        onSubmit={handleSubmit}
                     />}
                 />
 

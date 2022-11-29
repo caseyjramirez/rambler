@@ -6,7 +6,7 @@ function ProductPage() {
     return (
         <div className="product flex center-center">
             <SidebarButton
-                nav='loginPage'
+                nav={loginPage}
                 text='Start Today'
             />
         </div>

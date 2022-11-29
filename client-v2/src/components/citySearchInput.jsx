@@ -5,7 +5,7 @@ function CitySearchInput({label, value, onChange, data, onSelect, type='text'}) 
             <div cityName='city-search-container'>
                 <div className="city-search-dropdown pointer">
                     {
-                        data.filter(item => {
+                        data && data.filter(item => {
                             const searchTerm = value.toLowerCase();
                             const cityName = item.name.toLowerCase();
 

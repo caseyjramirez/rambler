@@ -44,7 +44,10 @@ function Login({setUser}) {
 
             <form onSubmit={handleSubmit} className="flex flex-column jc-center span100h span100">
                 
-                <h1 className='mb-20'>Login</h1>
+                <div className="mb-20">
+                    <h1 className='mb-5'>Login</h1>
+                    <h3>Enter your email and password to begin.</h3>
+                </div>
                 <div className="breaker-hor-2 mb-20"></div>
 
                 <div className="mb-20">

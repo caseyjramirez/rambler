@@ -8,7 +8,7 @@ function FullSpanDropDown({ label, data, onChange }) {
             <select onChange={e => onChange(e.target.value)} className="ml-5-rem">
             <option selected disabled hidden>Choose your Industry</option>
                 {
-                    data.map(data => <option value={data.id} >{data.name}</option>)
+                    data.map(data => <option key={data.id} value={data.id} >{data.name}</option>)
                 }
             </select>
 

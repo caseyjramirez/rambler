@@ -18,8 +18,6 @@ function JobSignupPage({ handleChange, jobTitle, company, onIndustryChange }) {
         getIndustries().then(r => setIndustries(r.data));
     }, []);
 
-    // console.log(industries);
-
     async function handleSubmit(e) {
         e.preventDefault()
         setError('')

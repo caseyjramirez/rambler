@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { authorizeUser } from './services/services';
 import Hamburger from './components/hamburger';
+import { productPage } from './data/welcomeNav';
 
 import ProductPage from './pages/unauthorized/ProductPage';
 import Unauthorized from './pages/page-templates/unauthorized';
@@ -13,8 +15,22 @@ import Go from './pages/authorized/Go';
 import AroundMe from './pages/authorized/AroundMe';
 import Account from './pages/authorized/Account';
 
+
 function App() {
-  const [user, setUser] = useState(true)
+  const [user, setUser] = useState(null)
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    authorizeUser().then(r => {
+      if(r.status === 200) {
+        setUser(r.data)
+      } else {
+        navigate(productPage);
+      }
+    })
+  }, [])
+
+  console.log(user);
 
   function renderAuthorizedRoutes() {
     if(user) {
@@ -24,7 +40,7 @@ function App() {
             <Route path="/go" element={<Go user={user} />} />
             <Route path="/around-me" element={<AroundMe user={user} />} />
             <Route path="/account" element={<Account user={user} setUser={setUser} />} />
-          </Route>
+          </Route> 
       )
     }
   }
