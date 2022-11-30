@@ -1,4 +1,4 @@
-import { days, currDay, getDate } from "../data/daySelector";
+import { days, currDay } from "../data/daySelector";
 
 
 function DaySelector({day, setDay}) {

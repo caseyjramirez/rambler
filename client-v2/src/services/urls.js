@@ -8,6 +8,7 @@ const walkAPI = '/walks'
 const cityAPI = '/cities'
 const industryAPI = '/industries'
 const messageAPI = '/messages'
+const activitiesAPI = '/activities'
 
 export { 
     loginAPI,
@@ -19,5 +20,6 @@ export {
     industryAPI,
     userAPI,
     getUserAPI,
-    messageAPI
+    messageAPI,
+    activitiesAPI
 }

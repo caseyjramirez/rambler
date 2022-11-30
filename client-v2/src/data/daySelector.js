@@ -62,6 +62,7 @@ function getDaysDate(day) {
     })
     
     return dateUpdatedWithOffset.toDateString() // converting to a date string
+    // return dateUpdatedWithOffset.toISOString() // converting to a date string
 }
 
 function getDate(query) {

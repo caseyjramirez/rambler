@@ -9,7 +9,8 @@ import {
     industryAPI,
     userAPI,
     getUserAPI,
-    messageAPI
+    messageAPI,
+    activitiesAPI
 } from "./urls";
 
 async function login(body) {
@@ -92,6 +93,17 @@ async function getIndustries() {
     }
 }
 
+async function getActivities() {
+    try {
+        return await axios({
+            method: 'get',
+            url: activitiesAPI,
+        })
+    } catch (error) {
+        return error
+    }
+}
+
 async function createNewUser(body) {
     try {
         return await axios({
@@ -153,5 +165,6 @@ export {
     createNewUser,
     getUser,
     createMessage,
-    updateUser
+    updateUser,
+    getActivities
 }

@@ -20,12 +20,21 @@
         
         &-container {
             position: absolute;
-            width: 40%;
             background-color: $white;
             border-radius: $component-border-radius;
             padding: 20px 40px;
             max-width: 450px;
             min-width: 450px;
+        }
+        
+        &-confirmation-container {
+            position: absolute;
+            background-color: $white;
+            border-radius: $component-border-radius;
+            height: 305px;
+            max-width: 530px;
+            min-width: 530px;
+
         }
     }
 

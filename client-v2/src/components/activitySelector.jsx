@@ -27,16 +27,16 @@ function ActivitySelector({ activity, setActivity}) {
     return (
         <div className="interactive flex ai-center mb-30">
             <div className="label-container">
-                <h3 className="large">Day</h3>
+                <h3 className="large">Activity</h3>
             </div>
 
             <div className="span100 ml-3-rem flex jc-center">
                 <div className="activity-selector-wrapper flex ai-center jc-space-between">
                     {
                         activities.map(activity =>
-                            <div key={activity.activity} className={renderContainerClass(activity.activity)}>
+                            <div key={activity.activity} className={renderContainerClass(activity.label)}>
                                 
-                                <button onClick={() => setActivity(activity.activity)} className={renderButtonClass(activity.activity)}>
+                                <button onClick={() => setActivity(activity.label)} className={renderButtonClass(activity.label)}>
                                     <FontAwesomeIcon icon={renderIcon(activity.icon)} />
                                 </button>
 
