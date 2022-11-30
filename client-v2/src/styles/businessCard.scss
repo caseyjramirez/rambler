@@ -5,7 +5,23 @@
     background-color: $white;
     padding: 20px;
 
+    &:hover {
+        .business-card-cta {
+            opacity: 100%;
+        }
+    }
+
+    &-cta {
+        position: absolute;
+        opacity: 0%;
+        bottom: 20px;
+        left: 20px;
+        width: calc(100% - 40px);
+        transition: $transition-fast;
+    }
+
     &-profile-photo {
+        position: relative;
         height: 100%;
         width: 50%;
         background-color: $grey-light;
@@ -22,7 +38,14 @@
             position: absolute;
             // this is dependent on the padding of a normal size tag
             top: 5px;
-            right: 0;
+            right: 0px;
+        }
+
+        &-cta {
+            position: absolute;
+            // this is dependent on the padding of a normal size tag
+            top: 5px;
+            right: 0px;
         }
 
         &-details {

@@ -37,6 +37,14 @@
         border-radius: $component-border-radius;
         overflow: hidden;
         box-shadow: $box-shadow-component;
+        position: relative;
+    }
+
+    &-cta {
+        position: absolute;
+        bottom: 20px;
+        left: 40px;
+        width: calc(100% - 80px)
     }
 }
 

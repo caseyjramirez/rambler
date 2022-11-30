@@ -30,6 +30,10 @@ function App() {
     })
   }, [])
 
+  function addActivity(newActivity) {
+    setUser(user => ({...user, activities: [...user.activities, newActivity]}))
+  }
+
   console.log(user);
 
   function renderAuthorizedRoutes() {
@@ -38,7 +42,7 @@ function App() {
           <Route path="/" element={<Authorized />}>
             <Route path="" element={<Activity user={user} />} />
             <Route path="/go" element={<Go user={user} />} />
-            <Route path="/around-me" element={<AroundMe user={user} />} />
+            <Route path="/around-me" element={<AroundMe user={user} addActivity={addActivity} />} />
             <Route path="/account" element={<Account user={user} setUser={setUser} />} />
           </Route> 
       )

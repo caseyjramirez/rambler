@@ -3,8 +3,8 @@ import {
     loginAPI,
     authorizeUserAPI,
     postingAPI,
-    walkAPI,
     unfilledPostingAPI,
+    walkAPI,
     cityAPI,
     industryAPI,
     userAPI,
@@ -48,7 +48,7 @@ async function createPosting(body) {
     }
 }
 
-async function createWalk(body) {
+async function bookActivity(body) {
     try {
         return await axios({
             method: 'post',
@@ -159,7 +159,7 @@ export {
     authorizeUser,
     createPosting,
     getPostings,
-    createWalk,
+    bookActivity,
     getCities,
     getIndustries,
     createNewUser,

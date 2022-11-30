@@ -69,7 +69,7 @@ function Activity() {
             
             
             <div className="activity-feed">
-                <BusinessCard />
+                {/* <BusinessCard /> */}
 
                 <div className="activity-feed-map">
 

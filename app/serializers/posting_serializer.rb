@@ -11,6 +11,9 @@ class PostingSerializer < ActiveModel::Serializer
       last_name: user.last_name,
       profile_photo: user.profile_photo,
       description: user.description,
+      company: user.company,
+      job_title: user.job_title,
+      industry: user.industry.name,
       id: user.id
     }
   end
