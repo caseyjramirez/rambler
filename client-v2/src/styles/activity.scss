@@ -7,6 +7,7 @@
         padding-right: 20px;
         width: calc(100% - 20px);
         height: var(--full-height);
+        // position: relative;
 
         &-header {
             width: 100%;
@@ -52,12 +53,44 @@
 
 .calendar-hour-set {
     min-height: 40px;
+    position: relative;
     .time {
         margin-top: -.45rem;
         width: 50px;
     }
+
+    &-activity {
+        position: absolute;
+        z-index: 1;
+        background-color: $blue;
+        border-radius: $part-border-radius;
+        margin-left: 60px;
+        height: calc((100vh - 220px) / 16);
+        min-height: 40px;
+        width: calc(100% - 60px);
+
+
+        &-location {
+            position: absolute;
+            bottom: 20px ;
+        }
+        
+        &-activity-type {
+            position: absolute;
+            right: 0;
+            top: 0;
+            
+        }
+    }
 }
 
+.calendar-hour-set-activity {
+    @media only screen and (max-height: 1400px) {
+        .calendar-hour-set-activity-location {
+            display: none;
+        }
+    }
+}
 
 
 

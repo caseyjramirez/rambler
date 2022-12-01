@@ -89,7 +89,7 @@ input {
     }
 }
 
-button, input, textarea, select {
+button, input, textarea, select, textarea {
     box-shadow: $box-shadow-interactive;
 
     &:hover {
@@ -150,7 +150,15 @@ select {
     font-weight: 700;
 }
 
-
+textarea {
+    background-color: $grey-light;
+    border-radius: $interactive-border-radius;
+    border: none;
+    resize: none;
+    padding: .5rem .875rem;
+    font: inherit;
+    width: 100%;
+}
 
 
 .city-search {

@@ -30,12 +30,27 @@ class User < ApplicationRecord
                 userId = walk[:user_one_id]
             end
 
+            user = User.find_by_id(userId)
+            user_industry = Industry.find_by_id(user.industry_id)
+
+            puts(user_industry)
+
+
             {
                 id: walk[:id],
                 distance: walk[:distance],
                 location: walk[:location],
                 date: walk[:date],
-                user: User.select(:id, :first_name, :last_name, :description, :profile_photo).find_by_id(userId),
+                user: {
+                    id: user[:id], 
+                    first_name: user[:first_name], 
+                    last_name: user[:last_name], 
+                    description: user[:description], 
+                    profile_photo: user[:profile_photo],
+                    job_title: user[:job_title],
+                    company: user[:company],
+                    industry: user_industry[:name]
+                },
                 messages: Message.where("walk_id = :query", query: walk[:id]),
                 activity: Activity.select(:name, :id).find_by_id(walk[:activity_id])
             }

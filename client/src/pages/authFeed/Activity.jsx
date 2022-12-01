@@ -84,11 +84,11 @@ function Activity({ user, addMessage }) {
             <>            
                 <h3 className='my-10'>{reciever}</h3>
                 <div className="breaker"></div>
-                    <div className="messages-body mt-5">
-                        {
-                            messages && messages.map(message => <Message userId={user.id} message={message} sender={`${user.first_name} ${user.last_name}`} reciever={reciever}/>)
-                        }
-                    </div>
+                <div className="messages-body mt-5">
+                    {
+                        messages && messages.map(message => <Message userId={user.id} message={message} sender={`${user.first_name} ${user.last_name}`} reciever={reciever}/>)
+                    }
+                </div>
                 <div className="messages-text-box">
                         <div className='mr-10'>
                             <textarea value={newMessage} onChange={e => setNewMessage(e.target.value)} className='mr-10 activitty-text-area' />

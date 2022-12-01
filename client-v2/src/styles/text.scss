@@ -2,6 +2,10 @@ h1, h2, h3 {
     // color: $black;
     color: inherit;
     font-weight: 700;
+
+    &.white {
+        color: $white;
+    }
 }
 
 h1 {
@@ -41,6 +45,10 @@ p {
     letter-spacing: -.04rem;
     font-weight: 500;
     color: $grey-dark;
+
+    &.white {
+        color: $white;
+    }
 
     &.small {
         font-size: .875rem;

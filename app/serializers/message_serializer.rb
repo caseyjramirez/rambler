@@ -1,8 +1,8 @@
 class MessageSerializer < ActiveModel::Serializer
-  attributes :id, :message, :sender, :reciever, :walk
+  attributes :id, :message, :sender, :reciever, :activity
   has_one :sender
   has_one :reciever
-  has_one :walk
+  has_one :activity
 
   def sender
     sender = User.find_by_id(object.sender_id)
@@ -16,10 +16,10 @@ class MessageSerializer < ActiveModel::Serializer
     reciever.id
   end
 
-  def walk
-    walk = Walk.find_by_id(object.walk_id)
+  def activity
+    activity = Walk.find_by_id(object.walk_id)
     
-    walk.id
+    activity.id
   end
 
 

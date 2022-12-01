@@ -14,13 +14,13 @@ function DaySelector({day, setDay}) {
     
     function mapDays() {
         let currIndex = currDay + 1;
-        let reutrnValue = [];
+        let returnValue = [];
         
         while(currIndex !== currDay) {
             if(currIndex > 6) currIndex = 0;
             
             
-            reutrnValue.push(
+            returnValue.push(
             <div key={days[currIndex].day} className={renderContainerClass(days[currIndex].label)}>
                 <button onClick={e => setDay(e.target.textContent)} key={days[currIndex].date} className={renderButtonClass(days[currIndex].label)}>
                     <h3 className="small">{days[currIndex].label}</h3>
@@ -32,7 +32,7 @@ function DaySelector({day, setDay}) {
             
         }
 
-        return reutrnValue
+        return returnValue
         
     }
     

@@ -1,0 +1,63 @@
+.messages {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    max-width: calc(40vw);
+    overflow: scroll;
+
+    &-body {
+        min-height: calc(100% - 120px);
+    }
+
+    
+    &-text-box {
+        position: sticky;
+        background-color: $white;
+        padding-bottom: 20px;
+        // padding-top: 20px;
+        bottom: 0px;
+        width: 100%;
+    }
+
+    textarea {
+        height: 3rem;
+    }
+}
+
+
+.message {
+    &-container {
+        display: flex;
+        width: 100%;
+    }
+
+    p {
+        overflow-wrap: break-word;
+        line-height: 1.15rem;
+    }
+    &.sent {
+        span {
+            background-color: $grey-light;
+            color: $grey-dark;
+        }
+        p { 
+            color: $grey-dark;
+        }
+    }
+
+    &.recieved {
+        margin-left: auto;
+        // margin-right: 0;
+        right: 0;
+
+        span {
+            background-color: $blue;
+            color: $white;
+        }
+        p { 
+            color: $blue;
+        }
+    }
+
+
+}

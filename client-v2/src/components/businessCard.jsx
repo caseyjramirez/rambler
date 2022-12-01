@@ -1,7 +1,7 @@
 import testingProfilePhoto from '../assets/testingProfilePhoto.jpg';
 import { getDay, getTime } from '../data/daySelector';
 
-function BusinessCard({data, onClick}) {
+function BusinessCard({data, onClick, cta = 'Learn More'}) {
 
     function getDayFromDate() {
         return getDay(data.date)
@@ -11,6 +11,14 @@ function BusinessCard({data, onClick}) {
         return getTime(data.date)
     }
 
+    function renderDistance() {
+        if(data.distance.toString().length === 1) {
+            return `0${data.distance}`
+        } else {
+            return data.distance
+        }
+    }
+
     return (
         <div className="business-card flex mb-20">
             <div className="business-card-profile-photo mr-20">
@@ -18,7 +26,7 @@ function BusinessCard({data, onClick}) {
                 
                 <div className="business-card-cta">
                     <button onClick={onClick ? (() => onClick(data.id)) : null} className='white span100'>
-                            <h3 className="">Learn More</h3>
+                            <h3 className="">{cta}</h3>
                     </button>
                 </div>
             </div>
@@ -39,7 +47,7 @@ function BusinessCard({data, onClick}) {
 
                     <div className="flex jc-space-between ml-20 mr-20">
                         <div className='flex flex-column ai-center'>
-                            <h2>{data.distance} mi.</h2>
+                            <h2>{renderDistance()} mi.</h2>
                             <p className="small">Distance</p>
                         </div>
                         

@@ -34,13 +34,23 @@ function App() {
     setUser(user => ({...user, activities: [...user.activities, newActivity]}))
   }
 
-  console.log(user);
+  function addMessage(newMessage) {
+    setUser(user => ({...user, activities: user.activities.map(activity => {
+      if(activity.id === newMessage.activity_id) {
+        return {...activity, messages: [...activity.messages, newMessage]}
+      } else {
+        return activity;
+      }  
+    })}))
+  }
+
+  console.log(user); 
 
   function renderAuthorizedRoutes() {
     if(user) {
       return (
           <Route path="/" element={<Authorized />}>
-            <Route path="" element={<Activity user={user} />} />
+            <Route path="" element={<Activity user={user} addMessage={addMessage} />} />
             <Route path="/go" element={<Go user={user} />} />
             <Route path="/around-me" element={<AroundMe user={user} addActivity={addActivity} />} />
             <Route path="/account" element={<Account user={user} setUser={setUser} />} />
