@@ -8,11 +8,12 @@ import { createMessage } from '../../services/services';
 import ActivityOnCalendar from '../../components/activityOnCalendar';
 import { hours } from '../../data/hours'
 import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api'
+import { getGeocode, getLatLng } from "use-places-autocomplete";
 const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 
-function Activity({ user, addMessage }) {
+function Activity({ user, addMessage, userCityCord }) {
         
     const [currDate, setCurrDate] = useState(new Date())
     const [dateObj, setDateObj] = useState({
@@ -27,11 +28,12 @@ function Activity({ user, addMessage }) {
     const [newMessage, setNewMessage] = useState('')
     const [messages, setMessages] = useState([])
     // change to be cirt of user
-    const [cord, setCord] = useState({ lat: 30.282569, lng: -97.735369 })
-
+    const [cord, setCord] = useState(userCityCord)
+    const [cordHasBeenSet, setCordHasBeenSet] = useState(false)
 
     useEffect(() => {
         setActivityOfInterest(todaysActivities[0][0])
+        userCityCord && setCord(userCityCord)
     }, [])
 
     useEffect(() => {
@@ -61,10 +63,15 @@ function Activity({ user, addMessage }) {
         setCurrDate(new Date())
     }
 
-    function onActivityClick(activityId) {
+    async function onActivityClick(activityId) {
+        setCordHasBeenSet(true)
         const activity = todaysActivities.find(activity => activity.id === activityId)
         setMessages(activity.messages)
         setActivityOfInterest(activity);
+
+        const results = await getGeocode({ address: activity.location });
+        const { lat, lng } = await getLatLng(results[0]);
+        setCord({ lat, lng });
     }
 
     function getTimeOfCurrDaysActivity() {
@@ -141,8 +148,6 @@ function Activity({ user, addMessage }) {
 
         return returnValue;
     }
-
-    console.log(messages);
 
     return (  
         <div className="activity">
@@ -246,7 +251,7 @@ function Activity({ user, addMessage }) {
                     {isLoaded ? (
                     <GoogleMap 
                         center={cord} 
-                        zoom={15} 
+                        zoom={cordHasBeenSet ? 15 : 13}
                         mapContainerStyle={{ width: '100%', height: '100%' }} 
                         options={{
                             zoomControl: false,
@@ -255,7 +260,7 @@ function Activity({ user, addMessage }) {
                             fullscreenControl: false,
                         }}
                     >
-                        {cord && <MarkerF position={cord} />}
+                        {cordHasBeenSet && <MarkerF position={cord} />}
                     </GoogleMap>
                     ) : (null)}
 

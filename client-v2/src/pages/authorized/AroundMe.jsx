@@ -6,11 +6,12 @@ import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api'
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { bookActivity } from '../../services/services';
 
-function AroundMe({user, addActivity}) {
+function AroundMe({user, addActivity, userCityCord}) {
     const [postings, setPostings] = useState([])
     const [postingOfInterest, setPostingOfInterest] = useState(null)
-    const [cord, setCord] = useState({ lat: 30.282569, lng: -97.735369 })
+    const [cord, setCord] = useState(userCityCord)
     const [hasBeenbooked, setHasBeenBooked] = useState(false)
+    const [cordHasBeenSet, setCordHasBeenSet] = useState(false)
 
     const {isLoaded} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API,
@@ -18,12 +19,15 @@ function AroundMe({user, addActivity}) {
     })
 
 
+
     useEffect(() => {
         getPostings().then(r => setPostings(r.data))
+        userCityCord && setCord(userCityCord)
     }, [])
 
     async function onPostingClick(postingId) {
         setHasBeenBooked(false)
+        setCordHasBeenSet(true)
         const posting = postings.find(posting => posting.id === postingId)
         setPostingOfInterest(posting);
 
@@ -31,8 +35,6 @@ function AroundMe({user, addActivity}) {
         const { lat, lng } = await getLatLng(results[0]);
         setCord({ lat, lng });
     }
-
-    console.log(postingOfInterest);
 
     async function onGoClick() {
 
@@ -99,7 +101,7 @@ function AroundMe({user, addActivity}) {
             {/* {postings && <BusinessCard data={postings[0]} onClick={onPostingClick}/>} */}
             
             {
-                postings && postings.map(posting => <BusinessCard data={posting} onClick={onPostingClick}/>)
+                postings && postings.map(posting => <BusinessCard key={posting.id} data={posting} onClick={onPostingClick}/>)
             }
 
         </div>
@@ -108,7 +110,7 @@ function AroundMe({user, addActivity}) {
             {isLoaded ? (
                 <GoogleMap 
                     center={cord} 
-                    zoom={15} 
+                    zoom={cordHasBeenSet ? 15 : 13}
                     mapContainerStyle={{ width: '100%', height: '100%' }} 
                     options={{
                         zoomControl: false,
@@ -117,7 +119,7 @@ function AroundMe({user, addActivity}) {
                         fullscreenControl: false,
                     }}
                 >
-                    {cord && <MarkerF position={cord} />}
+                    {cordHasBeenSet && <MarkerF position={cord} />}
                 </GoogleMap>
             ) : (null)}
             {

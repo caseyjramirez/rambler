@@ -11,7 +11,7 @@ import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api'
 import Error from '../../components/error';
 
 
-function Go({ user }) {
+function Go({ user, userCityCord }) {
     const navigate = useNavigate();
     
     const [activities, setActivities] = useState([])
@@ -21,9 +21,10 @@ function Go({ user }) {
     const [location, setLocation] = useState('')
     const [time, setTime] = useState('')
     const [distance, setDistance] = useState(0)
-    const [cord, setCord] = useState({ lat: 30.282569, lng: -97.735369 })
+    const [cord, setCord] = useState(userCityCord)
     const [error, setError] = useState('')
     const [isPosted, setIsPosted] = useState(false)
+    const [cordHasBeenSet, setCordHasBeenSet] = useState(false)
 
     // useEffect(() => {
     //     getGeocode({ address: user.city.name }).then(results => {
@@ -35,6 +36,7 @@ function Go({ user }) {
 
     useEffect(() => {
         getActivities().then(r => setActivities(r.data));
+        userCityCord && setCord(userCityCord)
     }, [])
 
 
@@ -88,6 +90,11 @@ function Go({ user }) {
         setActivityId(activityId)
     }
 
+    function onLocationChange(location) {
+        setLocation(location)
+        setCordHasBeenSet(true)
+    }
+
 
     return (
         <div className="go">
@@ -96,13 +103,13 @@ function Go({ user }) {
                 {isLoaded ? (
                   <GoogleMap 
                     center={cord} 
-                    zoom={15} 
+                    zoom={cordHasBeenSet ? 15 : 13}
                     mapContainerStyle={{ width: '100%', height: '100%' }} 
                     options={{
                         streetViewControl: false
                     }}
                   >
-                    {cord && <MarkerF position={cord} />}
+                    {cordHasBeenSet && <MarkerF position={cord} />}
                   </GoogleMap>
                 ) : (null)}
                 
@@ -115,7 +122,7 @@ function Go({ user }) {
                         <div className="go-activity-container mb-20">                    
                             <LocationInput 
                                 setCord={setCord}
-                                setLocation={setLocation}
+                                setLocation={onLocationChange}
                             />
                             
 
