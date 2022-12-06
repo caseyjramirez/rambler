@@ -85,6 +85,41 @@
     }
 }
 
+.local-time-ticker {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    width: calc(100% - 60px);
+    
+    &-header {
+        width: 10px;
+        height: 10px;
+        border-radius: 20px;
+        background-color: $error-red;
+    }
+    
+    &-body {
+        width: 100%;
+        height: 3px;
+        background-color: $error-red;
+    }
+
+    &.min0 {
+        top: -5px;
+    }
+    &.min15 {
+        top: max(calc((((100vh - 220px) / 16) / 4) - 5px), 5px);
+    }
+    &.min30 {
+        top: max(calc((((100vh - 220px) / 16) / 2) - 5px), 15px);
+    }
+    &.min45 {
+        top: max(calc((((100vh - 220px) / 16) / 1.5) - 5px), 25px);
+    }
+}
+
+
+
 .calendar-hour-set-activity {
     @media only screen and (max-height: 1400px) {
         .calendar-hour-set-activity-location {

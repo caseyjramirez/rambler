@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { add } from 'date-fns'
 import BusinessCard from "../../components/businessCard";
+import BusinessCardPlaceholder from '../../components/BusinessCardPlaceHolder';
 import Message from '../../components/message';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { createMessage } from '../../services/services';
 import ActivityOnCalendar from '../../components/activityOnCalendar';
+import LocalTimeTicker from '../../components/localTimeTicker';
 import { hours } from '../../data/hours'
 import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api'
 import { getGeocode, getLatLng } from "use-places-autocomplete";
@@ -31,10 +33,29 @@ function Activity({ user, addMessage, userCityCord }) {
     const [cord, setCord] = useState()
     const [cordHasBeenSet, setCordHasBeenSet] = useState(false)
     const [isEditing, setIsEditing] = useState(false)
+    const [localTime, setLocalTime] = useState({
+        hour: new Date().getHours(),
+        minute: new Date().getMinutes()
+        // hour: 13,
+        // minute: 30
+    })
 
     useEffect(() => {
+        // this needs to be initialized to next activity
         setActivityOfInterest(todaysActivities[0][0])
     }, [])
+
+    // setting local time to be casted on caledar
+    useEffect(() => {
+        const interval = setInterval(() => {
+            // called every minute
+            setLocalTime({
+                hour: new Date().getHours(),
+                minute: new Date().getMinutes()
+            })
+        }, 60000);
+        return () => clearInterval(interval);
+    }, []);
 
     useEffect(() => {
         setDateObj({
@@ -95,11 +116,6 @@ function Activity({ user, addMessage, userCityCord }) {
         setIsMessaging(false)
     }
 
-    function editActivity(activityId) {
-        console.log('EDIT', activityId);
-        setIsEditing(true)
-    }
-
     async function sendMessage() {
         const data = await createMessage({
             sender_id: user.id,
@@ -135,27 +151,69 @@ function Activity({ user, addMessage, userCityCord }) {
         setIsEditing(false);
     }
 
+    
+    function isViewingToday() {
+        const todayDate = new Date();
+        
+        const today = {
+            month: month[todayDate.getMonth()],
+            day: todayDate.getDate(),
+            year: todayDate.getFullYear(),
+        }
+
+        if(today.month === dateObj.month && today.day === dateObj.day && today.year === dateObj.year) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
     function mapDay() {
         
         let returnValue = [];
 
         for(let i = 0; i <hours.length; i++) {
-            
-            if(getTimeOfCurrDaysActivity().includes(hours[i].hour)) {
-                returnValue.push(
-                    <div className="calendar-hour-set flex" id={hours[i].hour}>
-                        <h3 className="time">{hours[i].label}</h3>
-                        <div className="breaker-hor blue"></div>
-                        <ActivityOnCalendar data={getCorrectActivityForHour(hours[i].hour)} onClick={onActivityClick} />
-                    </div>
-                )
+
+            // if current hour === local time
+            if(localTime.hour === hours[i].hour) {
+                if(getTimeOfCurrDaysActivity().includes(hours[i].hour)) {
+                    returnValue.push(
+                        <div className="calendar-hour-set flex" id={hours[i].hour}>
+                            <h3 className="time">{hours[i].label}</h3>
+                            <div className="breaker-hor blue"></div>
+                            {isViewingToday() ? <LocalTimeTicker minute={localTime.minute} /> : null}
+                            <ActivityOnCalendar data={getCorrectActivityForHour(hours[i].hour)} onClick={onActivityClick} />
+                        </div>
+                    )
+                } else {
+                    returnValue.push(
+                        <div className="calendar-hour-set flex" id={hours[i].hour}>
+                            <h3 className="time">{hours[i].label}</h3>
+                            <div className="breaker-hor blue"></div>
+                            {isViewingToday() ? <LocalTimeTicker minute={localTime.minute} /> : null}
+                        </div>
+                    )
+                }
+            // if it doesnt === curr hour
             } else {
-                returnValue.push(
-                    <div className="calendar-hour-set flex" id={hours[i].hour}>
-                        <h3 className="time">{hours[i].label}</h3>
-                        <div className="breaker-hor blue"></div>
-                    </div>
-                )
+                if(getTimeOfCurrDaysActivity().includes(hours[i].hour)) {
+                    returnValue.push(
+                        <div className="calendar-hour-set flex" id={hours[i].hour}>
+                            <h3 className="time">{hours[i].label}</h3>
+                            <div className="breaker-hor blue"></div>
+                            <ActivityOnCalendar data={getCorrectActivityForHour(hours[i].hour)} onClick={onActivityClick} />
+                        </div>
+                    )
+                } else {
+                    returnValue.push(
+                        <div className="calendar-hour-set flex" id={hours[i].hour}>
+                            <h3 className="time">{hours[i].label}</h3>
+                            <div className="breaker-hor blue"></div>
+                        </div>
+                    )
+                }
+
             }
         }
 
@@ -264,7 +322,7 @@ function Activity({ user, addMessage, userCityCord }) {
             
             
             <div className="activity-feed">
-                {activityOfInterest && <BusinessCard data={activityOfInterest} onClick={() => setIsEditing(true)} cta={'Cancel'}/>}
+                {activityOfInterest ? <BusinessCard data={activityOfInterest} onClick={() => setIsEditing(true)} cta={'Cancel'}/> : <BusinessCardPlaceholder/> }
 
                 <div className="activity-feed-map">
                     {isLoaded ? (

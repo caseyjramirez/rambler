@@ -1,9 +1,11 @@
+import React, { useState, useEffect } from 'react';
 import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption, } from "@reach/combobox";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 
 function LocationInput({setCord, setLocation}) {
+    
     const { ready, value, setValue, suggestions: { status, data }, clearSuggestions } = usePlacesAutocomplete();
-
+    
     const handleSelect = async (address) => {
         setValue(address, false);
         clearSuggestions();
@@ -12,6 +14,8 @@ function LocationInput({setCord, setLocation}) {
         setCord({ lat, lng });
         setLocation(address);
     };
+    
+
 
     return (
         <div className="interactive location flex ai-center mb-20">
@@ -20,18 +24,10 @@ function LocationInput({setCord, setLocation}) {
             </div>
 
             <Combobox onSelect={handleSelect}>
-                {
-                    ready && <ComboboxInput
-                        value={value}
-                        onChange={e => setValue(e.target.value)}
-                        className="combobox-input location-input"
-                        placeholder="Search an address"
-                    />
-                }
                 <ComboboxInput
                     value={value}
-                    onChange={e => setValue(e.target.value)}
                     disabled={!ready}
+                    onChange={e => setValue(e.target.value)}
                     className="combobox-input location-input"
                     placeholder="Search an address"
                 />

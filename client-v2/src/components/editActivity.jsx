@@ -2,8 +2,6 @@ function EditActivity({ data, isEditing, cancelWalk, goBack }) {
     function renderClass() {
         return isEditing ? 'edit-activity-background flex center-center active' : 'edit-activity-background flex center-center';
     }
-
-    console.log(data);
     
     return (
         <div className={renderClass()}>
