@@ -1,0 +1,133 @@
+.account {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: $white;
+    border-radius: $component-border-radius;
+    box-shadow: $box-shadow-component;
+    overflow: hidden;
+
+    &-container {
+        padding: 40px 60px;
+    }
+    
+    &-header {
+        width: 100%;
+        height: 40vh;
+    }
+    
+    &-info {
+        
+        img {
+            width: 20vw;
+            max-width: 40vh;
+            height: 40vh;
+            margin-top: -30vh;
+            border-radius: $part-border-radius;
+        }
+    }
+    
+    &-feed {
+        padding: 40px 60px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        width: calc(100% - 120px);
+        border-radius: $component-border-radius;
+        box-shadow: $box-shadow-account; 
+
+        &.edit-account {
+            display: block;
+        }
+
+        &-item {
+            position: relative;
+            margin-left: 10px;
+            margin-right: 10px;
+            padding: 20px 40px;
+            border-radius: $part-border-radius;
+            background-color: antiquewhite;
+            height: 80px;
+            box-shadow: $box-shadow-component;
+            
+            &-title {
+                position: absolute;
+                top: 20px;
+                left: 40px;
+            }
+
+            &.top-activity {
+                background: radial-gradient(#DDE4EB, #9FB1C9);
+            }
+            
+            &.total-distance {
+                background: linear-gradient(30deg, #FDF1D2, #E8A16D);
+            }
+            
+            &.total-activities {
+                background: linear-gradient(140deg, #d2eafd, #6d9ce8);
+            }
+            
+            &.distance-to-goal {
+                background: radial-gradient(#ffc300, #ffaa00);
+
+            }
+        }
+    }
+}
+
+.edit-account-label-container{
+    width: 120px;
+}
+
+.edit-account {
+    input {
+        border-bottom: 1px solid $grey-dark;
+        border-radius: 0px;
+        background-color: $white;
+    }
+
+    &-columns {
+        @media only screen and (min-width: 992px) {
+            display: block;
+            
+        }
+
+        @media only screen and (min-width: 1200px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    textarea {
+        background-color: $white;
+        border-radius: $part-border-radius;
+        border: 1px solid $grey-dark;
+        height: 80px;
+        padding: 20px;
+        width: calc(100% - 40px);
+        color: $grey-dark;
+        font-size: .875rem;
+        letter-spacing: -.035rem;
+        font-weight: 500;
+    }
+}
+
+.edit-account-input {
+    margin: 10px 20px;
+}
+
+.edit-account-dropdown {
+    margin: 10px 20px;
+
+    select {
+        width: 100%;
+        border-bottom: 1px solid $grey-dark;
+        border-radius: 0px;
+        background-color: $white;
+        color: $grey-dark;
+        font-size: .875rem;
+        letter-spacing: -.035rem;
+        font-weight: 500;
+        padding: .25rem .5rem;
+    }
+}

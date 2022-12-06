@@ -19,8 +19,6 @@ function BusinessCard({data, onClick, cta = 'Learn More'}) {
         }
     }
 
-    console.log(data.user.industry);
-
     return (
         <div className="business-card flex mb-20">
             <div className="business-card-profile-photo mr-20">

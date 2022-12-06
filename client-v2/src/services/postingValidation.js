@@ -20,6 +20,14 @@ function validateNewPosting(day, activityId, location, distance, time) {
     if(!time) {
         return 'Choose a starting time.'
     }
+
+    if(parseInt(time) < 5) {
+        return 'Activites must start after 5am.'
+    }
+
+    if(parseInt(time) >= 21) {
+        return 'Activites must start before 9pm.'
+    }
     
     const dateOfDay = getDate(day);        
     const date = new Date(`${dateOfDay} ${time}`)
