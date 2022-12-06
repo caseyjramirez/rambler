@@ -6,7 +6,7 @@ class Api::V1::PostingsController < ApplicationController
     end
 
     def unfilled
-        postings = Posting.where(isFilled: false)
+        postings = Posting.inFuture.where(isFilled: false)
         render json: postings, status: :ok
     end
 

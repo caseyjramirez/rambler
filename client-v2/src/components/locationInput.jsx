@@ -20,13 +20,22 @@ function LocationInput({setCord, setLocation}) {
             </div>
 
             <Combobox onSelect={handleSelect}>
+                {
+                    ready && <ComboboxInput
+                        value={value}
+                        onChange={e => setValue(e.target.value)}
+                        className="combobox-input location-input"
+                        placeholder="Search an address"
+                    />
+                }
                 <ComboboxInput
                     value={value}
                     onChange={e => setValue(e.target.value)}
                     disabled={!ready}
                     className="combobox-input location-input"
                     placeholder="Search an address"
-                    />
+                />
+
                 <ComboboxPopover>
                     <ComboboxList className="location-result-container" >
                             {status === "OK" &&

@@ -14,6 +14,8 @@ function Signup({ setUser }) {
         firstName: '',
         lastName: '',
         city_id: '',
+        user_lat: '',
+        user_lng: '',
         industry_id: '',
         company: '',
         jobTitle: '',
@@ -27,9 +29,11 @@ function Signup({ setUser }) {
     const [cityQuery, setCityQuery] = useState('')
     const [signupError, setSignupError] = useState('')
 
-    const setUserCity = (name, id) => {
+    console.log(newProfile);
+
+    const setUserCity = (name, id, lat, lng) => {
         setCityQuery(name)
-        setNewProfile({...newProfile, city_id: id })
+        setNewProfile({...newProfile, city_id: id, user_lat: lat, user_lng: lng })
     }
     
     const setUserIndustry = id => {;

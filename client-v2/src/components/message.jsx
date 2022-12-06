@@ -1,5 +1,4 @@
 function Message({userId, message, sender, reciever}) {
-    console.log(message, userId, sender, reciever);
 
 
     function renderTagText(name) {

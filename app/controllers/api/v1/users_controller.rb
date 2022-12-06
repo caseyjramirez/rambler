@@ -58,7 +58,7 @@ class Api::V1::UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:first_name, :last_name, :city_id, :industry_id, :company, :job_title, :email, :password, :password_confirmation, :profile_photo, :cover_photo, :description)
+        params.permit(:first_name, :last_name, :city_id, :industry_id, :company, :job_title, :email, :password, :password_confirmation, :profile_photo, :cover_photo, :description, :user_lat, :user_lng)
     end 
 
 end

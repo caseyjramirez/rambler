@@ -17,6 +17,11 @@ button {
         color: $white;
     }
 
+    &.red {
+        background-color: $error-red;
+        color: $white;
+    }
+
     &.white {
         color: $black;
     }

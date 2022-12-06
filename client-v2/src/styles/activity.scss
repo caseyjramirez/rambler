@@ -47,6 +47,7 @@
             height: calc(100% - 300px - 40px);
             background-color: antiquewhite;
             border-radius: $component-border-radius;
+            overflow: hidden;
         }
     }
 }

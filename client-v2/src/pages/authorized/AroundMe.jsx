@@ -22,8 +22,9 @@ function AroundMe({user, addActivity, userCityCord}) {
 
     useEffect(() => {
         getPostings().then(r => setPostings(r.data))
-        userCityCord && setCord(userCityCord)
     }, [])
+
+    console.log(postings);
 
     async function onPostingClick(postingId) {
         setHasBeenBooked(false)
@@ -57,7 +58,7 @@ function AroundMe({user, addActivity, userCityCord}) {
                 date: data.date,
                 distance: data.distance,
                 location: data.location,
-                user: data.user_one,
+                user: {...data.user_one, industry: data.user_one.industry.name},
                 messages: [],
                 activity: {
                     id: data.activity.id,
@@ -109,7 +110,7 @@ function AroundMe({user, addActivity, userCityCord}) {
         <div className="around-me-map">
             {isLoaded ? (
                 <GoogleMap 
-                    center={cord} 
+                    center={cord || userCityCord} 
                     zoom={cordHasBeenSet ? 15 : 13}
                     mapContainerStyle={{ width: '100%', height: '100%' }} 
                     options={{

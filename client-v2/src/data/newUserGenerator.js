@@ -4,6 +4,8 @@ function formatNewUserData(newUser) {
         first_name: newUser.firstName,
         last_name: newUser.lastName,
         city_id: newUser.city_id,
+        user_lat: newUser.user_lat,
+        user_lng: newUser.user_lng,
         industry_id: newUser.industry_id,
         company: newUser.company,
         job_title: newUser.jobTitle,

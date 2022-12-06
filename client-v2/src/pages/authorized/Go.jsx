@@ -26,14 +26,6 @@ function Go({ user, userCityCord }) {
     const [isPosted, setIsPosted] = useState(false)
     const [cordHasBeenSet, setCordHasBeenSet] = useState(false)
 
-    // useEffect(() => {
-    //     getGeocode({ address: user.city.name }).then(results => {
-    //         const { lat, lng } = getLatLng(results[0]);
-    //         setCord({ lat, lng });
-    //     })
-
-    // }, [])
-
     useEffect(() => {
         getActivities().then(r => setActivities(r.data));
         userCityCord && setCord(userCityCord)
@@ -102,7 +94,7 @@ function Go({ user, userCityCord }) {
 
                 {isLoaded ? (
                   <GoogleMap 
-                    center={cord} 
+                    center={cord || userCityCord} 
                     zoom={cordHasBeenSet ? 15 : 13}
                     mapContainerStyle={{ width: '100%', height: '100%' }} 
                     options={{

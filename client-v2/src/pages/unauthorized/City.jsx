@@ -35,11 +35,11 @@ function CitySignupPage({ setCity, query, setQuery, selectedCity }) {
     }
     
     async function onSelectCity(cityName, cityId) {
-        setCity(cityName, cityId)
         
         const results = await getGeocode({ address: cityName });
         const { lat, lng } = await getLatLng(results[0]);
         setCord({ lat, lng });
+        setCity(cityName, cityId, lat, lng)
 
     }
 
