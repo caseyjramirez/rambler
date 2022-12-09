@@ -10,7 +10,9 @@ import {
     userAPI,
     getUserAPI,
     messageAPI,
-    activitiesAPI
+    activitiesAPI,
+    getAWalkAPI,
+    updateActivtyGoalAPI
 } from "./urls";
 
 async function login(body) {
@@ -54,6 +56,18 @@ async function bookActivity(body) {
             method: 'post',
             url: walkAPI,
             data: body
+        })
+    } catch (error) {
+        return error
+    }
+}
+
+async function deleteActivity(walkId, userId) {
+    try {
+        return await axios({
+            method: 'delete',
+            url: getAWalkAPI(walkId),
+            data: userId
         })
     } catch (error) {
         return error
@@ -151,6 +165,18 @@ async function createMessage(body) {
     }
 }
 
+async function updateActivityGoal(body) {
+    try {
+        return await axios({
+            method: 'post',
+            url: updateActivtyGoalAPI,
+            data: body
+        })
+    } catch (error) {
+        return error
+    }
+}
+
 
 
 
@@ -166,5 +192,7 @@ export {
     getUser,
     createMessage,
     updateUser,
-    getActivities
+    getActivities,
+    deleteActivity,
+    updateActivityGoal
 }

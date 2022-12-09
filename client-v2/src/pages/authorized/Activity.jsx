@@ -5,7 +5,7 @@ import BusinessCardPlaceholder from '../../components/BusinessCardPlaceHolder';
 import Message from '../../components/message';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { createMessage } from '../../services/services';
+import { createMessage, deleteActivity } from '../../services/services';
 import ActivityOnCalendar from '../../components/activityOnCalendar';
 import LocalTimeTicker from '../../components/localTimeTicker';
 import { hours } from '../../data/hours'
@@ -16,7 +16,7 @@ const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Sa
 const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 
-function Activity({ user, addMessage, userCityCord }) {
+function Activity({ user, addMessage, userCityCord, removeActivity }) {
         
     const [currDate, setCurrDate] = useState(new Date())
     const [dateObj, setDateObj] = useState({
@@ -36,8 +36,6 @@ function Activity({ user, addMessage, userCityCord }) {
     const [localTime, setLocalTime] = useState({
         hour: new Date().getHours(),
         minute: new Date().getMinutes()
-        // hour: 13,
-        // minute: 30
     })
 
     useEffect(() => {
@@ -45,10 +43,8 @@ function Activity({ user, addMessage, userCityCord }) {
         setActivityOfInterest(todaysActivities[0][0])
     }, [])
 
-    // setting local time to be casted on caledar
     useEffect(() => {
         const interval = setInterval(() => {
-            // called every minute
             setLocalTime({
                 hour: new Date().getHours(),
                 minute: new Date().getMinutes()
@@ -146,9 +142,17 @@ function Activity({ user, addMessage, userCityCord }) {
 
     }
 
-    async function cancelWalk(activityId) {
-        console.log('cancel walk', activityId);
+    async function cancelActivity(activityId) {
         setIsEditing(false);
+        setIsMessaging(false);
+        const data = await deleteActivity(activityId, {user_id: user.id})
+        console.log(data);
+
+        if(data.status === 204) {
+            removeActivity(activityId)
+            setActivityOfInterest(todaysActivities[0][0])
+        }
+        
     }
 
     
@@ -226,7 +230,7 @@ function Activity({ user, addMessage, userCityCord }) {
                 data={activityOfInterest}
                 isEditing={isEditing}
                 goBack={() => setIsEditing(false)}
-                cancelWalk={cancelWalk}
+                cancelWalk={cancelActivity}
             />
             <div className="activity-calendar">
                 <div className="activity-calendar-header">

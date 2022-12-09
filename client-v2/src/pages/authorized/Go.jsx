@@ -4,15 +4,14 @@ import DaySelector from "../../components/daySelector";
 import ActivitySelector from '../../components/activitySelector';
 import LocationInput from '../../components/locationInput';
 import { createPosting, getActivities } from '../../services/services';
-import { useNavigate } from 'react-router-dom';
 import { getDate} from '../../data/daySelector';
 import { validateNewPosting } from '../../services/postingValidation';
 import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api'
 import Error from '../../components/error';
+import { renderVerb } from '../../services/renderings'
 
 
 function Go({ user, userCityCord }) {
-    const navigate = useNavigate();
     
     const [activities, setActivities] = useState([])
     const [day, setDay] = useState('')
@@ -31,11 +30,6 @@ function Go({ user, userCityCord }) {
         userCityCord && setCord(userCityCord)
     }, [])
 
-
-    function renderVerb() {
-        if(activity) return `Go ${activity}!`
-        else return 'Select Activity'
-    }
 
     const {isLoaded} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API,
@@ -70,9 +64,6 @@ function Go({ user, userCityCord }) {
 
         if(data.status === 201) {
             setIsPosted(true)
-            setTimeout(() => {
-                navigate('/');
-            }, 2000)
         }
     }
 
@@ -98,7 +89,10 @@ function Go({ user, userCityCord }) {
                     zoom={cordHasBeenSet ? 15 : 13}
                     mapContainerStyle={{ width: '100%', height: '100%' }} 
                     options={{
-                        streetViewControl: false
+                        zoomControl: false,
+                        streetViewControl: false,
+                        mapTypeControl: false,
+                        fullscreenControl: false,
                     }}
                   >
                     {cordHasBeenSet && <MarkerF position={cord} />}
@@ -108,7 +102,7 @@ function Go({ user, userCityCord }) {
 
                     {isPosted ? (
                         <div className="go-activity-confirmation-container mb-20 flex center-center">
-                            <h3 className='large'>Your {activity} has been posted!</h3>
+                            <h3 className='large'>Your {renderVerb(activity).toLowerCase()} has been posted!</h3>
                         </div>
                     ) : (
                         <div className="go-activity-container mb-20">                    
@@ -145,7 +139,7 @@ function Go({ user, userCityCord }) {
 
                             <div className="span100 flex flex-column ai-center jc-center">
                                 <button disabled={activityId ? false : true} onClick={handleSubmit} className='large grey go-shadow'>
-                                    <h3 className="large">{renderVerb()}</h3>
+                                    <h3 className="large">Go!</h3>
                                 </button>
                                 {error && <Error error={error} />}
                             </div>

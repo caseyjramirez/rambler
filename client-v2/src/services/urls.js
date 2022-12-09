@@ -5,10 +5,12 @@ const getUserAPI = userId => `/users/${userId}`
 const postingAPI = '/postings'
 const unfilledPostingAPI = '/unfilledPostings'
 const walkAPI = '/walks'
+const getAWalkAPI = walkId => `/walks/${walkId}`
 const cityAPI = '/cities'
 const industryAPI = '/industries'
 const messageAPI = '/messages'
 const activitiesAPI = '/activities'
+const updateActivtyGoalAPI = '/update_activity_goal'
 
 export { 
     loginAPI,
@@ -21,5 +23,7 @@ export {
     userAPI,
     getUserAPI,
     messageAPI,
-    activitiesAPI
+    activitiesAPI,
+    getAWalkAPI,
+    updateActivtyGoalAPI
 }

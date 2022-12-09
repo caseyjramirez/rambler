@@ -1,0 +1,49 @@
+.set-goal {
+    &-background {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.52);
+        z-index: 9;
+    }
+
+    &-modal {
+        width: 500px;
+        max-width: calc(100% - 110px);
+        background-color: $white;
+        border-radius: $component-border-radius;
+        box-shadow: $box-shadow-component;
+        padding: 40px;
+    }
+    
+    &-input {
+        position: relative;
+        h1 {
+            position: absolute;
+            top: 0;
+        }
+        
+        input {
+            top: 0;
+            background-color: transparent;
+            box-shadow: none;
+            width: calc(100% - 40px);
+            font-size: 2rem;
+            letter-spacing: -.08rem;
+            font-weight: 700;
+            color: $black;
+            font: $font;
+        }
+
+
+    }
+
+
+}
+
+.set-goal-background.active {
+    display: flex;
+}

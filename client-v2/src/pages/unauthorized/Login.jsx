@@ -57,7 +57,7 @@ function Login({setUser}) {
                         onChange={handleChange}
                         value={email}
                         name="email"
-                        />
+                    />
                     <Input 
                         label='Password'
                         extraStyling='black'

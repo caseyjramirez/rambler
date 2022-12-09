@@ -16,7 +16,8 @@ class WalkSerializer < ActiveModel::Serializer
       industry: user.industry,
       description: user.description,
       job_title: user.job_title,
-      company: user.company
+      company: user.company,
+      profile_photo: user.profile_photo
     }
   end
 
@@ -30,7 +31,8 @@ class WalkSerializer < ActiveModel::Serializer
       industry: user.industry,
       description: user.description,
       job_title: user.job_title,
-      company: user.company
+      company: user.company,
+      profile_photo: user.profile_photo
     }
   end
 end

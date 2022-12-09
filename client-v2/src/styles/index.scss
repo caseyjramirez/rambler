@@ -16,6 +16,7 @@
 @import './messages.scss';
 @import './edit-activity-modal.scss';
 @import './account.scss';
+@import './set-goal.scss';
 
     // /* Extra small devices (phones, 600px and down) */
     // @media only screen and (max-width: 600px) {
@@ -49,21 +50,23 @@ html {
 }
 
 :root {
-    @media only screen and (max-width: 991px) {        
+    @media only screen and (min-width: 500px) {        
         --full-height: calc(100vh - 10px);
         
         --layout-width: calc(100vw - 10px);
         --layout-height: calc(100vh - 10px);
         --padding: 5px;
         --padding-2: 10px;
+        --padding-4: 20px;
     }
 
-    @media only screen and (min-width: 992px) {        
-        --full-height: calc(100vh - 20px);
+    @media only screen and (min-width: 1100px) {        
+        --full-height: calc(100vh - 40px);
         --layout-width: calc(100vw - 40px);
         --layout-height: calc(100vh - 40px);
         --padding: 20px;
         --padding-2: 40px;
+        --padding-4: 80px;
     }
 }
 

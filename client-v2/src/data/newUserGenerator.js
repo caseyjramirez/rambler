@@ -12,7 +12,8 @@ function formatNewUserData(newUser) {
         email: newUser.email,
         password: newUser.password,
         password_confirmation: newUser.confirmPassword,
-        profile_photo: newUser.imagePreviewUrl,
+        profile_photo: newUser.profile_photo,
+        cover_photo: newUser.cover_photo,
         description: newUser.description
     }
 }

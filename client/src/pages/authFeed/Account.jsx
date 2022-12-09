@@ -141,7 +141,6 @@ function Account({ user, setUser }) {
             <div className="header-image-container">
                 <h3>Update Profile Image</h3>
                 <input className='profile-photo-image' onChange={changeProfilePic} type="file" accept="image/*" />
-                {/* <div className="header-image-container-overlay"></div> */}
                 <img src={renderProfilePhotoImage()} alt="profile" className="profile-picture" />
             </div>
         ) : (

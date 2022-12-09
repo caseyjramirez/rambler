@@ -11,8 +11,19 @@ class Api::V1::WalksController < ApplicationController
 
         walk = Walk.create!(walk_params)
         render json: walk, status: :created
-
     end
+
+    def destroy
+        activity = Walk.find(params[:id])
+        
+        if activity[:user_one_id] === params[:user_id] or activity[:user_two_id] === params[:user_id]
+            activity.destroy
+        end
+        
+        head :no_content 
+    end 
+
+
 
     private
 

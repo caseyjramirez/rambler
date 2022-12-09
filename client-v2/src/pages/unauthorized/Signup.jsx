@@ -23,7 +23,8 @@ function Signup({ setUser }) {
         password: '',
         confirmPassword: '',
         picFile: null,
-        imagePreviewUrl: "",
+        profile_photo: "",
+        cover_photo: "",
         description: ""
     })
     const [cityQuery, setCityQuery] = useState('')

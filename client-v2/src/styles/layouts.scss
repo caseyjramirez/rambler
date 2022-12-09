@@ -8,27 +8,30 @@
     height: calc(100vh - var(--padding-2));
 
     // CHANGED
-    @media only screen and (min-width: 992px) {
+    @media only screen and (min-width: 1100px) {
         display: grid;
         grid-template-columns: 1fr 4fr;
+        --sidebar-width: calc((100vw - 480px) / 4)
         
     }
 
-    @media only screen and (min-width: 1200px) {
+    @media only screen and (min-width: 1500px) {
         display: grid;
         grid-template-columns: 1fr 6fr;
+        --sidebar-width: calc((100vw - 480px) / 6)
     }
 
-    @media only screen and (min-width: 1400px) {
+    @media only screen and (min-width: 1600px) {
         display: grid;
         grid-template-columns: 1fr 7fr;
+        --sidebar-width: calc((100vw - 480px) / 7)
     }
 }
 
 
 // establishing either sidebar or hamburger layout
 :root {
-    @media only screen and (max-width: 991px) {        
+    @media only screen and (min-width: 500px) {
         .sidebar {
             display: none;
         }
@@ -40,7 +43,7 @@
     }
 
     // CHANGED
-    @media only screen and (min-width: 992px) {        
+    @media only screen and (min-width: 1100px) {        
         .sidebar {
             display: flex;
         }
@@ -54,21 +57,19 @@
 
 
 .sidebar {
-    width: 100%;
+    width: var(--sidebar-width);
+    position: relative;
     padding-right: 20px;
     height: $full-height;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: stretch;
-    border-right: 1px solid $grey-mid-blue;
-    position: sticky;
-    top: 20px;
+    position: fixed;
 }
 
 .feed {
     width: calc(100% - var(--padding-2));
-    height: 100%;
+    height: var(--full-height);
     padding-left: 40px;
     padding-right: 20px;
     display: flex;

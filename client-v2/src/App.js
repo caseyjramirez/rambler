@@ -32,10 +32,14 @@ function App() {
     })
   }, [])
 
-  console.log(user);
+  // console.log(user);
 
   function addActivity(newActivity) {
     setUser(user => ({...user, activities: [...user.activities, newActivity]}))
+  }
+
+  function removeActivity(activityId) {
+    setUser(user => ({...user, activities: user.activities.filter(activity => activity.id !== activityId)}))
   }
 
   function addMessage(newMessage) {
@@ -48,14 +52,20 @@ function App() {
     })}))
   }
 
+  function setNewActivityGoal(newGoal) {
+    setUser(user => ({...user, mile_goal: newGoal}))
+  }
+
+
+
   function renderAuthorizedRoutes() {
     if(user) {
       return (
           <Route path="/" element={<Authorized />}>
-            <Route path="" element={<Activity user={user} addMessage={addMessage} userCityCord={{lat: user.user_lat, lng: user.user_lng}}/>} />
+            <Route path="" element={<Activity user={user} addMessage={addMessage} userCityCord={{lat: user.user_lat, lng: user.user_lng}} removeActivity={removeActivity} />} />
             <Route path="/go" element={<Go user={user} userCityCord={{lat: user.user_lat, lng: user.user_lng}} />} />
             <Route path="/around-me" element={<AroundMe user={user} addActivity={addActivity} userCityCord={{lat: user.user_lat, lng: user.user_lng}} />} />
-            <Route path="/account" element={<Account user={user} setUser={setUser} />} />
+            <Route path="/account" element={<Account user={user} setUser={setUser} setNewActivityGoal={setNewActivityGoal} />} />
           </Route> 
       )
     }

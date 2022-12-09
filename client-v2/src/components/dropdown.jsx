@@ -1,10 +1,11 @@
-function Dropdown() {
+function Dropdown({ data, onChange }) {
+
     return (
-        <select name="cars" id="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
+        <select onChange={(e) => {onChange(e.target.value)}} name="cars" id="cars">
+            <option selected>All</option>
+            {
+                data.map(option => <option value={option.name}>{option.name}</option>)
+            }
         </select>
     );
 }

@@ -5,28 +5,30 @@ import SidebarButton from "../../components/sidebarButton";
 function Authorized() {
     return (
         <div className="layout">
-            <div className="sidebar">
-                <SidebarButton
-                    nav='/go'
-                    text='Go!'
-                />
+            <div className="sidebar-container">
+                <div className="sidebar">
+                    <SidebarButton
+                        nav='/go'
+                        text='Go!'
+                    />
 
-                <SidebarButton
-                    nav='/around-me'
-                    text='Around Me.'
-                />
-                
-                <SidebarButton
-                    nav='/'
-                    text='Activity.'
-                />
+                    <SidebarButton
+                        nav='/around-me'
+                        text='Around Me.'
+                    />
+                    
+                    <SidebarButton
+                        nav='/'
+                        text='Activity.'
+                    />
 
 
-                <SidebarButton
-                    nav='/account'
-                    text='Acount.'
-                />
+                    <SidebarButton
+                        nav='/account'
+                        text='Acount.'
+                    />
 
+                </div>
             </div>
 
             <div className="feed">

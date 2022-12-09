@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import BusinessCard from "../../components/businessCard";
 import Dropdown from "../../components/dropdown";
-import { getPostings } from "../../services/services";
+import { getPostings, getIndustries, getActivities } from "../../services/services";
+
 import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api'
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { bookActivity } from '../../services/services';
+import { renderVerb } from '../../services/renderings'
 
 function AroundMe({user, addActivity, userCityCord}) {
     const [postings, setPostings] = useState([])
+    const [industries, setIndustries] = useState([])
+    const [activityTypes, setActivityTypes] = useState([])
+    
+    const [postingsOnDisplay, setPostingsOnDisplay] = useState([])
+    const [industryQuery, setIndustryQuery] = useState(null)
+    const [activityTypeQuery, setActivityTypeQuery] = useState(null)
+
+
     const [postingOfInterest, setPostingOfInterest] = useState(null)
     const [cord, setCord] = useState(userCityCord)
     const [hasBeenbooked, setHasBeenBooked] = useState(false)
@@ -21,10 +31,40 @@ function AroundMe({user, addActivity, userCityCord}) {
 
 
     useEffect(() => {
-        getPostings().then(r => setPostings(r.data))
+        getPostings().then(r => {
+            setPostings(r.data);
+            setPostingsOnDisplay(r.data);
+        })
+
+        getIndustries().then(r => {
+            setIndustries(r.data);
+        })
+
+        getActivities().then(r => {
+            setActivityTypes(r.data)
+        })
+
+
     }, [])
 
-    console.log(postings);
+    useEffect(() => {
+        if(industryQuery && activityTypeQuery) {
+            console.log('both');
+            setPostingsOnDisplay(postings.filter(posting => posting.user.industry === industryQuery && posting.activity.name === activityTypeQuery))
+        } else if(activityTypeQuery) {
+            console.log('only activity');
+            setPostingsOnDisplay(postings.filter(posting => posting.activity.name === activityTypeQuery))
+        } else if(industryQuery) {
+            console.log('only industry');
+            setPostingsOnDisplay(postings.filter(posting => posting.user.industry === industryQuery))
+        } else {
+            console.log('none');
+            setPostingsOnDisplay(postings)
+        }
+    }, [industryQuery, activityTypeQuery, postings])
+
+
+    console.log(postingsOnDisplay);
 
     async function onPostingClick(postingId) {
         setHasBeenBooked(false)
@@ -69,13 +109,27 @@ function AroundMe({user, addActivity, userCityCord}) {
             
             // filter out posting
             setPostings(postings => postings.filter(postingObj => postingObj.id !== postingOfInterest.id))
+            setPostingsOnDisplay(postings => postings.filter(postingObj => postingObj.id !== postingOfInterest.id))
             
             // set has been booked to true to display message
             setHasBeenBooked(true)
         }
+    }
 
-
-
+    function onDropDownChange(type, value) {
+        if(type === 'industry') {
+            if(value === 'All') {
+                setIndustryQuery(null)
+            } else {
+                setIndustryQuery(value)
+            }
+        } else {
+            if(value === 'All') {
+                setActivityTypeQuery(null)
+            } else {
+                setActivityTypeQuery(value)
+            }
+        }
     }
 
 
@@ -84,25 +138,26 @@ function AroundMe({user, addActivity, userCityCord}) {
         <div className="around-me-feed">
             <div className="around-me-feed-header flex jc-space-between ai-end">
                 <div>
-                    <button>
-                        <h3 className="large">Today</h3>
-                    </button>
-                </div>
-                <div>
                     <p className="small mb-5">Activity</p>
-                    <Dropdown />
+                    <Dropdown
+                        data={activityTypes}
+                        onChange={value => onDropDownChange('activity', value)}
+                        />
                 </div>
 
                 <div>
                     <p className="small mb-5">Industry</p>
-                    <Dropdown />
+                    <Dropdown 
+                        data={industries}
+                        onChange={value => onDropDownChange('industry', value)}
+                    />
                 </div>
             </div>
 
             {/* {postings && <BusinessCard data={postings[0]} onClick={onPostingClick}/>} */}
             
             {
-                postings && postings.map(posting => <BusinessCard key={posting.id} data={posting} onClick={onPostingClick}/>)
+                postings && postingsOnDisplay.map(posting => <BusinessCard key={posting.id} data={posting} onClick={onPostingClick}/>)
             }
 
         </div>
@@ -125,11 +180,17 @@ function AroundMe({user, addActivity, userCityCord}) {
             ) : (null)}
             {
                 postingOfInterest ? (
-                    <div className="around-me-cta">
-                        <button onClick={onGoClick} className='large black span100'>
-                                <h3 className="large">{postingOfInterest.activity.name} with {postingOfInterest.user.first_name}!</h3>
-                        </button>
-                    </div>
+                    hasBeenbooked ? (
+                        <div className="around-me-confirmation">
+                            <h3 className="large">Your {renderVerb(postingOfInterest.activity.name).toLowerCase()} with {postingOfInterest.user.first_name} has been scheduled!</h3>
+                        </div>
+                    ) : (
+                        <div className="around-me-cta">
+                            <button onClick={onGoClick} className='large black span100'>
+                                    <h3 className="large">{postingOfInterest.activity.name} with {postingOfInterest.user.first_name}!</h3>
+                            </button>
+                        </div>
+                    )
                 ) : (null)
             }
 

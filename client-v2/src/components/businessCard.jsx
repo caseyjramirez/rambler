@@ -1,4 +1,4 @@
-import testingProfilePhoto from '../assets/testingProfilePhoto.jpg';
+import defaultProfilePhoto from '../assets/default-profile-photo.jpg'
 import { getDay, getTime } from '../data/daySelector';
 
 function BusinessCard({data, onClick, cta = 'Learn More'}) {
@@ -22,7 +22,7 @@ function BusinessCard({data, onClick, cta = 'Learn More'}) {
     return (
         <div className="business-card flex mb-20">
             <div className="business-card-profile-photo mr-20">
-                <img src={testingProfilePhoto} alt="" />
+                <img src={data.user.profile_photo || defaultProfilePhoto} alt="" />
                 
                 <div className="business-card-cta">
                     <button onClick={onClick ? (() => onClick(data.id)) : null} className='white span100'>

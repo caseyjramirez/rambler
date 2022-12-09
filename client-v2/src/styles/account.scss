@@ -5,35 +5,81 @@
     background-color: $white;
     border-radius: $component-border-radius;
     box-shadow: $box-shadow-component;
-    overflow: hidden;
+    overflow: scroll;
 
     &-container {
-        padding: 40px 60px;
+        padding: 0 60px 40px 60px;
     }
     
     &-header {
         width: 100%;
         height: 40vh;
+        position: relative;
+        
+        &:hover {
+            h3 {
+                opacity: 100%;
+            }
+        }
+        
+        h3, input {
+            cursor: pointer;
+            z-index: 1;
+            top: 50%;
+            left: calc(50% - 65px);
+            position: absolute;
+            opacity: 0;
+            transition: $transition-fast;
+        }
+        
     }
     
-    &-info {
+    &-profile-img {
+        position: relative;
+        width: 25vw;
+        min-width: 300px;
+        max-width: 40vh;
+        height: 30vh;
+        // margin-top: -25vh;
+        border-radius: $part-border-radius;
+        overflow: hidden;
         
-        img {
-            width: 20vw;
-            max-width: 40vh;
-            height: 40vh;
-            margin-top: -30vh;
-            border-radius: $part-border-radius;
+        &:hover {
+            h3 {
+                opacity: 100%;
+            }
+        }
+        
+        h3, input {
+            cursor: pointer;
+            z-index: 2;
+            position: absolute;
+            top: 50%;
+            left: calc(50% - 65px);
+            opacity: 0;
+            transition: $transition-fast;
         }
     }
     
     &-feed {
         padding: 40px 60px;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
         width: calc(100% - 120px);
+        height: 100%;
         border-radius: $component-border-radius;
         box-shadow: $box-shadow-account; 
+        
+        // grid-template-columns: 1fr 1fr 1fr 1fr;
+        
+        @media only screen and (min-width: 992px) {
+            grid-template-columns: 1fr 1fr;
+            
+        }
+
+        @media only screen and (min-width: 1200px) {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+        
 
         &.edit-account {
             display: block;
@@ -48,6 +94,7 @@
             background-color: antiquewhite;
             height: 80px;
             box-shadow: $box-shadow-component;
+            margin-bottom: 20px;
             
             &-title {
                 position: absolute;
@@ -73,6 +120,46 @@
             }
         }
     }
+}
+
+
+
+.account-info {
+    display: flex;
+    
+    
+    @media only screen and (min-width: 500px) {
+        // background-color: red;
+        padding: 20vh 60px 0 60px;
+        flex-direction: column;
+        align-items: center;
+        
+        .account-profile-img {
+            margin-top: -40vh;
+            margin-bottom: 10px;
+        }
+        
+        .account-info-text {
+            margin-left: 0px;
+        }
+        
+        
+    }
+    
+    @media only screen and (min-width: 1200px) {
+        flex-direction: row;
+        padding: 10px 60px 0 60px;
+
+        .account-profile-img {
+            margin-top: -25vh;
+            margin-bottom: 10px;
+        }
+
+        .account-info-text {
+            margin-left: 40px;
+        }
+    }
+
 }
 
 .edit-account-label-container{
