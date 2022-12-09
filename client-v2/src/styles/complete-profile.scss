@@ -1,0 +1,17 @@
+.complete-profile {
+    width: calc(100% - 40px);
+    border-radius: $component-border-radius;
+    border: 1.15px solid $error-red;
+    padding: 10px 20px;
+    background-color: $error-red-background;
+    
+    p, li { 
+        color: $error-red;
+        font-size: .875rem;
+        letter-spacing: -.035rem;
+    }
+    
+    button {
+        border: 1px solid $error-red;
+    }
+}

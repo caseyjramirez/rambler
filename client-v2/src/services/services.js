@@ -12,7 +12,8 @@ import {
     messageAPI,
     activitiesAPI,
     getAWalkAPI,
-    updateActivtyGoalAPI
+    updateActivtyGoalAPI,
+    setCompleteProfileAPI
 } from "./urls";
 
 async function login(body) {
@@ -177,6 +178,18 @@ async function updateActivityGoal(body) {
     }
 }
 
+async function setCompleteProfile(body) {
+    try {
+        return await axios({
+            method: 'post',
+            url: setCompleteProfileAPI,
+            data: body
+        })
+    } catch (error) {
+        return error
+    }
+}
+
 
 
 
@@ -194,5 +207,6 @@ export {
     updateUser,
     getActivities,
     deleteActivity,
-    updateActivityGoal
+    updateActivityGoal,
+    setCompleteProfile
 }

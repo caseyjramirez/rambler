@@ -6,13 +6,15 @@ import defaultCoverPhoto from '../../assets/default-header.jpg'
 import defaultProfilePhoto from '../../assets/default-profile-photo.jpg'
 import Input from '../../components/input';
 import Error from '../../components/error';
-import { updateUser, updateActivityGoal } from '../../services/services';
+import CompleteProfile from '../../components/completeProfile';
+import { updateUser, updateActivityGoal, setCompleteProfile } from '../../services/services';
 import { useNavigate } from 'react-router-dom';
-import { getTopActivity, getTotalDistance, getTotalActivities, getMilesTillGoal } from '../../services/getUserStats';
-import SetGoal from '../../components/setGoal';
+import { getTopActivity, getTotalDistance, getTotalActivities } from '../../services/getUserStats';
 
-function Account({user, setUser, setNewActivityGoal}) {
-    const navigate = useNavigate();
+import SetGoal from '../../components/setGoal';
+import { set } from 'date-fns/esm';
+
+function Account({user, setUser, setNewActivityGoal, setUserProfileAsComplete}) {
 
     const [isEditing, setIsEditing] = useState(false)
     const [isSettingGoal, setIsSettingGoal] = useState(false)
@@ -26,7 +28,7 @@ function Account({user, setUser, setNewActivityGoal}) {
     const [totalActivities, setTotalActivities] = useState(null)
     const [milesTillGoal, setMilesTillGoal] = useState(null)
 
-    console.log(user);
+    const [isShowingCompleteProfile, setIsShowingCompleteProfile] = useState(true)
 
     useEffect(() => {
         setTopActivity(getTopActivity(user.activities))
@@ -45,6 +47,12 @@ function Account({user, setUser, setNewActivityGoal}) {
         setUpdatedProfile({...updatedProfile, industry_id: id })
     }
 
+    function completeProfile() {
+        setIsEditing(true)
+        setIsShowingCompleteProfile(false)
+        setCompleteProfile({id: user.id})
+        setUserProfileAsComplete()
+    }
     
     function changeProfilePic(e) {
         e.preventDefault();
@@ -166,7 +174,10 @@ function Account({user, setUser, setNewActivityGoal}) {
                                     </div>
 
                                     <div>
-                                        <button onClick={() => setIsEditing(true)} className='grey span100'>
+                                        <button onClick={() => {
+                                            setIsEditing(true)
+                                            setIsShowingCompleteProfile(false)
+                                        }} className='grey span100'>
                                             <h3 className="large">Edit Profile</h3>
                                         </button>
                                     </div>
@@ -177,7 +188,18 @@ function Account({user, setUser, setNewActivityGoal}) {
                 </div>
             </div>
 
-            
+            {
+                isShowingCompleteProfile && !user.complete_profile ? 
+                <div className="account-confirm-profile mb-20">
+                    <CompleteProfile 
+                        user={user}
+                        completeProfile={completeProfile}
+                        close={() => setIsShowingCompleteProfile(false)}
+                    />
+                </div> : null
+            }
+
+
             <div className="account-container">
                 {isEditing ? 
                     isConfirming ? 

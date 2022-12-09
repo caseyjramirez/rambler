@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_09_023026) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_09_040439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,6 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_09_023026) do
     t.float "user_lat"
     t.float "user_lng"
     t.float "mile_goal"
+    t.boolean "complete_profile"
     t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["industry_id"], name: "index_users_on_industry_id"
   end

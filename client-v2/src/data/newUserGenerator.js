@@ -14,7 +14,9 @@ function formatNewUserData(newUser) {
         password_confirmation: newUser.confirmPassword,
         profile_photo: newUser.profile_photo,
         cover_photo: newUser.cover_photo,
-        description: newUser.description
+        description: newUser.description,
+        complete_profile: false,
+        mile_goal: 0
     }
 }
 

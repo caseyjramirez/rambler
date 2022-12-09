@@ -55,6 +55,11 @@ function App() {
   function setNewActivityGoal(newGoal) {
     setUser(user => ({...user, mile_goal: newGoal}))
   }
+  
+  function setUserProfileAsComplete() {
+    setUser(user => ({...user, complete_profile: true}))
+    
+  }
 
 
 
@@ -65,7 +70,7 @@ function App() {
             <Route path="" element={<Activity user={user} addMessage={addMessage} userCityCord={{lat: user.user_lat, lng: user.user_lng}} removeActivity={removeActivity} />} />
             <Route path="/go" element={<Go user={user} userCityCord={{lat: user.user_lat, lng: user.user_lng}} />} />
             <Route path="/around-me" element={<AroundMe user={user} addActivity={addActivity} userCityCord={{lat: user.user_lat, lng: user.user_lng}} />} />
-            <Route path="/account" element={<Account user={user} setUser={setUser} setNewActivityGoal={setNewActivityGoal} />} />
+            <Route path="/account" element={<Account user={user} setUser={setUser} setNewActivityGoal={setNewActivityGoal} setUserProfileAsComplete={setUserProfileAsComplete}/>} />
           </Route> 
       )
     }

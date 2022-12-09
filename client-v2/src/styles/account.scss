@@ -39,7 +39,7 @@
         width: 25vw;
         min-width: 300px;
         max-width: 40vh;
-        height: 30vh;
+        height: 40vh;
         // margin-top: -25vh;
         border-radius: $part-border-radius;
         overflow: hidden;
@@ -217,4 +217,8 @@
         font-weight: 500;
         padding: .25rem .5rem;
     }
+}
+
+.account-confirm-profile {
+    padding: 0 60px;
 }

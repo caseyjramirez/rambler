@@ -11,6 +11,7 @@ const industryAPI = '/industries'
 const messageAPI = '/messages'
 const activitiesAPI = '/activities'
 const updateActivtyGoalAPI = '/update_activity_goal'
+const setCompleteProfileAPI = '/set_complete_profile'
 
 export { 
     loginAPI,
@@ -25,5 +26,6 @@ export {
     messageAPI,
     activitiesAPI,
     getAWalkAPI,
-    updateActivtyGoalAPI
+    updateActivtyGoalAPI,
+    setCompleteProfileAPI
 }

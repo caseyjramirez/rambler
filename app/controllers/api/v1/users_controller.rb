@@ -57,11 +57,18 @@ class Api::V1::UsersController < ApplicationController
 
     def update_activity_goal
         user = User.find_by_id(params[:id])
-        puts '🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑'
-        puts user
         
         
         user.update_attribute(:mile_goal, params[:mile_goal])
+
+        head :no_content 
+    end
+
+    def set_complete_profile
+        user = User.find_by_id(params[:id])
+        
+        
+        user.update_attribute(:complete_profile, true)
 
         head :no_content 
     end
