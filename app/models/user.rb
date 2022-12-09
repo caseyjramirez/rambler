@@ -39,6 +39,7 @@ class User < ApplicationRecord
             {
                 id: walk[:id],
                 distance: walk[:distance],
+                duration: walk[:duration],
                 location: walk[:location],
                 date: walk[:date],
                 user: {

@@ -15,6 +15,7 @@ class Api::V1::WalksController < ApplicationController
 
     def destroy
         activity = Walk.find(params[:id])
+        messages = Message.where(walk_id: params[:id])
         
         if activity[:user_one_id] === params[:user_id] or activity[:user_two_id] === params[:user_id]
             activity.destroy
@@ -28,7 +29,7 @@ class Api::V1::WalksController < ApplicationController
     private
 
     def walk_params
-        params.permit(:distance, :location, :date, :user_one_id, :user_two_id, :activity_id)
+        params.permit(:distance, :location, :date, :user_one_id, :user_two_id, :activity_id, :duration)
     end 
 
 end

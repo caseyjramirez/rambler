@@ -38,6 +38,7 @@ function Activity({ user, addMessage, userCityCord, removeActivity }) {
         minute: new Date().getMinutes()
     })
 
+
     useEffect(() => {
         // this needs to be initialized to next activity
         setActivityOfInterest(todaysActivities[0][0])

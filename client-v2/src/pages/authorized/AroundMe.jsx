@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import BusinessCard from "../../components/businessCard";
 import Dropdown from "../../components/dropdown";
 import { getPostings, getIndustries, getActivities } from "../../services/services";
-
+import { formatNewActivity } from '../../data/newActivityGenerator';
 import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api'
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { bookActivity } from '../../services/services';
@@ -49,22 +49,15 @@ function AroundMe({user, addActivity, userCityCord}) {
 
     useEffect(() => {
         if(industryQuery && activityTypeQuery) {
-            console.log('both');
             setPostingsOnDisplay(postings.filter(posting => posting.user.industry === industryQuery && posting.activity.name === activityTypeQuery))
         } else if(activityTypeQuery) {
-            console.log('only activity');
             setPostingsOnDisplay(postings.filter(posting => posting.activity.name === activityTypeQuery))
         } else if(industryQuery) {
-            console.log('only industry');
             setPostingsOnDisplay(postings.filter(posting => posting.user.industry === industryQuery))
         } else {
-            console.log('none');
             setPostingsOnDisplay(postings)
         }
     }, [industryQuery, activityTypeQuery, postings])
-
-
-    console.log(postingsOnDisplay);
 
     async function onPostingClick(postingId) {
         setHasBeenBooked(false)
@@ -78,25 +71,16 @@ function AroundMe({user, addActivity, userCityCord}) {
     }
 
     async function onGoClick() {
-
-        const { data } = await bookActivity({
-            distance: postingOfInterest.distance,
-            location: postingOfInterest.location,
-            date: postingOfInterest.date,
-            user_one_id: postingOfInterest.user.id,
-            user_two_id: user.id,
-            posting_id: postingOfInterest.id,
-            activity_id: postingOfInterest.activity.id
-        })
-
-        console.log(data);
-
+        const newActivity = formatNewActivity(postingOfInterest, user.id)
+        const { data } = await bookActivity(newActivity)
+        
         if(data) {
             // add activity to user object
             addActivity({
                 id: data.id,
                 date: data.date,
                 distance: data.distance,
+                duration: data.duration,
                 location: data.location,
                 user: {...data.user_one, industry: data.user_one.industry.name},
                 messages: [],
@@ -142,7 +126,7 @@ function AroundMe({user, addActivity, userCityCord}) {
                     <Dropdown
                         data={activityTypes}
                         onChange={value => onDropDownChange('activity', value)}
-                        />
+                    />
                 </div>
 
                 <div>

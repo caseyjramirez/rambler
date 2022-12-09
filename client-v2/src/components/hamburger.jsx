@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SidebarButton from './sidebarButton';
 
-function Hamburger() {
+function Hamburger({ user }) {
     const [isOpen, setIsOpen] = useState(false)
 
     function renderMenuClass() {
@@ -45,6 +45,8 @@ function Hamburger() {
                         nav='/account'
                         text='Acount.'
                         raiseClick={() => setIsOpen(false)}
+                        notification={user ? !user.complete_profile : false}
+
                     />
                 </div>
             </div>

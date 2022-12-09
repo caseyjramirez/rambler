@@ -34,7 +34,11 @@ function Account({user, setUser, setNewActivityGoal, setUserProfileAsComplete}) 
         setTopActivity(getTopActivity(user.activities))
         setTotalDistance(`${getTotalDistance(user.activities)} mi.`)
         setTotalActivities(getTotalActivities(user.activities))
-        setMilesTillGoal(activityGoal ? `${activityGoal - getTotalDistance(user.activities)} mi.` : 'Set a goal.')
+        setMilesTillGoal(() => (
+            activityGoal ? (
+                activityGoal > getTotalDistance(user.activities) ? `${activityGoal - getTotalDistance(user.activities)} mi.` : 'Goal Complete!'
+            ) : ('Set a goal.')
+        ))
     }, [user.activities, activityGoal])
     
     const handleChange = (e) => {

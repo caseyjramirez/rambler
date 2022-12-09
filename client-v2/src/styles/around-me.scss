@@ -16,7 +16,7 @@
         &-header {
             width: 100%;
             height: 40px;
-            padding-top: 20px;
+            padding-top: 0px;
             padding-bottom: 10px;
             margin-bottom: 10px;
             position: sticky;
@@ -27,8 +27,8 @@
     }
 
     &-map {
-        margin-left: 10px;
-        width: calc(100% - 10px);
+        margin-left: 20px;
+        width: calc(100% - 20px);
         // height: 100%;
         height: calc(100vh - 40px);
         background-color: antiquewhite;
@@ -66,11 +66,28 @@
 
 // establishing dynamic map based on 
 :root {
-    @media only screen and (max-width: 1199px) {        
+    @media only screen and (min-width: 500px) {        
+        .around-me-feed {
+            // padding-top: 40px;
+            padding-left: 10px;
+            padding-right: 20px;
+
+            &-header {
+                padding-top: 50px;
+            }
+
+        }
+    }
+
+    @media only screen and (min-width: 1100px) {        
         .around-me {
             width: 100%;
             display: block;
-            padding-right: 20px;
+
+            &-map {
+                margin-left: 20px;
+                width: calc(100% - 20px);
+            }
         }
         .around-me-map {
             display: none;
@@ -79,6 +96,10 @@
         .around-me-feed {
             width: 100%;
             padding-left: 0px;
+
+            &-header {
+                padding-top: 10px;
+            }
         }
     }
 
@@ -87,24 +108,17 @@
             width: 100%;
             display: grid;
             grid-template-columns: 1fr 1fr;
+
+            &-map {
+                margin-left: 40px;
+                width: calc(100% - 40px);
+            }
         }
         .around-me-map {
             display: block;
         }
         .around-me-feed {
             display: block;
-        }
-    }
-
-    @media only screen and (min-width: 500px) {        
-        .around-me-feed {
-            // padding-top: 40px;
-            padding-left: 10px;
-            padding-right: 20px;
-
-            &-header {
-                padding-top: 40px;
-            }
 
         }
     }

@@ -1,5 +1,5 @@
 class WalkSerializer < ActiveModel::Serializer
-  attributes :id, :distance, :location, :date, :user_one, :user_two, :messages
+  attributes :id, :distance, :location, :date, :user_one, :user_two, :messages, :duration
   
   has_one :user_one
   has_one :user_two

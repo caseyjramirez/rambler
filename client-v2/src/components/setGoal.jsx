@@ -20,6 +20,8 @@ function SetGoal({ currentActivityGoal, isOpen, onClose, setNewGoal }) {
         }
     }
 
+    console.log(activityGoal);
+
     
     return (
         <div className={renderClass()}>
@@ -30,7 +32,7 @@ function SetGoal({ currentActivityGoal, isOpen, onClose, setNewGoal }) {
                 </div>
 
                 <div className="set-goal-input mb">
-                    {activityGoal ? null : <h1 className='ml-15 mt-10 grey'>Set your goal.</h1>} 
+                    {activityGoal || activityGoal === 0 ? null : <h1 className='ml-15 mt-10 grey'>Set your goal.</h1>} 
                     <input value={activityGoal} onChange={(e) => setActivityGoal(e.target.value)} min={0} type="number" defaultValue={'fsdf'}/>
                 </div>
 

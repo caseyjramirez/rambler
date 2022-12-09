@@ -3,7 +3,6 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { authorizeUser } from './services/services';
 import Hamburger from './components/hamburger';
 import { productPage } from './data/welcomeNav';
-import { getGeocode, getLatLng } from "use-places-autocomplete";
 
 import ProductPage from './pages/unauthorized/ProductPage';
 import Unauthorized from './pages/page-templates/unauthorized';
@@ -32,7 +31,7 @@ function App() {
     })
   }, [])
 
-  // console.log(user);
+  console.log(user);
 
   function addActivity(newActivity) {
     setUser(user => ({...user, activities: [...user.activities, newActivity]}))
@@ -66,7 +65,7 @@ function App() {
   function renderAuthorizedRoutes() {
     if(user) {
       return (
-          <Route path="/" element={<Authorized />}>
+          <Route path="/" element={<Authorized user={user} />}>
             <Route path="" element={<Activity user={user} addMessage={addMessage} userCityCord={{lat: user.user_lat, lng: user.user_lng}} removeActivity={removeActivity} />} />
             <Route path="/go" element={<Go user={user} userCityCord={{lat: user.user_lat, lng: user.user_lng}} />} />
             <Route path="/around-me" element={<AroundMe user={user} addActivity={addActivity} userCityCord={{lat: user.user_lat, lng: user.user_lng}} />} />
@@ -79,7 +78,7 @@ function App() {
 
   return (
     <div className="App">
-      <Hamburger />
+      <Hamburger user={user} />
       <div className="container">
         <Routes>
           <Route path="/home" element={<ProductPage />}></Route>

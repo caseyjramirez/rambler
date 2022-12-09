@@ -129,7 +129,8 @@ function Go({ user, userCityCord }) {
                                         label='Distance'
                                         value={distance}
                                         onChange={e => setDistance(e.target.value)}
-                                        min="0"
+                                        min={0}
+                                        max={60}
                                         type='number'
                                     />
                                 </div>
@@ -138,7 +139,7 @@ function Go({ user, userCityCord }) {
                             <ActivitySelector activity={activity} setActivity={onSectActivity} />
 
                             <div className="span100 flex flex-column ai-center jc-center">
-                                <button disabled={activityId ? false : true} onClick={handleSubmit} className='large grey go-shadow'>
+                                <button onClick={handleSubmit} className='large grey go-shadow'>
                                     <h3 className="large">Go!</h3>
                                 </button>
                                 {error && <Error error={error} />}

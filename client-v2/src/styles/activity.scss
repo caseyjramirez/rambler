@@ -20,7 +20,7 @@
             background-color: $white;
             padding: 30px 20px;
             width: calc(100% - 40px);
-            height: calc(100% - 150px);
+            // height: calc(100% - 400px);
             border-radius: $component-border-radius;
             overflow: hidden;
             box-shadow: $box-shadow-component;
@@ -67,8 +67,23 @@
         border-radius: $part-border-radius;
         margin-left: 60px;
         height: calc((100vh - 220px) / 16);
-        min-height: 40px;
         width: calc(100% - 60px);
+
+        h3 {
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+        
+        .calendar-hour-set-activity-activity-type {
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        
+        .calendar-hour-set-activity-location {
+            position: absolute;
+            margin-left: 10px;
+            bottom: 5px;
+        }
 
 
         &-location {
@@ -103,20 +118,74 @@
         height: 3px;
         background-color: $error-red;
     }
-
-    &.min0 {
-        top: -5px;
-    }
-    &.min15 {
-        top: max(calc((((100vh - 220px) / 16) / 4) - 5px), 5px);
-    }
-    &.min30 {
-        top: max(calc((((100vh - 220px) / 16) / 2) - 5px), 15px);
-    }
-    &.min45 {
-        top: max(calc((((100vh - 220px) / 16) / 1.5) - 5px), 25px);
-    }
 }
+
+.min0 {
+    top: -5px;
+}
+.min5 {
+    top: max(calc((((100vh - 220px) / 16) / 8) - 5px), 4px);
+}
+.min10 {
+    top: max(calc((((100vh - 220px) / 16) / 5) - 5px), 8px);
+}
+.min15 {
+    top: max(calc((((100vh - 220px) / 16) / 4) - 5px), 10px);
+}
+.min20 {
+    top: max(calc((((100vh - 220px) / 16) / 2.75) - 5px), 14px);
+}
+.min25 {
+    top: max(calc((((100vh - 220px) / 16) / 2.2) - 5px), 18px);
+}
+.min30 {
+    top: max(calc((((100vh - 220px) / 16) / 1.9) - 5px), 20px);
+}
+.min35 {
+    top: max(calc((((100vh - 220px) / 16) / 1.75) - 5px), 24px);
+}
+.min40 {
+    top: max(calc((((100vh - 220px) / 16) / 1.5) - 5px), 28px);
+}
+.min45 {
+    top: max(calc((((100vh - 220px) / 16) / 1.3) - 5px), 30px);
+}
+.min50 {
+    top: max(calc((((100vh - 220px) / 16) / 1.15) - 5px), 33px);
+}
+.min55 {
+    top: max(calc((((100vh - 220px) / 16) / 1.05) - 5px), 36px);
+}
+
+
+.activity-set-30 {
+    height: max(calc((100vh - 220px) / 32), 20px);
+}
+.activity-set-60 {
+    height: max(calc((100vh - 220px) / 16), 40px);
+}
+.activity-set-90 {
+    height: max(calc((100vh - 220px) / 10), 60px);
+}
+.activity-set-120 {
+    height: max(calc((100vh - 220px) / 8), 80px);
+}
+.activity-set-150 {
+    height: max(calc((100vh - 220px) / 6.25), 100px);
+}
+.activity-set-180 {
+    height: max(calc((100vh - 220px) / 5.25), 120px);
+}
+.activity-set-210 {
+    height: max(calc((100vh - 220px) / 4.5), 140px);
+}
+.activity-set-240 {
+    height: max(calc((100vh - 220px) / 3.975), 160px);
+}
+
+
+
+
 
 
 
@@ -125,6 +194,24 @@
         .calendar-hour-set-activity-location {
             display: none;
         }
+
+        .calendar-hour-set-activity-activity-type {
+            margin-top: 6px;
+        }
+
+        h3 {
+            margin-left: 10px;
+            margin-top: 3px;
+        }
+
+    }
+
+    @media only screen and (max-height: 1000px) {
+        .calendar-hour-set-activity-activity-type {
+            display: none;
+        }
+
+
     }
 }
 
@@ -139,21 +226,6 @@
         }
         .activity-feed {
             display: none;
-        }
-    }
-
-    @media only screen and (min-width: 1200px) {      
-        .activity {
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
-        .activity-calendar {
-            display: block;
-
-        }
-        .activity-feed {
-            display: block;
         }
     }
 
@@ -186,6 +258,22 @@
             &-calendar {
                 height: calc(100% - 140px);
             }
+        }
+    }
+
+    @media only screen and (min-width: 1200px) {      
+        .activity {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .activity-calendar {
+            display: block;
+            height: calc(100% + 30px);
+
+        }
+        .activity-feed {
+            display: block;
         }
     }
 

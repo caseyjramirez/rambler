@@ -72,6 +72,18 @@ button {
     position: relative;
 }
 
+.sidebar-button-notification {
+    position: absolute;
+    top: -.375rem;
+    right: -.375rem;
+    width: .75rem;
+    height: .75rem;
+    border-radius: .5rem;
+    z-index: 2rem;
+    
+    background-color: $notification-red;
+}
+
 
 input {
     border-radius: $interactive-border-radius;

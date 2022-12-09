@@ -2,7 +2,7 @@ import Hamburger from "../../components/hamburger";
 import { Outlet } from "react-router-dom";
 import SidebarButton from "../../components/sidebarButton";
 
-function Authorized() {
+function Authorized({ user }) {
     return (
         <div className="layout">
             <div className="sidebar-container">
@@ -26,6 +26,7 @@ function Authorized() {
                     <SidebarButton
                         nav='/account'
                         text='Acount.'
+                        notification={!user.complete_profile}
                     />
 
                 </div>
