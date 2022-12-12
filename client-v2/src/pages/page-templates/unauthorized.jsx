@@ -5,8 +5,7 @@ function Unauthorized() {
 
     return (
         <div className="welcome">
-        <img src={coverPhoto} alt="Testing" />
-        
+        <img src={coverPhoto} alt="welcome" />
         <Outlet />
     </div>
 

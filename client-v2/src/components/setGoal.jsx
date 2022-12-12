@@ -20,8 +20,6 @@ function SetGoal({ currentActivityGoal, isOpen, onClose, setNewGoal }) {
         }
     }
 
-    console.log(activityGoal);
-
     
     return (
         <div className={renderClass()}>

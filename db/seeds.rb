@@ -13,6 +13,10 @@ City.create!(
     label: "Los Angeles"
 )
 City.create!(
+    name: "San Francisco, CA, USA",
+    label: "San Franscisco"
+)
+City.create!(
     name: "Denver, CO, USA",
     label: "Denver"
 )
@@ -51,6 +55,10 @@ Industry.create!(
     name: "Entertainment"
 )
 
+Industry.create!(
+    name: "Energy"
+)
+
 puts "Industries Seeded ⏳"
 
 walking = Activity.create!(
@@ -71,95 +79,54 @@ running = Activity.create!(
 
 puts "Activities Seeded ⏳"
 
+# casey = User.create(
+#     first_name: 'Casey',
+#     last_name: 'Ramirez',
+#     city_id: dallas.id,
+#     industry_id: tech.id,
+#     company: 'Google',
+#     job_title: 'Software Engineer',
+#     password: '1234',
+#     password_confirmation: '1234',
+#     email: 'test@test.com',
+#     description: "Hi, I'm Casey I'm based in Dallas, Texas and interested in all things tech!",
+# )
 
-# 15.times do
-#     User.create(
-#         first_name: Faker::Name.first_name,
-#         last_name: Faker::Name.last_name,
-#         city_id: City.all.sample.id,
-#         industry_id: Industry.all.sample.id,
-#         company: Faker::Company.name,
-#         job_title: Faker::Job.title,
-#         email: Faker::Internet.email,
-#         password: '1234',
-#         password_confirmation: '1234',
-#         description: Faker::Quote.yoda,
-#     )
-# end
-
-casey = User.create(
-    first_name: 'Casey',
-    last_name: 'Ramirez',
-    city_id: dallas.id,
-    industry_id: tech.id,
-    company: 'Google',
-    job_title: 'Software Engineer',
-    password: '1234',
-    password_confirmation: '1234',
-    email: 'test@test.com',
-    description: "Hi, I'm Casey I'm based in Dallas, Texas and interested in all things tech!",
-)
-
-roy = User.create(
-    first_name: 'Roy',
-    last_name: 'Lee',
-    city_id: dallas.id,
-    industry_id: tech.id,
-    company: 'Apple',
-    job_title: 'Software Engineer',
-    password: '1234',
-    password_confirmation: '1234',
-    email: 'test1@test.com',
-    description: "Hi, I'm Roy!",
-)
+# roy = User.create(
+#     first_name: 'Roy',
+#     last_name: 'Lee',
+#     city_id: dallas.id,
+#     industry_id: tech.id,
+#     company: 'Apple',
+#     job_title: 'Software Engineer',
+#     password: '1234',
+#     password_confirmation: '1234',
+#     email: 'test1@test.com',
+#     description: "Hi, I'm Roy!",
+# )
 
 
-# puts "Users Seeded ⏳"
-
-# 10.times do
+# 3.times do
 #     Posting.create(
-#         user_id: User.all.sample.id,
+#         user_id: casey.id,
+#         activity_id: walking.id,
 #         distance: rand(1..4),
 #         date: DateTime.current(),
-#         location: "Austin, TX, USA",
+#         location: "Denver, CO, USA",
 #         isFilled: false
 #     )
 # end
 
-# 20.times do
+# 2.times do
 #     Walk.create(
-#         user_one_id: User.all.sample.id,
+#         user_one_id: casey.id,
 #         user_two_id: User.all.sample.id,
+#         activity_id: walking.id,
 #         distance: rand(0..7),
-#         location: "Austin, TX, USA",
+#         location: "Denver, CO, USA",
 #         date: DateTime.current()
 #     )
 # end
-
-# puts "Post + Walk Seeded ⏳"
-
-
-3.times do
-    Posting.create(
-        user_id: casey.id,
-        activity_id: walking.id,
-        distance: rand(1..4),
-        date: DateTime.current(),
-        location: "Denver, CO, USA",
-        isFilled: false
-    )
-end
-
-2.times do
-    Walk.create(
-        user_one_id: casey.id,
-        user_two_id: User.all.sample.id,
-        activity_id: walking.id,
-        distance: rand(0..7),
-        location: "Denver, CO, USA",
-        date: DateTime.current()
-    )
-end
 
 # walk = Walk.create(
 #     user_one_id: casey.id,

@@ -1,10 +1,24 @@
 .product {
-    width: calc(100vw - var(--padding-2));
-    height: calc(100vh - var(--padding-2));
+    // width: calc(100vw - var(--padding-2));
+    // height: calc(100vh - var(--padding-2));
+    // border-radius: $component-border-radius;
+    // box-shadow: $box-shadow-component;
+    // overflow: hidden;
+    // position: relative;
 
+    &-modal {
+        background-color: $white;
+        padding: 20px 40px;
+        border-radius: $component-border-radius;
+        box-shadow: $box-shadow-component;
+        min-width: 400px;
 
-
-    &-nav {
-
+        &-container {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
     }
 }

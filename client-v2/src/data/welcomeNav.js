@@ -1,5 +1,5 @@
 const loginPage = '/welcome'
-const productPage = '/home'
+const productPage = '/welcome/home'
 const signupCityPage = '/welcome/signup'
 const jobFromName = '/welcome/signup/job'
 const cityFromName = '/welcome/signup/city'

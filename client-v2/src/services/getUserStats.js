@@ -1,4 +1,7 @@
 function getTopActivity(activities) {
+    if (activities.length === 0) {
+        return 'n/a'
+    }
     
     const activityTypes = [
         {

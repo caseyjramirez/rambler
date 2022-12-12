@@ -4,10 +4,11 @@ import { authorizeUser } from './services/services';
 import Hamburger from './components/hamburger';
 import { productPage } from './data/welcomeNav';
 
-import ProductPage from './pages/unauthorized/ProductPage';
+import Home from './pages/unauthorized/Home';
 import Unauthorized from './pages/page-templates/unauthorized';
 import Login from './pages/unauthorized/Login';
 import Signup from './pages/unauthorized/Signup';
+import About from './pages/unauthorized/About';
 
 import Authorized from "./pages/page-templates/authorized";
 import Activity from './pages/authorized/Activity';
@@ -30,8 +31,6 @@ function App() {
       }
     })
   }, [])
-
-  console.log(user);
 
   function addActivity(newActivity) {
     setUser(user => ({...user, activities: [...user.activities, newActivity]}))
@@ -82,12 +81,13 @@ function App() {
       <Hamburger user={user} />
       <div className="container">
         <Routes>
-          <Route path="/home" element={<ProductPage />}></Route>
+          <Route path="/about" element={<About />} />
+
           
           <Route path="/welcome" element={<Unauthorized />}>
+            <Route path="home" element={<Home />} />
             <Route path="" element={<Login setUser={setUser} />} />
             <Route path="signup/*" element={<Signup setUser={setUser} />} />
-
           </Route>
 
           {renderAuthorizedRoutes()}

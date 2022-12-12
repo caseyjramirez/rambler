@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BusinessCard from "../../components/businessCard";
 import Dropdown from "../../components/dropdown";
+import NoActivities from '../../components/noActivities';
 import { getPostings, getIndustries, getActivities } from "../../services/services";
 import { formatNewActivity } from '../../data/newActivityGenerator';
 import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api'
@@ -80,7 +81,6 @@ function AroundMe({user, addActivity, userCityCord}) {
         if(scheduleConflict) {
             return setError(scheduleConflict)
         }
-        return
         
         const newActivity = formatNewActivity(postingOfInterest, user.id)
         const { data } = await bookActivity(newActivity)
@@ -127,6 +127,7 @@ function AroundMe({user, addActivity, userCityCord}) {
         }
     }
 
+    console.log(postingsOnDisplay);
 
     return (
         <div className="around-me">
@@ -148,11 +149,9 @@ function AroundMe({user, addActivity, userCityCord}) {
                     />
                 </div>
             </div>
-
-            {/* {postings && <BusinessCard data={postings[0]} onClick={onPostingClick}/>} */}
             
             {
-                postings && postingsOnDisplay.map(posting => <BusinessCard key={posting.id} data={posting} onClick={onPostingClick}/>)
+                postings && postingsOnDisplay.length >= 1 ? postingsOnDisplay.map(posting => <BusinessCard key={posting.id} data={posting} onClick={onPostingClick}/>) : <NoActivities />
             }
 
         </div>

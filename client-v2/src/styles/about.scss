@@ -1,0 +1,16 @@
+.about{
+    width: calc(100vw - var(--padding-2));
+    height: calc(100vh - var(--padding-2));
+
+    &-modal {
+        max-width: 500px;
+        background-color: $white;
+        border-radius: $component-border-radius;
+        box-shadow: $box-shadow-component;
+        padding: 20px 40px;
+
+        p {
+            line-height: 1.25;
+        }
+    }
+}
