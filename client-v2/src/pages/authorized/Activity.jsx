@@ -40,7 +40,6 @@ function Activity({ user, addMessage, userCityCord, removeActivity }) {
 
 
     useEffect(() => {
-        // this needs to be initialized to next activity
         setActivityOfInterest(todaysActivities[0][0])
     }, [])
 
@@ -105,8 +104,8 @@ function Activity({ user, addMessage, userCityCord, removeActivity }) {
     
 
     function openMessage(activityId) {
-        onActivityClick(activityId)
         setIsMessaging(true)
+        onActivityClick(activityId)
     }
 
     function goBackToCalendar() {
@@ -121,9 +120,9 @@ function Activity({ user, addMessage, userCityCord, removeActivity }) {
             message: newMessage
         })
 
-        console.log(data);
-
+        
         if(data.status === 201) {
+            console.log(data);
             setNewMessage('')
 
             const newMessage = {
@@ -131,7 +130,7 @@ function Activity({ user, addMessage, userCityCord, removeActivity }) {
                 message: data.data.message,
                 reciever_id: data.data.reciever,
                 sender_id: data.data.sender,
-                activity_id: data.data.walk
+                activity_id: data.data.activity
             }
 
             setMessages(messages => [...messages, newMessage])

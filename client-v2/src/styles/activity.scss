@@ -20,10 +20,10 @@
             background-color: $white;
             padding: 30px 20px;
             width: calc(100% - 40px);
-            // height: calc(100% - 400px);
             border-radius: $component-border-radius;
             overflow: hidden;
             box-shadow: $box-shadow-component;
+            max-height: calc(100vh - 150px);
 
             &-hours {
                 padding-top: 20px;
@@ -71,7 +71,7 @@
 
         h3 {
             margin-left: 10px;
-            margin-top: 5px;
+            margin-top: 10px;
         }
         
         .calendar-hour-set-activity-activity-type {
@@ -94,9 +94,23 @@
         &-activity-type {
             position: absolute;
             right: 0;
-            top: 0;
+            top: 5px;
             
         }
+    }
+}
+
+.calendar-hour-set-activity-hide-details {
+    .calendar-hour-set-activity-activity-type {
+        display: none;
+    }
+    
+    .calendar-hour-set-activity-location {
+        display: none;
+    }
+
+    h3 {
+        margin-top: 3px;   
     }
 }
 
@@ -183,37 +197,6 @@
     height: max(calc((100vh - 220px) / 3.975), 160px);
 }
 
-
-
-
-
-
-
-.calendar-hour-set-activity {
-    @media only screen and (max-height: 1400px) {
-        .calendar-hour-set-activity-location {
-            display: none;
-        }
-
-        .calendar-hour-set-activity-activity-type {
-            margin-top: 6px;
-        }
-
-        h3 {
-            margin-left: 10px;
-            margin-top: 3px;
-        }
-
-    }
-
-    @media only screen and (max-height: 1000px) {
-        .calendar-hour-set-activity-activity-type {
-            display: none;
-        }
-
-
-    }
-}
 
 
 

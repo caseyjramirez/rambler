@@ -1,8 +1,26 @@
+import React, { useState, useEffect, useRef } from 'react';
+
 function ActivityOnCalendar({ data, onClick }) {
     const minute  = new Date(data.date).getMinutes()
+    
+    const [elemHeight, setElemHeight] = useState(0)
+    
+    const handleWindowSizeChange = () => {
+        setElemHeight(document.getElementById(data.id).offsetHeight)
+    };
 
+    // call your useEffect
+    useEffect(() => {
+        setElemHeight(document.getElementById(data.id).offsetHeight)
+        
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        };
+    }, []);
+    
+    
     function renderTimeOffset() {
-
         if(minute < 5) {
             return ""
         } 
@@ -68,10 +86,16 @@ function ActivityOnCalendar({ data, onClick }) {
         }
     }
 
+    function renderShownContent() {
+        if(elemHeight < 25) {
+            return 'calendar-hour-set-activity-hide-details'
+        }
+    }
+
 
 
     return (
-        <div onClick={() => onClick(data.id)} className={`calendar-hour-set-activity pointer ${renderTimeOffset()} ${renderActivityDuration(data.duration)}`}>
+        <div id={data.id} onClick={() => onClick(data.id)} className={`calendar-hour-set-activity pointer ${renderTimeOffset()} ${renderActivityDuration(data.duration)} ${renderShownContent()}`}>
             <h3 className="large white">{data.user.first_name} {data.user.last_name}</h3>
             <p className="small white ml-20 calendar-hour-set-activity-location">{data.location}</p>
 

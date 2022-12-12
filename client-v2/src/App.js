@@ -44,6 +44,7 @@ function App() {
   function addMessage(newMessage) {
     setUser(user => ({...user, activities: user.activities.map(activity => {
       if(activity.id === newMessage.activity_id) {
+        console.log('it was found');
         return {...activity, messages: [...activity.messages, newMessage]}
       } else {
         return activity;

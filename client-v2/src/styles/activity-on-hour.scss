@@ -1,0 +1,47 @@
+.calendar-hour-set {
+    min-height: 40px;
+    position: relative;
+    .time {
+        margin-top: -.45rem;
+        width: 50px;
+    }
+
+    &-activity {
+        position: absolute;
+        z-index: 1;
+        background-color: $blue;
+        border-radius: $part-border-radius;
+        margin-left: 60px;
+        height: calc((100vh - 220px) / 16);
+        width: calc(100% - 60px);
+
+        h3 {
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+        
+        .calendar-hour-set-activity-activity-type {
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        
+        .calendar-hour-set-activity-location {
+            position: absolute;
+            margin-left: 10px;
+            bottom: 5px;
+        }
+
+
+        &-location {
+            position: absolute;
+            bottom: 20px ;
+        }
+        
+        &-activity-type {
+            position: absolute;
+            right: 0;
+            top: 5px;
+            
+        }
+    }
+}

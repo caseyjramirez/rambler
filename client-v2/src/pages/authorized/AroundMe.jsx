@@ -7,6 +7,7 @@ import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api'
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { bookActivity } from '../../services/services';
 import { renderVerb } from '../../services/renderings'
+import { checkUserSchedule } from '../../services/checkUsersSchedule'
 
 function AroundMe({user, addActivity, userCityCord}) {
     const [postings, setPostings] = useState([])
@@ -17,7 +18,7 @@ function AroundMe({user, addActivity, userCityCord}) {
     const [industryQuery, setIndustryQuery] = useState(null)
     const [activityTypeQuery, setActivityTypeQuery] = useState(null)
 
-
+    const [error, setError] = useState('')
     const [postingOfInterest, setPostingOfInterest] = useState(null)
     const [cord, setCord] = useState(userCityCord)
     const [hasBeenbooked, setHasBeenBooked] = useState(false)
@@ -61,6 +62,7 @@ function AroundMe({user, addActivity, userCityCord}) {
 
     async function onPostingClick(postingId) {
         setHasBeenBooked(false)
+        setError('')
         setCordHasBeenSet(true)
         const posting = postings.find(posting => posting.id === postingId)
         setPostingOfInterest(posting);
@@ -71,6 +73,15 @@ function AroundMe({user, addActivity, userCityCord}) {
     }
 
     async function onGoClick() {
+        setError('')
+        
+        const scheduleConflict = checkUserSchedule(user.activities, postingOfInterest.date)
+        
+        if(scheduleConflict) {
+            return setError(scheduleConflict)
+        }
+        return
+        
         const newActivity = formatNewActivity(postingOfInterest, user.id)
         const { data } = await bookActivity(newActivity)
         
@@ -164,18 +175,28 @@ function AroundMe({user, addActivity, userCityCord}) {
             ) : (null)}
             {
                 postingOfInterest ? (
-                    hasBeenbooked ? (
+                    error ? (
                         <div className="around-me-confirmation">
-                            <h3 className="large">Your {renderVerb(postingOfInterest.activity.name).toLowerCase()} with {postingOfInterest.user.first_name} has been scheduled!</h3>
+                            <h3 className="large">{error}</h3>
                         </div>
                     ) : (
-                        <div className="around-me-cta">
-                            <button onClick={onGoClick} className='large black span100'>
-                                    <h3 className="large">{postingOfInterest.activity.name} with {postingOfInterest.user.first_name}!</h3>
-                            </button>
-                        </div>
+                        hasBeenbooked ? (
+                            <div className="around-me-confirmation">
+                                <h3 className="large">Your {renderVerb(postingOfInterest.activity.name).toLowerCase()} with {postingOfInterest.user.first_name} has been scheduled!</h3>
+                            </div>
+                        ) 
+                        : 
+                        (
+                            <div className="around-me-cta">
+                                <button onClick={onGoClick} className='large black span100'>
+                                        <h3 className="large">{postingOfInterest.activity.name} with {postingOfInterest.user.first_name}!</h3>
+                                </button>
+                            </div>
+                        )
                     )
-                ) : (null)
+                ) 
+                : 
+                (null)
             }
 
 
