@@ -3,7 +3,7 @@ const authorizeUserAPI = '/authorize_user'
 const userAPI = '/users'
 const getUserAPI = userId => `/users/${userId}`
 const postingAPI = '/postings'
-const unfilledPostingAPI = '/unfilledPostings'
+const unfilledPostingAPI = `/unfilledPostings`
 const walkAPI = '/walks'
 const getAWalkAPI = walkId => `/walks/${walkId}`
 const cityAPI = '/cities'

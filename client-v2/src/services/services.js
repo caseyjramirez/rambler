@@ -76,7 +76,7 @@ async function deleteActivity(walkId, userId) {
     }
 }
 
-async function getPostings() {
+async function getPostings(userId) {
     try {
         return await axios({
             method: 'get',

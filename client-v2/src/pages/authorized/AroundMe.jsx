@@ -127,8 +127,6 @@ function AroundMe({user, addActivity, userCityCord}) {
         }
     }
 
-    console.log(postingsOnDisplay);
-
     return (
         <div className="around-me">
         <div className="around-me-feed">
