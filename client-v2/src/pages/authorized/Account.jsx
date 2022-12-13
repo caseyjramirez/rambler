@@ -118,6 +118,11 @@ function Account({user, setUser, setNewActivityGoal, setUserProfileAsComplete}) 
         }
     }
 
+    function onDiscard() {
+        setIsEditing(false)
+        setIsConfirming(false)
+    }
+
     return (
         <div className="account">
             <SetGoal 
@@ -229,7 +234,7 @@ function Account({user, setUser, setNewActivityGoal, setUserProfileAsComplete}) 
                                 <button onClick={updateAccount} className='grey mr-20'>
                                     <h3 className="large">Save Changes</h3>
                                 </button>
-                                <button onClick={() => setIsEditing(false)} className='grey'>
+                                <button onClick={onDiscard} className='grey'>
                                     <h3 className="large">Discard</h3>
                                 </button>
                             </div>
@@ -242,7 +247,7 @@ function Account({user, setUser, setNewActivityGoal, setUserProfileAsComplete}) 
                             password={password}
                             setPassword={setPassword}
                             onIsConfirming={() => setIsConfirming(true)}
-                            discardEdit={() => setIsEditing(false)}
+                            discardEdit={onDiscard}
                         />
                 : 
                 <AccountFeed 

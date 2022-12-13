@@ -29,7 +29,7 @@ class Api::V1::WalksController < ApplicationController
     private
 
     def walk_params
-        params.permit(:distance, :location, :date, :user_one_id, :user_two_id, :activity_id, :duration)
+        params.permit(:distance, :location, :date, :user_one_id, :user_two_id, :activity_id, :duration, :has_been_seen)
     end 
 
 end

@@ -27,6 +27,11 @@
         color: $blue;
     }
 
+    &.white-dark-blue {
+        background-color: $white;
+        color: $dark-blue;
+    }
+
     &.circle {
         padding: 10px;
         border-radius: 50px;

@@ -32,6 +32,8 @@ function App() {
     })
   }, [])
 
+  console.log(user);
+
   function addActivity(newActivity) {
     setUser(user => ({...user, activities: [...user.activities, newActivity]}))
   }
@@ -78,7 +80,9 @@ function App() {
 
   return (
     <div className="App">
-      <Hamburger user={user} />
+      {
+        user ? <Hamburger user={user} /> : null
+      }
       <div className="container">
         <Routes>
           <Route path="/about" element={<About />} />

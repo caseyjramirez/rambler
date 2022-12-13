@@ -1,6 +1,7 @@
 .about{
     width: calc(100vw - var(--padding-2));
     height: calc(100vh - var(--padding-2));
+    padding: 20px 0;
 
     &-modal {
         max-width: 500px;

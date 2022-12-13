@@ -41,7 +41,9 @@ class User < ApplicationRecord
                 distance: walk[:distance],
                 duration: walk[:duration],
                 location: walk[:location],
+                has_been_seen: walk[:has_been_seen],
                 date: walk[:date],
+                poster_id: walk[:user_one_id],
                 user: {
                     id: user[:id], 
                     first_name: user[:first_name], 

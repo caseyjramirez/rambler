@@ -68,6 +68,10 @@
         margin-left: 60px;
         height: calc((100vh - 220px) / 16);
         width: calc(100% - 60px);
+        
+        &.new-activity {
+            background-color: $dark-blue;
+        }
 
         h3 {
             margin-left: 10px;
@@ -83,6 +87,17 @@
             position: absolute;
             margin-left: 10px;
             bottom: 5px;
+        }
+
+        .calendar-hour-set-activity-notification {
+            position: absolute;
+            top: -.375rem;
+            left: -.375rem;
+            width: .75rem;
+            height: .75rem;
+            border-radius: .5rem;
+            z-index: 2rem;
+            background-color: $notification-red;
         }
 
 

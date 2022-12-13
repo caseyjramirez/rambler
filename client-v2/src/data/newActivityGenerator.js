@@ -21,6 +21,7 @@ function formatNewActivity(posting, userId) {
         duration: getDuration(posting.activity.name, posting.distance),
         location: posting.location,
         date: posting.date,
+        has_been_seen: false,
         user_one_id: posting.user.id,
         user_two_id: userId,
         posting_id: posting.id,

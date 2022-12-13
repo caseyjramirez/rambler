@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function ActivityOnCalendar({ data, onClick }) {
     const minute  = new Date(data.date).getMinutes()
@@ -92,15 +92,26 @@ function ActivityOnCalendar({ data, onClick }) {
         }
     }
 
+    function renderNewActivityClass() {
+        return !data.hasBeenSeen ? 'new-activity' : null;
+    }
 
+    function renderTagClass() {
+        return !data.hasBeenSeen ? 'white-dark-blue' : 'white-blue';
+    }
+
+    console.log(data);
 
     return (
-        <div id={data.id} onClick={() => onClick(data.id)} className={`calendar-hour-set-activity pointer ${renderTimeOffset()} ${renderActivityDuration(data.duration)} ${renderShownContent()}`}>
+        <div id={data.id} onClick={() => onClick(data.id)} className={`calendar-hour-set-activity pointer ${renderNewActivityClass()} ${renderTimeOffset()} ${renderActivityDuration(data.duration)} ${renderShownContent()}`}>
+            {
+                !data.hasBeenSeen ? <div className="calendar-hour-set-activity-notification"></div> : null
+            }
             <h3 className="large white">{data.user.first_name} {data.user.last_name}</h3>
             <p className="small white ml-20 calendar-hour-set-activity-location">{data.location}</p>
 
             <div className="calendar-hour-set-activity-activity-type">
-                <span className="tag small white-blue">{data.activity.name}</span>
+                <span className={`tag small ${renderTagClass()}`} >{data.activity.name}</span>
             </div>
         </div>
     );
