@@ -13,7 +13,8 @@ import {
     activitiesAPI,
     getAWalkAPI,
     updateActivtyGoalAPI,
-    setCompleteProfileAPI
+    setCompleteProfileAPI,
+    setActivitiesToSeenAPI
 } from "./urls";
 
 async function login(body) {
@@ -190,6 +191,18 @@ async function setCompleteProfile(body) {
     }
 }
 
+async function setActivitiesToSeen(body) {
+    try {
+        return await axios({
+            method: 'patch',
+            url: setActivitiesToSeenAPI,
+            data: body
+        })
+    } catch (error) {
+        return error
+    }
+}
+
 
 
 
@@ -208,5 +221,6 @@ export {
     getActivities,
     deleteActivity,
     updateActivityGoal,
-    setCompleteProfile
+    setCompleteProfile,
+    setActivitiesToSeen
 }

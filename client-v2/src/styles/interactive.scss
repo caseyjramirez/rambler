@@ -17,6 +17,11 @@ button {
         color: $white;
     }
 
+    &.blue {
+        background-color: $white;
+        color: $blue;
+    }
+
     &.red {
         
         background-color: $error-red-background;
@@ -34,6 +39,10 @@ button {
 
     &.large {
         padding: 10px 30px;
+    }
+
+    &.small {
+        padding: 3px 15px;
     }
 
     &.day {

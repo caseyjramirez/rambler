@@ -20,12 +20,7 @@ function Authorized({ user }) {
                     <SidebarButton
                         nav='/'
                         text='Activity.'
-                        notification={notifyOnNewActivity(user.id, user.activities.map(activitiy => { 
-                            return {
-                                hasBeenSeen: activitiy.has_been_seen,
-                                posterId: activitiy.poster_id,
-                                date: activitiy.date
-                            }}))}
+                        notification={notifyOnNewActivity(user.id, user.activities)}
                     />
 
 

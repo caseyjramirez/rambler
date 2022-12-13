@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       get '/get_user', to: 'users#getUser'
       post '/update_activity_goal', to: 'users#update_activity_goal'
       post '/set_complete_profile', to: 'users#set_complete_profile'
+      patch '/set_activities_to_seen', to: 'walks#set_to_seen'
       get '/unfilledPostings', to: 'postings#unfilled'
       
     end

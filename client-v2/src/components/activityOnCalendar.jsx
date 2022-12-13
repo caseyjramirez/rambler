@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-function ActivityOnCalendar({ data, onClick }) {
+function ActivityOnCalendar({ data, userId, onClick }) {
     const minute  = new Date(data.date).getMinutes()
-    
     const [elemHeight, setElemHeight] = useState(0)
     
     const handleWindowSizeChange = () => {
@@ -93,11 +92,11 @@ function ActivityOnCalendar({ data, onClick }) {
     }
 
     function renderNewActivityClass() {
-        return !data.hasBeenSeen ? 'new-activity' : null;
+        return !data.has_been_seen && userId === data.poster_id ? 'new-activity' : null;
     }
 
     function renderTagClass() {
-        return !data.hasBeenSeen ? 'white-dark-blue' : 'white-blue';
+        return !data.has_been_seen && userId === data.poster_id ? 'white-dark-blue' : 'white-blue';
     }
 
     console.log(data);
@@ -105,7 +104,7 @@ function ActivityOnCalendar({ data, onClick }) {
     return (
         <div id={data.id} onClick={() => onClick(data.id)} className={`calendar-hour-set-activity pointer ${renderNewActivityClass()} ${renderTimeOffset()} ${renderActivityDuration(data.duration)} ${renderShownContent()}`}>
             {
-                !data.hasBeenSeen ? <div className="calendar-hour-set-activity-notification"></div> : null
+                !data.has_been_seen && userId === data.poster_id ? <div className="calendar-hour-set-activity-notification"></div> : null
             }
             <h3 className="large white">{data.user.first_name} {data.user.last_name}</h3>
             <p className="small white ml-20 calendar-hour-set-activity-location">{data.location}</p>

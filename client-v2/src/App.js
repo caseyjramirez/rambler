@@ -45,7 +45,6 @@ function App() {
   function addMessage(newMessage) {
     setUser(user => ({...user, activities: user.activities.map(activity => {
       if(activity.id === newMessage.activity_id) {
-        console.log('it was found');
         return {...activity, messages: [...activity.messages, newMessage]}
       } else {
         return activity;
@@ -58,8 +57,20 @@ function App() {
   }
   
   function setUserProfileAsComplete() {
-    setUser(user => ({...user, complete_profile: true}))
-    
+    setUser(user => ({...user, complete_profile: true})) 
+  }
+
+  function setActivitiesToSeen() {
+    setUser(user => ({
+      ...user,
+      activities: user.activities.map(activity => {
+        if(user.id === activity.poster_id && !activity.has_been_seen) {
+          return {...activity, has_been_seen: true}
+        } else {
+          return activity;
+        }  
+      })
+    }))
   }
 
 
@@ -68,7 +79,13 @@ function App() {
     if(user) {
       return (
           <Route path="/" element={<Authorized user={user} />}>
-            <Route path="" element={<Activity user={user} addMessage={addMessage} userCityCord={{lat: user.user_lat, lng: user.user_lng}} removeActivity={removeActivity} />} />
+            <Route path="" element={<Activity 
+              user={user} 
+              addMessage={addMessage} 
+              userCityCord={{lat: user.user_lat, lng: user.user_lng}} 
+              removeActivity={removeActivity} 
+              newActivitiesHaveBeenSeen={setActivitiesToSeen}
+            />} />
             <Route path="/go" element={<Go user={user} userCityCord={{lat: user.user_lat, lng: user.user_lng}} />} />
             <Route path="/around-me" element={<AroundMe user={user} addActivity={addActivity} userCityCord={{lat: user.user_lat, lng: user.user_lng}} />} />
             <Route path="/account" element={<Account user={user} setUser={setUser} setNewActivityGoal={setNewActivityGoal} setUserProfileAsComplete={setUserProfileAsComplete}/>} />

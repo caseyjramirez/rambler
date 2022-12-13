@@ -22,7 +22,13 @@ class Api::V1::WalksController < ApplicationController
         end
         
         head :no_content 
-    end 
+    end
+
+    def set_to_seen
+        Walk.where(user_one_id: params[:user_id]).update_all(has_been_seen: true)
+        puts '🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑'
+
+    end
 
 
 

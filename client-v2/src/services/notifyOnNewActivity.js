@@ -6,8 +6,7 @@ function notifyOnNewActivity(userId, userActivities) {
             continue;
         }
 
-        if(userActivities[i].posterId === userId && !userActivities[i].hasBeenSeen) {
-            console.log(userActivities[i]);
+        if(userActivities[i].poster_id === userId && !userActivities[i].has_been_seen) {
             return true;
         }
 

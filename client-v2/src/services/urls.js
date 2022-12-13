@@ -12,6 +12,7 @@ const messageAPI = '/messages'
 const activitiesAPI = '/activities'
 const updateActivtyGoalAPI = '/update_activity_goal'
 const setCompleteProfileAPI = '/set_complete_profile'
+const setActivitiesToSeenAPI = '/set_activities_to_seen'
 
 export { 
     loginAPI,
@@ -27,5 +28,6 @@ export {
     activitiesAPI,
     getAWalkAPI,
     updateActivtyGoalAPI,
-    setCompleteProfileAPI
+    setCompleteProfileAPI,
+    setActivitiesToSeenAPI
 }

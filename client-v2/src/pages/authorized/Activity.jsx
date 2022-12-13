@@ -5,18 +5,20 @@ import BusinessCardPlaceholder from '../../components/BusinessCardPlaceHolder';
 import Message from '../../components/message';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { createMessage, deleteActivity } from '../../services/services';
+import { createMessage, deleteActivity, setActivitiesToSeen } from '../../services/services';
 import ActivityOnCalendar from '../../components/activityOnCalendar';
 import LocalTimeTicker from '../../components/localTimeTicker';
 import { hours } from '../../data/hours'
 import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api'
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import EditActivity from '../../components/editActivity';
+import { notifyOnNewActivity } from '../../services/notifyOnNewActivity';
+import NewActivityMessage from '../../components/newActivityMessage';
 const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 
-function Activity({ user, addMessage, userCityCord, removeActivity }) {
+function Activity({ user, addMessage, userCityCord, removeActivity, newActivitiesHaveBeenSeen }) {
         
     const [currDate, setCurrDate] = useState(new Date())
     const [dateObj, setDateObj] = useState({
@@ -33,6 +35,7 @@ function Activity({ user, addMessage, userCityCord, removeActivity }) {
     const [cord, setCord] = useState()
     const [cordHasBeenSet, setCordHasBeenSet] = useState(false)
     const [isEditing, setIsEditing] = useState(false)
+    const [isShowingNewActivityMessage, setIsShowingNewActivityMessage] = useState(true)
     const [localTime, setLocalTime] = useState({
         hour: new Date().getHours(),
         minute: new Date().getMinutes()
@@ -82,6 +85,7 @@ function Activity({ user, addMessage, userCityCord, removeActivity }) {
 
     async function onActivityClick(activityId) {
         setCordHasBeenSet(true)
+        newActivitiesHaveBeenSeen()
         const activity = todaysActivities.find(activity => activity.id === activityId)
         
         setMessages(activity.messages)
@@ -173,10 +177,20 @@ function Activity({ user, addMessage, userCityCord, removeActivity }) {
 
     }
 
-    function mapDay() {
-        
-        let returnValue = [];
+    function onCloseNewActivityMessage() {
+        setIsShowingNewActivityMessage(false)
+        // update on the backend.
+        setActivitiesToSeen({
+            user_id: user.id
+        })
+    }
 
+    function renderNewActivityMessage() {
+        return notifyOnNewActivity(user.id, user.activities) && isShowingNewActivityMessage ? <NewActivityMessage userId={user.id} activities={user.activities} onClick={onCloseNewActivityMessage}/> : null;
+    }
+
+    function mapDay() { 
+        let returnValue = [];
         for(let i = 0; i <hours.length; i++) {
 
             // if current hour === local time
@@ -187,7 +201,7 @@ function Activity({ user, addMessage, userCityCord, removeActivity }) {
                             <h3 className="time">{hours[i].label}</h3>
                             <div className="breaker-hor blue"></div>
                             {isViewingToday() ? <LocalTimeTicker minute={localTime.minute} /> : null}
-                            <ActivityOnCalendar data={getCorrectActivityForHour(hours[i].hour)} onClick={onActivityClick} />
+                            <ActivityOnCalendar userId={user.id} data={getCorrectActivityForHour(hours[i].hour)} onClick={onActivityClick} />
                         </div>
                     )
                 } else {
@@ -206,7 +220,7 @@ function Activity({ user, addMessage, userCityCord, removeActivity }) {
                         <div className="calendar-hour-set flex" id={hours[i].hour}>
                             <h3 className="time">{hours[i].label}</h3>
                             <div className="breaker-hor blue"></div>
-                            <ActivityOnCalendar data={getCorrectActivityForHour(hours[i].hour)} onClick={onActivityClick} />
+                            <ActivityOnCalendar userId={user.id} data={getCorrectActivityForHour(hours[i].hour)} onClick={onActivityClick} />
                         </div>
                     )
                 } else {
@@ -316,6 +330,7 @@ function Activity({ user, addMessage, userCityCord, removeActivity }) {
                             </div>                            
                         ) : (
                             <div className="activity-calendar-calendar-hours">
+                                {renderNewActivityMessage()}
                                 {mapDay()}
                             </div>
                         )

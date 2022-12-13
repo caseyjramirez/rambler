@@ -1,0 +1,33 @@
+.new-activity-message {
+    color: $white;
+
+    &-container {
+        background-color: $blue;
+        position: absolute;
+        z-index: 4;
+        padding: 10px 20px;
+        top: 0;
+        left: 10px;
+        width: calc(100% - 70px);
+        border-radius: $part-border-radius;
+        box-shadow: $box-shadow-component;
+    }
+
+    &-notification {
+        position: absolute;
+        top: -.375rem;
+        left: -.375rem;
+        width: .75rem;
+        height: .75rem;
+        border-radius: .5rem;
+        z-index: 2rem;
+        background-color: $notification-red;
+    }
+
+    &-button {
+        p {
+            color: $blue;
+        }
+    }
+
+}
