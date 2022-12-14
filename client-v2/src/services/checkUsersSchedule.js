@@ -3,15 +3,15 @@ import { renderVerb } from './renderings'
 
 function checkUserSchedule(usersActivities, postingTime) {
 
+    console.log(usersActivities, postingTime);
+
     for(let i = 0; i < usersActivities.length; i++) {
 
         const { date: startTime, duration, id } = usersActivities[i]
-        
-        const endTime = add(new Date(startTime), {
-            hours: duration
-        })
 
-        if(postingTime > startTime && postingTime < endTime.toISOString()) {
+        const endTime = add(new Date(startTime), {hours: duration})
+
+        if(postingTime >= startTime && postingTime <= endTime.toISOString()) {
             return renderErrorMessage(usersActivities, id)
         }
     }

@@ -1,7 +1,3 @@
-import ProductNav from "../../components/productNav";
-import SidebarButton from "../../components/sidebarButton";
-import { loginPage } from "../../data/welcomeNav";
-import coverPhoto from '../../assets/testingWelcomePhoto.jpg';
 import { useNavigate } from "react-router-dom";
 
 function Home() {
@@ -11,7 +7,7 @@ function Home() {
             <div className="flex flex-column jc-center span100h span100">
                 <div className="mb-10">
                     <h1 className='mb-5'>Welcome to rambler.</h1>
-                    <h3>Rambler was created by Casey Ramirez as a campstone project.</h3>
+                    <h3>Rambler is a solo project by Casey Ramirez.</h3>
                     <div className="span-hor"></div>
                 </div>
 

@@ -77,6 +77,7 @@ function AroundMe({user, addActivity, userCityCord}) {
         setError('')
         
         const scheduleConflict = checkUserSchedule(user.activities, postingOfInterest.date)
+        console.log(scheduleConflict);
         
         if(scheduleConflict) {
             return setError(scheduleConflict)
