@@ -6,8 +6,6 @@ class Api::V1::PostingsController < ApplicationController
     end
 
     def unfilled
-        puts '🛑🛑🛑🛑🛑🛑'
-        puts current_user[:id]
 
         postings = Posting.inFuture.where(isFilled: false).where.not(user_id: current_user[:id])
 
